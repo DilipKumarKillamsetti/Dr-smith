@@ -1,18 +1,36 @@
-<ion-view title="loginpage">
-  <ion-content>
-      <div class="list">
-          <label class="item item-input item-floating-label">
-              <span class="input-label">Email</span>
-              <input type="text" placeholder="Email"  ng-model="Email">
-            </label>
-      <label class="item item-input item-floating-label">
-        <span class="input-label" >Password</span>
-        <input type="password" placeholder="Password" ng-model="Password">
-      </label>
-      <button class="button button-positive"  ng-click="redirect(Email,Password)">
-         LOGIN
-        </button>
      
-    </div>
-  </ion-content>
+
+
+<ion-view title="loginpage" class="shz-bg-shade" cache-view="false">
+   
+    <ion-content>
+      
+    </ion-content>
+      <div class="shz-page-center">
+            <div class=" card shz-screen-center ">
+                <center >
+                    <img  src="img/smith-logo.jpg" class="shz-main-logo">
+                </center>
+                <div class="item-input-inset" style="width:98%;">
+                    <label class="item-input-wrapper input shz-login-inputs">
+                        <input type="text" placeholder="Email"  ng-model="Email">
+                    </label>
+                </div>
+                <div class="item-input-inset" style="width:98%;">
+                    <label class="item-input-wrapper input shz-login-inputs">
+                        <input type="password" placeholder="Password" ng-model="Password">
+                    </label>
+                </div>
+            </div>
+            <div>
+            <center>
+                    <button class="shz-btn button button-positive"  ng-click="redirect(Email,Password)">
+                        Login
+                    </button><br/><br/>
+                <h4 style="font-family: 'myfont !important'; color: #555"> Forgot password?</h4>
+                </center>
+            </div>
+        </div>
+    
+    
 </ion-view>
