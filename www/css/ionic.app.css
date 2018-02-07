@@ -6462,14 +6462,16 @@ button.item.item-button-right {
 .card,
 .list-inset {
   overflow: hidden;
-  margin: 20px 10px;
+  margin: 10px 10px;
   border-radius: 2px;
   background-color: #fff; }
 
 .card {
   padding-top: 1px;
   padding-bottom: 1px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+ 
+  border-radius: 3px;
+}
   .card .item {
     border-left: 0;
     border-right: 0; }
@@ -6943,7 +6945,7 @@ textarea {
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 10.66667px; }
+  padding: 7px 10.66667px; }
 
 .item-input-wrapper {
   display: -webkit-box;
@@ -6966,15 +6968,80 @@ textarea {
   -webkit-border-radius: 4px;
   border-radius: 4px;
   padding-right: 8px;
-  padding-left: 8px;
-  background: #eee; }
+  padding-left: 15px;
+  background: #fff; }
 
 .item-input-inset .item-input-wrapper input {
-  padding-left: 4px;
-  height: 29px;
-  background: transparent;
-  line-height: 18px; }
+    height: 30px;
+    background: #fff;
+    border-radius: 100px;
+    width: 100%;
+    line-height: 18px;
+}
 
+
+.shz-login-inputs{
+    border-radius: 100px;
+    box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3); 
+}
+
+.shz-bg-shade{
+    background: #d7e8f8;
+    background-size: 100% 100%;
+}
+.shz-main-logo{
+    width:200px;
+    text-align: center;
+    margin: 30px auto;
+}
+
+.shz-btn{
+  position: relative;
+    top: 20px;
+}
+.shz-page-center{
+        position: absolute;
+        height: 240px;
+         margin: auto ;
+        background: #fff;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width:94%;
+     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.shz-screen-center{
+   
+    position: relative;
+    margin: auto;
+}
+.shz-profilePic{
+    display: block;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin:20px auto 0px;
+    text-align: center;
+    
+}
+
+.shz-goal-description{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+   height: 50px;
+    width: 100%;
+   
+}
+
+.shz-separator{
+    height: 2px;
+    background: #e1e1e1;
+    border-bottom: 2px;
+}
 .item-input-wrapper ~ .button {
   margin-left: 10.66667px; }
 
@@ -7879,8 +7946,8 @@ progress {
   display: inline-block;
   margin: 0;
   padding: 0 12px;
-  min-width: 52px;
-  min-height: 47px;
+  min-width: 100px;
+    max-height: 40px;
   border-width: 1px;
   border-style: solid;
   border-radius: 2px;
@@ -7889,7 +7956,8 @@ progress {
   text-overflow: ellipsis;
   font-size: 16px;
   line-height: 42px;
-  cursor: pointer; }
+  cursor: pointer; 
+}
   .button:hover {
     color: #444;
     text-decoration: none; }
@@ -7981,14 +8049,14 @@ progress {
         color: #fff; }
   .button.button-positive {
     border-color: #0e61dc;
-    background-color: #2B7BF2;
+    background-color: #0066cb;
     color: #fff; }
     .button.button-positive:hover {
       color: #fff;
       text-decoration: none; }
     .button.button-positive.active, .button.button-positive.activated {
       border-color: #0e61dc;
-      background-color: #0e61dc;
+      background-color: #0066cb;
       box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1); }
     .button.button-positive.button-clear {
       border-color: transparent;
@@ -9166,7 +9234,8 @@ a.button {
 ion-nav-bar ion-header-bar,
 ion-modal-view ion-header-bar {
   /* background-color: #375E97 !important; */
- background: #0e61dc !important;
+ background: #fff !important;
+    box-shadow: 2px 2px 8px 0.3px rgba(0,0,0,0.3);
   /*background-color: #93c83d;*/
   border: none !important;
   background-size: 0px !important; }
@@ -9175,7 +9244,8 @@ ion-modal-view ion-header-bar {
     text-transform: capitalize; }
 
 ion-nav-bar * {
-  color: #FFFFFF; }
+  color: #FFFFFF;
+color:#0066cb !important;}
   ion-nav-bar * .buttons button::before {
     color: #FFFFFF; }
 
