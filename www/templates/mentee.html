@@ -1,5 +1,6 @@
 <ion-view title="menteeDetails">
     <ion-content>
+        <div ng-init="details()">
        <center>
                 <h4>
                   id:  {{mentee.id}}
@@ -11,37 +12,34 @@
                 address:{{mentee.address}}
                 </h4>
                 <h4>
-                   password {{mentee.password}}
+                Mentor Name:{{mentor_name}}
                 </h4>
-            </center>
-        <button class="button button-block button-positive" ng-click="getmenteegoals(mentee.id)">Get Mentee Goals</button>
-        <ion-list>
-        <ion-item ng-repeat="menteegoal in menteegoals">
-    <a href="#/app/menteegoals_comments/{{menteegoal.id}}/{{menteegoal.mentee_id}}">  
-         {{menteegoal.goals}}</a>
-         <a><img src="{{url}}/myproject/download.php?nama={{menteegoal.file_url}}" width="40" height="40" alt="error"></a>
-            </ion-item>
-        </ion-list>
-        <label class="item item-input item-floating-label">
+        </center>
+    </div>
+
+  <h4>  <a href="#/app/menteegoals/{{mentee.id}}/{{mentee.name}}/{{mentee.address}}">Mentee Goals</a></h4>
+        <br />
+   <h4>  <a href="#/app/menteetasks/{{mentee.id}}/{{mentee.name}}/{{mentee.address}}">Tasks</a></h4>
+ 
+        <!-- <label class="item item-input item-floating-label">
                 <input type="text" id="task" placeholder="Add Task Here"   ng-model="new_task">
                 <input type="file" id="inputFile" ng-model="files" />
         </label>
-        <button class="button button-block button-positive" ng-click="addtask(mentee.id,new_task,files)">AddTask</button>
+        <button class="button button-block button-positive" ng-click="addtask(new_task,files)">AddTask</button>
         <ion-list ng-repeat="menteetask in menteetasks track by $index">
                 <ion-item >
-          
  <a href="#/app/menteetask_comments/{{menteetask.id}}"> {{menteetask.tasks}}  </a>
-            
  <a><img src="{{url}}/myproject/download.php?nama={{menteetask.file_url}}" width="40" height="40" alt="error"></a>
                 </ion-item>
-        </ion-list>
-        <div>
+        </ion-list> -->
+        <!-- <div>
             <label for="date">Date</label>
             <input id="date" type="date"  ng-model="date"/>
             <input id="starttime" type="time" ng-model="stime" />
             <input id="finishtime" type="time" ng-model="ftime" />
             <button ng-click="addschedules(date,stime,ftime,mentee.id)">Submit</button>
-        </div>
+        </div> -->
+        <button class="button button-block button-positive" ng-click="openModal()">ADD</button>
         <div>
              <h3>   <a href="#/app/interactions/{{mentee.id}}">Interactions</a></h3>
         </div>

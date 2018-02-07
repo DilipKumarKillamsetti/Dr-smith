@@ -1,0 +1,28 @@
+<ion-view title="Learning Goals">
+    <ion-content>
+            <center>
+                    <h5>
+                      id:  {{mentee_id}}
+                    </h5>
+                    <h5>
+                      name:  {{mentee_name}}
+                    </h5>
+                    <h5>
+                    address:{{mentee_address}}
+                    </h5>
+                </center>
+<ion-list  ng-init="getmenteegoals()">
+    <ion-item ng-repeat="menteegoal in menteegoals track by $index">
+    <a href="#/app/menteegoals_comments/{{menteegoal.id}}/{{menteegoal.mentee_id}}">  
+            {{menteegoal.goals}}</a>
+            <a href="{{url}}/myproject/download.php?nama={{menteegoal.file_url}}">
+                {{menteegoal.file_name}}</a>
+            <!-- <a><img src="{{url}}/myproject/download.php?nama={{menteegoal.file_url}}" width="40" height="40" alt="error"></a> -->
+            <br>
+            due_date:{{menteegoal.due_date}}<br>
+            edited_date:{{menteegoal.edited_date}}<br>
+            completed_date:{{menteegoal.completed_date}}
+            </ion-item>
+</ion-list>
+    </ion-content>
+</ion-view>

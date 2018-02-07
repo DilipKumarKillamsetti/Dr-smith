@@ -1,0 +1,35 @@
+<ion-view title="Tasks">
+<ion-content>
+                <center>
+                <h5>
+                        id:  {{mentee_id}}
+                </h5>
+                <h5>
+                        name:  {{mentee_name}}
+                </h5>
+                <h5>
+                address:{{mentee_address}}
+                </h5>
+                </center>
+        <ion-list  ng-init="gettasks()">
+                <ion-item ng-repeat="menteetask in menteetasks track by $index">
+                        <a href="#/app/menteetask_comments/{{menteetask.id}}/{{menteetask.tasks}}"> {{menteetask.tasks}}  </a>
+                        <a href="{{url}}/myproject/download.php?nama={{menteetask.file_url}}">
+                                {{menteetask.file_name}}</a>
+                        <!-- <a><img src="{{url}}/myproject/download.php?nama={{menteetask.file_url}}" width="40" height="40" alt="error"></a> -->
+                        <br>
+                        due_date:{{menteetask.due_date}}<br>
+                        edited_date:{{menteetask.edited_date}}<br>
+                        completed_date:{{menteetask.completed_date}}<br>
+                </ion-item>
+        </ion-list>
+        <!-- <label class="item item-input item-floating-label">
+                <input type="text" id="task" placeholder="Add Task Here"   ng-model="new_task">
+                <input type="file" id="inputFile" ng-model="files">
+        </label>
+        <label for="date">Due Date</label>
+        <input id="date" type="date"  ng-model="date"/>
+ <button class="button button-block button-positive" ng-click="addtask(new_task,files,date)">AddTask</button> -->
+ <button class="button  button-positive" ng-click="opentaskModel()">AddTask</button>
+</ion-content>
+</ion-view>

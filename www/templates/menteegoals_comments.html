@@ -1,10 +1,22 @@
-<ion-view title="MenteeGoalComments">
+<ion-view title="Goal Comments">
+
     <ion-content ng-init="getcomments()">
+        <ion-item ng-repeat="goal in goal">
+               <h3>
+                   Goal:
+               </h3> {{goal.goals}}
+                <a><img src="{{url}}/myproject/download.php?nama={{goal.file_url}}" width="40" height="40" alt="error"></a>
+                <br>
+                {{goal.due_date}}
+           </ion-item>        
         <ion-list>
             <ion-item ng-repeat="comment in comments">
-                  comment:  {{comment.comment_text}}
+                 comment:  {{comment.comment_text}}
                     <br>
-                    comment by: {{comment.comment_by}}
+                comment by: {{comment.comment_by}}
+                    <br>
+                posted on:{{comment.posted_date}}    
+
 
             </ion-item>
         </ion-list>

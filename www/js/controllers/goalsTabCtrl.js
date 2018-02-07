@@ -1,6 +1,21 @@
 angular.module('drsmith.controllers.goalsTabCtrl', [])
-.controller('goalsctrl',function($scope,$rootScope,$http)
+.controller('goalsctrl',function($scope,$rootScope,$http, $ionicModal)
 {
+  $ionicModal.fromTemplateUrl('templates/add_goal_mentor.html',{
+    scope: $scope,
+    animation: 'slide-in-up'
+  })
+  .then(function(modal){
+    $scope.modal=modal;
+        });
+  $scope.openModal = function()
+   { 
+     $scope.modal.show(); 
+  };
+   $scope.closeModal = function()
+    {
+    $scope.modal.hide();
+    };
   // console.log($rootScope.url)
   $scope.get=function(){
     // console.log($rootScope.id)
@@ -19,7 +34,7 @@ angular.module('drsmith.controllers.goalsTabCtrl', [])
 }
 var base64=null;
 var name=null;
-$scope.add=function(goal,files){
+$scope.add=function(goal,files,date1){
   console.log(goal)
  
   console.log($rootScope.id)
@@ -40,23 +55,25 @@ $scope.add=function(goal,files){
     fileReader.readAsDataURL(filetoload);
     fileReader.onload=function(fileLoadedEvent){
       base64=fileLoadedEvent.target.result;
-      $scope.fun(goal);   
+      $scope.fun(goal,date1);   
     }
 }
 else
 { 
-  $scope.fun(goal);
+  $scope.fun(goal,date1);
 }
 }
 
-$scope.fun=function(goal){
+$scope.fun=function(goal,date1){
   console.log(goal);
+  $scope.formattedDate = moment(date1).format('YYYY-MM-DD');
+  console.log($scope.formattedDate)
   $http(
     {
       url:$rootScope.url+"/myproject/add_mentor_goal_with_file.php",
        method:"POST",
        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      data:{id:$rootScope.id,name:name,goal:goal,shab:base64}
+      data:{id:$rootScope.id,name:name,goal:goal,shab:base64,due_date:$scope.formattedDate}
  })
   .then(function(response){
    $scope.goals=response;

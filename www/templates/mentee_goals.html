@@ -1,48 +1,22 @@
 <ion-view title="Learning Goals">
-        <ion-content class="shz-bg-shade" ng-init="getgoals()">
-            
+        <ion-content ng-init="getgoals()">
                 <ion-list>
-                        <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="goal in goals">
-                            <div class=row>
-                                
-                                <p class="col" style="color: #0066cb"><i>Due Date:</i></p>
-                               <div style="text-align: right">
-                                   <a class="col " style="color: #0066cb"><img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > Filename</a>
-                                </div>
-                            </div>
-                            <div class=row>
-                                <div class="shz-goal-description" >
-                                    <h3 style="white-space: initial;">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="shz-separator">
-                            
-                            </div>
-                            <div class=row>
-                                <div class="col" style="text-align: left;">
-                                <p style="color: #1fb12a; float: left; " >Completion Date:     </p>
-                                 <p  style="color: #999;" >Last Edited: </p>
-                                </div>
-                               <div class="col" style="text-align: right;">
-                                   <a><img src="img/edit_icon.png" width="20" height="20" alt="error"></a>    
-                                   <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
-                                </div>
-                            </div>
-                      <!--<a href="#/app/goal_comments/{{goal.id}}">{{goal.goals}} </a>
-                      
-                                 -->
-                           </ion-item> 
-                         
-                  
-
+                        <ion-item ng-repeat="goal in goals">
+                      <a href="#/app/goal_comments/{{goal.id}}">{{goal.goals}} </a>
+                      <a href="{{url}}/myproject/download.php?nama={{goal.file_url}}">
+                        {{goal.file_name}}</a>
+                      <!-- <a><img src="{{url}}/myproject/download.php?nama={{goal.file_url}}" width="40" height="40" alt="error"></a>          -->
+                      <br>due_date:{{goal.due_date}}<br>
+                      edited_date:{{goal.edited_date}}<br>
+                      completed_date:{{goal.completed_date}}
+                           </ion-item>
                  </ion-list>
-                 <!--<label class="item item-input item-floating-label">
+                  <!-- <label class="item item-input item-floating-label">
                         <input type="text" id="goal" placeholder="Add Goal Here"   ng-model="new_goal">
                         <input type="file" id="inputFile"  ng-model="files">
-                </label>-->
-            
-                <button style="width: 60%;margin: auto;"class="button button-block button-positive" ng-click="addgoal(new_goal,files)">Add Goal</button>
-                
+                      </label>
+                <button class="button button-block button-positive" ng-click="addgoal(new_goal,files)">Add Goal</button> -->
+                <button class="button button-block button-positive" ng-click="openModal()">Add Goal</button>
+                <ion-list>
         </ion-content>
 </ion-view>

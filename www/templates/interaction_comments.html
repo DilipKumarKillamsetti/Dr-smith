@@ -1,11 +1,15 @@
 <ion-view title="InteractionsComments">
         <ion-content ng-init="getintercomments()">
-                
+                <ion-item ng-repeat="interaction in interaction">
+                        {{interaction.comment}}
+                </ion-item>
             <ion-list> 
                 <ion-item ng-repeat="intercomment in intercomments">
                        comment: {{intercomment.comment_text}}
                         <br />
                         comment by:{{intercomment.comment_by}}
+                        <br>
+                        posted on:{{intercomment.comment_date}}
                 </ion-item>
             </ion-list>
             <label class="item item-input item-floating-label">

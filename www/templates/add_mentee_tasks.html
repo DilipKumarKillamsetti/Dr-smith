@@ -1,0 +1,12 @@
+<ion-modal-view title="add Mentee task">
+    <ion-content>
+            <label class="item item-input item-floating-label">
+                    <input type="text" id="task" placeholder="Add Task Here"   ng-model="new_task">
+                    <input type="file" id="inputFile" ng-model="files">
+            </label>
+            <label for="date">Due Date</label>
+            <input id="date" type="date"  ng-model="date"/>
+     <button class="button button-block button-positive" ng-click="addtask(new_task,files,date)">AddTask</button>
+     <button class="button button-positive" ng-click="closetaskModal()">close</button>
+    </ion-content>
+</ion-modal-view>

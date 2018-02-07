@@ -2,7 +2,8 @@
     <ion-content>
         <ion-list>
             <ion-item class="item-remove-animate item-avatar item-icon-right"type="item-text-wrap" ng-repeat="mentee in mentees">
-            <a>  <img src="{{url}}/myproject/download.php?nama={{mentee.file_url}}" width="40" height="40" alt="error" /></a>
+            <!-- <a>  <img src="{{url}}/myproject/download.php?nama={{mentee.file_url}}"
+                 width="40" height="40" alt="error" /></a> -->
             <a  href="#/app/mentee/{{mentee.id}}" > <h2>{{mentee.name}}</h2></a>
             <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>

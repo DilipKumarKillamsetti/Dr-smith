@@ -3,8 +3,13 @@
                 <ion-list>
                         <ion-item ng-repeat="task in menteetasks">
 <a href="#/app/mentee_task_comments/{{task.id}}"> {{task.tasks}}  </a>
+<a href="{{url}}/myproject/download.php?nama={{task.file_url}}">
+        {{task.file_name}}</a>
                            
-   <a><img src="{{url}}/myproject/download.php?nama={{task.file_url}}" width="40" height="40" alt="error"></a>
+   <!-- <a><img src="{{url}}/myproject/download.php?nama={{task.file_url}}" width="40" height="40" alt="error"></a> -->
+   <br>due_date:{{task.due_date}}<br>
+   edited_date:{{task.edited_date}}<br>
+   completed_date:{{task.completed_date}}
                          </ion-item>
                  </ion-list>
         </ion-content>

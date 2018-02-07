@@ -22,6 +22,7 @@ angular.module('drsmith.controllers.loginctrl', [])
                      if($rootScope.type=="mentor")
                      {
                       $state.go("app.home");
+                      $rootScope.name=$scope.result.row.name;
                        $rootScope.hideTab=false;
                      }
                      else

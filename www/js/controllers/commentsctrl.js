@@ -10,8 +10,10 @@ angular.module('drsmith.controllers.commentsctrl', [])
         }
       )
       .then(function(response){
-        $scope.intercomments=response.data;
+        $scope.intercomments=response.data.comment;
+        $scope.interaction=response.data.meeting_schedule
         console.log($scope.intercomments) ;
+        console.log($scope.interaction);
         $scope.comment="";
       })
     }
@@ -36,7 +38,7 @@ angular.module('drsmith.controllers.commentsctrl', [])
       })
      
      }
-     //function for mentor will get the comments on goals
+     //function for mentor will get the comments on goals of mentee
    $scope.getcomments=function(){
     $http(
       {
@@ -46,14 +48,16 @@ angular.module('drsmith.controllers.commentsctrl', [])
       }
     )
     .then(function(response){
-      $scope.comments=response.data;
+      $scope.comments=response.data.comment;
+      $scope.goal=response.data.goal;
       console.log($scope.comments)
+      console.log($scope.goal)
   
       $scope.comment="";
       
     })
    }
-    //function for mentor will add the comments on goals
+    //function for mentor will add the comments on goals of mentee
    $scope.addcomment=function(comment){
      console.log($stateParams.id)
      console.log($rootScope.id)
@@ -74,17 +78,18 @@ angular.module('drsmith.controllers.commentsctrl', [])
     })
     $scope.comment="";
    }
-    //function for mentor and mentee will get the comments on tasks
+    //function for mentor and mentee will get the comments on tasks 
    $scope.getcomments_on_task=function(){
-
     $http({
       url:$rootScope.url+"/myproject/mentee_task_comment.php",
       method:"GET",
       params:{mentee_task_id:$stateParams.id}
     })
     .then(function(response){
-      $scope.task_comments=response.data;
+      $scope.task_comments=response.data.comment;
+      $scope.task=response.data.task;
       console.log($scope.task_comments)
+      console.log($scope.task)
     })
   }
   //function for mentor and mentee will add the comments on tasks
@@ -103,7 +108,6 @@ angular.module('drsmith.controllers.commentsctrl', [])
    .then(function(response){
      $scope.newcomments=response.data;
      console.log($scope.newcomments);
- 
      $scope.getcomments_on_task();
    })
    $scope.comment="";

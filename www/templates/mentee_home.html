@@ -1,108 +1,37 @@
-<ion-view title={{title}} class="shz-bg-shade">
-    <ion-content ng-init="get()">
-        <div class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);">
-            <div class="item-text-wrap screen-center">
-                <div class="shz-profilePic">
-                    <img src="img/logo.png" class="profile" width="85px" height="85px" style="border: 6px solid white;border-radius: 50%;"/><br>
-                     <!--<img class="profile" width="100px" height="100px" style="border: 8px solid white;border-radius: 50%;" ng-click="editUser()" src="images/logo.png" ng-show="!userinfojson.image || userinfojson.image=='' || userinfojson.image==null"> -->
-                </div>
-            </div> 
-            <div class="shz-screen-center ">
-                 <div style="height: 5px; position: absolute; top: -100px; left: 0; bottom: 0; right: 20px; text-align:right; margin: 0; ">
-                          <h5 >Mumbai</h5>
-                    </div>
-               <center>
-                     
-                        <h3>
-                          Hello, {{mentee.row.name}}
-                        </h3>
-                        <h5>
-                       Contact
-                        </h5>
-                        <h5>
-                           Mentor: {{mentee.mentor}}
-                        </h5>
-                          <h5>
-                           Total Interactions: {{mentee.mentor}}
-                        </h5>
-                
-                </center>
-            </div>
-            
-        </div>
-                
-            <div class="row">
-                <div class="col">
-              <center>
-                  <a href="#/app/mentee_goals/{{mentee.row.id}}">
-                    <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive"  ng-click="redirect(Email,Password)">
-                        My Goals
-                    </button>
-                  </a>
-                </center>
-                </div>
-                <div class="col">
-              <center>
-                  <a href="#/app/mentee_goals/{{mentee.row.id}}">
-                    <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive"  ng-click="redirect(Email,Password)">
-                        My Tasks
-                    </button>
-                  </a>
-                </center>
-                </div>
-            
-            </div>
-        
-        <div class="row">
-                <div class="col">
-              <center>
-                  <a href="#/app/mentee_goals/{{mentee.row.id}}">
-                    <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive" >
-                        Send Message
-                    </button>
-                    </a>
-                </center>
-                </div>
-                <div class="col">
-              <center>
-                  <a href="#/app/mentee_goals/{{mentee.row.id}}">
-                    <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive"  ng-click="redirect(Email,Password)">
-                        Interactions
-                    </button>
-                  </a>
-                </center>
-                </div>
-            </div>
-        
-            <div class="row">
-                <div class="col">
-              <center>
-                  <a href="#/app/mentee_goals/{{mentee.row.id}}">
-                    <button style ="width: 60%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive" >
-                        Schedule Meet
-                    </button>
-                    </a>
-                </center>
-                </div>
-                
-            </div>
-                <!--<div>
+<ion-view title={{title}}>
+        <ion-content ng-init="get()">
+
+                <center>
+                        <h4>
+                          id:  {{mentee.row.id}}
+                        </h4>
+                        <h4>
+                          name: {{mentee.row.name}}
+                        </h4>
+                        <h4>
+                        address:{{mentee.row.address}}
+                        </h4>
+                        <h4>
+                           mentor_name: {{mentee.mentor}}
+                        </h4>
+                    </center>
                 <div>
-                <h3>   <a href="#/app/mentee_goals/{{mentee.row.id}}"> <button style ="width: 100%;" class=" button button-positive"  ng-click="redirect(Email,Password)">
-                        Send Message
-                    </button><br/><br/></a></h3>
+                <div>
+                <h3>   <a href="#/app/mentee_goals/{{mentee.row.id}}">LearningGoals</a></h3>
                 </div>
                 <h3>   <a href="#/app/mentee_tasks">Tasks</a></h3>
                 </div>
-                <h3>   <a href="#/app/mentee_interactions">Interactions</a></h3>
                 
-                <div>
+                <!-- <div>
                         <label for="date">Date</label>
                         <input id="date" type="date"  ng-model="date"/>
                         <input id="starttime" type="time" ng-model="stime" />
                         <input id="finishtime" type="time" ng-model="ftime" />
                         <button ng-click="addschedules(date,stime,ftime)">Submit</button>
-                </div>-->
-                   
+                </div> -->
+                <button ng-click="openModal_interactions()">AddInteractions</button>
+                    <div>
+                         <h3>   <a href="#/app/mentee_interactions">Interactions</a></h3>
+                    </div>
         </ion-content>
       </ion-view>

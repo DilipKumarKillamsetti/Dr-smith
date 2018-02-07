@@ -1,10 +1,19 @@
 <ion-view title="GoalComments">
         <ion-content ng-init="getcomments()">
+            <ion-item ng-repeat="goal in goal">
+             
+               Goal: {{goal.goals}}
+               <a><img src="{{url}}/myproject/download.php?nama={{goal.file_url}}" width="40" height="40" alt="error"></a>
+                <br>
+                Due date: {{goal.due_date}}
+            </ion-item>
             <ion-list>
                 <ion-item ng-repeat="comment in goal_comments">
                      comment: {{comment.comment_text}}
                      <br>  
                       comment by: {{comment.comment_by}}
+                      <br>  
+                      Posted on: {{comment.posted_date}}
                 </ion-item>
             </ion-list>
             <label class="item item-input item-floating-label">

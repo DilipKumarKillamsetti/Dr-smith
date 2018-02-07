@@ -3,10 +3,10 @@
             <ion-list>
                <ion-item ng-repeat="schedule in schedules track by $index">
                  <a href="#/app/interaction_comments/{{schedule.id}}">      
-                        {{schedule.date}}
-                        {{schedule.start_time}}
+                     <h3>   {{schedule.comment}}</h3><br>
+                        {{schedule.date}}<br>
+                        {{schedule.start_time}}<br>
                         {{schedule.end_time}}
-                        {{schedule.comment}}
                   </a>
                 </ion-item>
                 </ion-list>

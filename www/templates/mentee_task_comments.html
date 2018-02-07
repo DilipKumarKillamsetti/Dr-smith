@@ -1,10 +1,16 @@
 <ion-view title="TaskComments ">
         <ion-content ng-init="getcomments_on_task()">
+                <ion-item ng-repeat="task in task">
+                        <h4>Task:</h4>{{task.tasks}}
+                        <a><img src="{{url}}/myproject/download.php?nama={{task.file_url}}" width="40" height="40" alt="error"></a>
+                        </ion-item>
             <ion-list>
                 <ion-item ng-repeat="comment in task_comments">
                       comment:  {{comment.comment_text}}
                         <br>
                         comment by: {{comment.comment_by}}
+                        <br>
+                        posted on:{{comment.date}}
                 </ion-item>
             </ion-list>
             <label class="item item-input item-floating-label">

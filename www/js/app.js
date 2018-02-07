@@ -5,7 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('drsmith', [
   'ionic',
-  'drsmith.controllers'
+  'drsmith.controllers',
+  'angularMoment'
 ])
 
 .run(function($ionicPlatform) {
@@ -32,7 +33,7 @@ angular.module('drsmith', [
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider)
 {
-  $ionicConfigProvider.tabs.position('top');
+  $ionicConfigProvider.tabs.position('bottom');
   $stateProvider
 
   //SIDE MENU ROUTES
@@ -155,6 +156,15 @@ angular.module('drsmith', [
       }
     }
   })
+  .state('app.menteegoals',{
+    url:"/menteegoals/:mentee_id/:mentee_name/:mentee_address",
+    views:{
+      'tab-home':{
+        templateUrl: "templates/menteegoals.html",
+        controller: 'menteectrl'
+      }
+    }
+  })
   .state('app.menteegoals_comments', {
     url: "/menteegoals_comments/:id/:mentee_id",
     views: {
@@ -164,8 +174,17 @@ angular.module('drsmith', [
       }
     }
   })
+  .state('app.menteetasks',{
+    url:"/menteetasks/:mentee_id/:mentee_name/:mentee_address",
+    views:{
+      'tab-home':{
+        templateUrl: "templates/menteetasks.html",
+        controller: 'menteectrl'
+      }
+    }
+  })
   .state('app.menteetask_comments', {
-    url: "/menteetask_comments/:id",
+    url: "/menteetask_comments/:id/:task",
     views: {
       'tab-home': {
         templateUrl: "templates/menteetask_comments.html",
