@@ -1,5 +1,6 @@
 <ion-view title="Interactions">
         <ion-content ng-init="getschedules()">
+         <h1> {{mentee_id}}</h1>
                 <ion-list>
                    <ion-item ng-repeat="schedule in schedules track by $index">
                      <a href="#/app/interaction_comments/{{schedule.id}}">      
@@ -10,5 +11,8 @@
                       </a>
                     </ion-item>
                     </ion-list>
+                    <center> 
+        <button class="button button-positive" ng-click="openModal_interactions()">Add Interaction</button>
+                      </center>
         </ion-content>
 </ion-view>
