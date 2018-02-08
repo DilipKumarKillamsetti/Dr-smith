@@ -1,15 +1,19 @@
 <ion-modal-view title="Scheduel Meeting">
-       
     <ion-content>
             <div>
                     <label for="date">Date</label>
                     <br>
                     <input type="text" placeholder="Add Description Here" ng-model="description"/>
+                    <select ng-model="type">
+                            <option value="audio">Audio Call</option>
+                            <option value="video">Video Call</option>
+                  </select>
                     <input id="date" type="date"  ng-model="date"/>
                     <input id="starttime" type="time" ng-model="stime" />
                     <input id="finishtime" type="time" ng-model="ftime" />
-                    <button ng-click="addschedules(date,stime,ftime,mentee.id,description)">Submit</button>
+                    <button ng-click="addschedules(date,stime,ftime,mentee.id,description,type)">Submit</button>
                 </div>
                 <button ng-click="closeModal()">close</button>
+              123456789
     </ion-content>
 </ion-modal-view>
