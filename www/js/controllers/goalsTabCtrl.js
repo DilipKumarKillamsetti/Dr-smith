@@ -1,6 +1,8 @@
 angular.module('drsmith.controllers.goalsTabCtrl', [])
 .controller('goalsctrl',function($scope,$rootScope,$http, $ionicModal)
 {
+  $scope.new_goal = "";
+  $scope.date12="";
   $ionicModal.fromTemplateUrl('templates/add_goal_mentor.html',{
     scope: $scope,
     animation: 'slide-in-up'
@@ -36,7 +38,6 @@ var base64=null;
 var name=null;
 $scope.add=function(goal,files,date1){
   console.log(goal)
- 
   console.log($rootScope.id)
   var selectedfile = document.getElementById("inputFile").files;
   console.log(selectedfile)
@@ -79,7 +80,9 @@ $scope.fun=function(goal,date1){
    $scope.goals=response;
   console.log($scope.goals)
       $scope.get();
-      $scope.new_goal=null;
+      document.getElementById("inputFile").value="";
+      $scope.new_goal = "";
+      document.getElementById("date").value="";
     }
   )
   .catch(function(e){

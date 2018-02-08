@@ -2,11 +2,11 @@
     <ion-content>
             <label class="item item-input item-floating-label">
                     <input type="text" id="goal" placeholder="Add Goals Here" ng-model="new_goal">
-                    <input type="file" id="inputFile" ng-model="files" />
+                    <input type="file" id="inputFile" ng-model="new_file" />
                 </label>
                 <label for="date">Due Date</label>
-                <input id="date" type="date"  ng-model="date"/>
-        <button class="button button-block button-positive" ng-click="add(new_goal,files,date)">ADD</button>
+                <input id="date" type="date"  ng-model="date12"/>
+        <button class="button button-block button-positive" ng-click="add(new_goal,new_file,date12)">ADD</button>
         <button class="button  button-positive" ng-click="closeModal()">close</button>
         </ion-content>
 </ion-modal-view>
