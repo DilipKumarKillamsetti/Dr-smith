@@ -70,32 +70,44 @@ angular.module('drsmith.controllers.menteectrl', [])
           $scope.modal1.hide();
           };
       //function for adding schedules/meetings with mentee    
-        $scope.addschedules=function(date1,stime,ftime,mentee_id,description,type){
-          console.log(date1); 
-          console.log(stime); 
-          console.log(ftime);
-          console.log(mentee_id); 
-          console.log(type)
-          console.log($rootScope.id)
-          console.log(description)
-          $scope.date1 = moment(date1).format('YYYY-MM-DD');
-          $scope.stime1=moment(stime).format('HH:mm');
-          $scope.ftime1=moment(ftime).format('HH:mm');
+      $scope.scheduleObj={};
+      $scope.scheduleObj={
+        date1:'',
+        stime:'',
+        ftime:'',
+        type:'',
+        description:''
+      }
+        $scope.addschedules=function(mentee_id){
+          $scope.date1 = moment($scope.scheduleObj.date1).format('YYYY-MM-DD');
+          $scope.stime1=moment($scope.scheduleObj.stime).format('HH:mm');
+          $scope.ftime1=moment($scope.scheduleObj.ftime).format('HH:mm');
           console.log( $scope.date1)
           console.log( $scope.stime1)
           console.log( $scope.ftime1)
-
-
+          if($scope.date1=="Invalid date"&&$scope.stime1=="Invalid date"&&$scope.ftime1=="Invalid date")
+          {
+            alert("select valid values")
+            }
+            else{
           $http({
               url:$rootScope.url+"/myproject/meeting_schedule.php",
               method:"GET",
               params: {date:$scope.date1,start_time:$scope.stime1,end_time:$scope.ftime1,
-                mentor_id:$rootScope.id,mentee_id:mentee_id,comment:description}
+                mentor_id:$rootScope.id,mentee_id:mentee_id,comment:$scope.scheduleObj.description}
             })
           .then(function(response){
             $scope.result=response.data;
             console.log($scope.result)
+            $scope.scheduleObj={
+              date1:'',
+              stime:'',
+              ftime:'',
+              type:'',
+              description:''
+            }
           })
+        }
         }
     //function for getting schedules which are added by the mentee and mentor both    
    $scope.getschedules=function(){
@@ -145,55 +157,66 @@ angular.module('drsmith.controllers.menteectrl', [])
       )
     }
     //function for mentor to add task for the mentee with file
-          var base64=null;
-          var name=null;
-          $scope.addtask=function(task,files,date1){
-            console.log(task)
-            console.log($rootScope.id)
-            console.log(files)
-            console.log($stateParams.mentee_id)
-            var selectedfile = document.getElementById("inputFile").files;
-            console.log(selectedfile)
-            if(selectedfile.length < 1 && task==undefined)
+
+          // var base64=null;
+          // var name=null;
+          $scope.taskObj = {};
+          $scope.taskObj = {
+            new_task:'',
+            task_date:'',
+            selected_img:'',
+            selectedImgName:'',
+            selected_img_base64:''
+          };
+          $scope.addtask=function(){
+            console.log($stateParams.mentee_id,$rootScope.id)
+            $scope.taskObj.selected_img=document.getElementById("inputFile").files;
+            // var selectedfile = document.getElementById("inputFile").files;
+            console.log($scope.taskObj.selected_img[0])
+            if($scope.taskObj.selected_img.length < 1 || $scope.taskObj.task_date==undefined)
             {
-              // pop up
             alert("selelct value");
             }
-            else if(selectedfile.length>0){
+            else if( $scope.taskObj.selected_img.length>0 ){
                 
-            name = selectedfile[0].name;
-              var filetoload=selectedfile[0];
-              alert(selectedfile[0].name, "calling...")
+              $scope.taskObj.selectedImgName = $scope.taskObj.selected_img[0].name;
+              var filetoload=$scope.taskObj.selected_img[0];
               var fileReader= new FileReader();
-              alert(fileReader)
               fileReader.readAsDataURL(filetoload);
               fileReader.onload=function(fileLoadedEvent){
-                  base64=fileLoadedEvent.target.result;
-                  $scope.fun(task,date1);   
+                $scope.taskObj.selected_img_base64 =fileLoadedEvent.target.result;
+                  $scope.fun();   
               }
           }
           else
-           {  $scope.fun(task,date1);}
+           {  $scope.fun();}
           }
       //sub function for add task with file function
-        $scope.fun=function(task,date1){
-          console.log(task);
-          console.log(name);
-          $scope.formattedDate1 = moment(date1).format('YYYY-MM-DD');
+        $scope.fun=function(){
+          $scope.formattedDate1 = moment($scope.taskObj.task_date).format('YYYY-MM-DD');
         console.log( $scope.formattedDate1)
           $http(
             {
               url:$rootScope.url+"/myproject/add-mentee-task.php",
               method:"POST",
               headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-              data:{mentor_id:$rootScope.id,id:$stateParams.mentee_id,task:task,name:name,shab:base64,
+              data:{mentor_id:$rootScope.id,id:$stateParams.mentee_id,task: $scope.taskObj.new_task,
+                name: $scope.taskObj.selectedImgName,shab:$scope.taskObj.selected_img_base64,
                 due_date:$scope.formattedDate1}
         })
           .then(function(response){
           $scope.task=response;
           console.log($scope.task)
-              $scope.gettasks(id);
-              $scope.new_task=null;
+          $scope.taskObj = {
+            new_task:'',
+            task_date:'',
+            selected_img:'',
+            selectedImgName:'',
+            selected_img_base64:''
+          };
+          document.getElementById("inputFile").value=null;
+          $scope.formattedDate1 ="";
+              $scope.gettasks();
             }
           )
           .catch(function(e){

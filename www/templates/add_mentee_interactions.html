@@ -3,15 +3,15 @@
             <div>
                     <label for="date">Date</label>
                     <br>
-                    <input type="text" placeholder="Add Description Here" ng-model="description"/>
-                    <select ng-model="type">
+                    <input type="text" placeholder="Add Description Here" ng-model="scheduleObj.description"/>
+                    <select ng-model="scheduleObj.type">
                                 <option value="audio">Audio Call</option>
                                 <option value="video">Video Call</option>
                       </select>
-                    <input id="date" type="date"  ng-model="date"/>
-                    <input id="starttime" type="time" ng-model="stime" />
-                    <input id="finishtime" type="time" ng-model="ftime" />
-                    <button ng-click="addschedules(date,stime,ftime,description,type)">Submit</button>
+                    <input id="date" type="date"  ng-model="scheduleObj.date"/>
+                    <input id="starttime" type="time" ng-model="scheduleObj.stime" />
+                    <input id="finishtime" type="time" ng-model="scheduleObj.ftime" />
+                    <button ng-click="addschedules()">Submit</button>
             </div>
             <button ng-click="closeModal_interactions()">close</button>
     </ion-content>

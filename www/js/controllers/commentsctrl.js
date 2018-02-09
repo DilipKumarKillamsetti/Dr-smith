@@ -1,6 +1,5 @@
 angular.module('drsmith.controllers.commentsctrl', [])
 .controller("commentsctrl",function($scope,$http,$rootScope,$stateParams){
-    $scope.comment="";
     $scope.getintercomments=function(){
       $http(
         {
@@ -48,35 +47,39 @@ angular.module('drsmith.controllers.commentsctrl', [])
       }
     )
     .then(function(response){
+      console.log(response.data)
       $scope.comments=response.data.comment;
       $scope.goal=response.data.goal;
       console.log($scope.comments)
-      console.log($scope.goal)
-  
-      $scope.comment="";
-      
+      console.log($scope.goal) 
     })
    }
     //function for mentor will add the comments on goals of mentee
-   $scope.addcomment=function(comment){
+    $scope.commentObj_goal={};
+    $scope.commentObj_goal={
+      comment:''
+    }
+   $scope.addcomment=function(){
      console.log($stateParams.id)
      console.log($rootScope.id)
-     console.log(comment)
+     console.log()
      console.log($rootScope.type)
     $http(
       {
         url:$rootScope.url+"/myproject/add_mentee_goals_comment.php",
         method:"GET",
-       params:{mentee_goal_id:$stateParams.id,comment_text:comment,commentor_id:$rootScope.id,comment_by:$rootScope.type}
+       params:{mentee_goal_id:$stateParams.id,comment_text:$scope.commentObj_goal.comment,commentor_id:$rootScope.id,comment_by:$rootScope.type}
       }
     )
     .then(function(response){
       $scope.newcomments=response.data;
       console.log($scope.newcomments);
-  
+      $scope.commentObj_goal={
+        comment:''
+      }
       $scope.getcomments();
     })
-    $scope.comment="";
+    
    }
     //function for mentor and mentee will get the comments on tasks 
    $scope.getcomments_on_task=function(){
@@ -93,23 +96,30 @@ angular.module('drsmith.controllers.commentsctrl', [])
     })
   }
   //function for mentor and mentee will add the comments on tasks
-  $scope.addcomment_on_task=function(comment){
+  $scope.commentObj={};
+  $scope.commentObj={
+    comment:''
+  }
+  $scope.addcomment_on_task=function(){
+    console.log($scope.commentObj.comment)
     console.log($stateParams.id)
     console.log($rootScope.id)
-    console.log(comment)
     console.log($rootScope.type)
    $http(
      {
        url:$rootScope.url+"/myproject/add_mentee_task_comment.php",
        method:"GET",
-      params:{mentee_task_id:$stateParams.id,comment_text:comment,commentor_id:$rootScope.id,comment_by:$rootScope.type}
+      params:{mentee_task_id:$stateParams.id,comment_text:$scope.commentObj.comment,commentor_id:$rootScope.id,comment_by:$rootScope.type}
      }
    )
    .then(function(response){
      $scope.newcomments=response.data;
      console.log($scope.newcomments);
      $scope.getcomments_on_task();
+     $scope.commentObj={
+      comment:''
+    }
    })
-   $scope.comment="";
+   
   }
   })

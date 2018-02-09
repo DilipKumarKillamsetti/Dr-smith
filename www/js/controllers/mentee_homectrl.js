@@ -64,10 +64,44 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
           }
         )
       }
-      var base64=null;
-      var name=null;
   // function for mentee to add the goals(self)
-    $scope.addgoal=function(goal,files,date1){
+  $scope.goalsObj = {};
+  $scope.goalsObj = {
+    new_goal:'',
+    goal_date:'',
+    selected_img:'',
+    selectedImgName:'',
+    selected_img_base64:''
+  };
+  $scope.addgoal = function()
+      {
+        console.log($scope.goalsObj.new_goal, $scope.goalsObj.goal_date);
+        $scope.goalsObj.selected_img = document.getElementById("inputFile").files;
+
+        if($scope.goalsObj.selected_img.length < 1 && $scope.goalsObj.new_goal=="")
+        {
+          alert("selelct value");
+        }
+        else if($scope.goalsObj.selected_img.length > 0)
+        {
+          $scope.goalsObj.selectedImgName = $scope.goalsObj.selected_img[0].name;
+          var filetoload = $scope.goalsObj.selected_img[0];
+          var fileReader= new FileReader();
+          fileReader.readAsDataURL(filetoload);
+
+          fileReader.onload=function(fileLoadedEvent)
+          {
+            $scope.goalsObj.selected_img_base64 = fileLoadedEvent.target.result;
+            $scope.fun();
+          }
+        }
+        else
+        {
+          $scope.fun();
+        }
+
+      }
+   /* $scope.addgoal=function(goal,files,date1){
       console.log(goal)
       console.log(date1)
       console.log($rootScope.id)
@@ -95,9 +129,43 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
     { 
       $scope.fun(goal,date1);
     }
-    }
-       //sub function for the mentee to add goal with file   
-    $scope.fun=function(goal,date1){
+    }*/
+     //  sub function for the mentee to add goal with file   
+     $scope.fun=function(){
+      console.log($scope.goalsObj.new_goal, $scope.goalsObj.goal_date);
+      $scope.formattedDate = moment($scope.goalsObj.goal_date).format('YYYY-MM-DD');
+    
+      console.log($scope.formattedDate)
+      $http(
+        {
+          url:$rootScope.url+"/myproject/add_mentee_goal_with_file.php",
+           method:"POST",
+           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          data:{id:$rootScope.id,name:$scope.goalsObj.selectedImgName,
+            goal:$scope.goalsObj.new_goal,shab:$scope.goalsObj.selected_img_base64,
+            due_date:$scope.formattedDate,mentor_id:$rootScope.mentor_id}
+     })
+      .then(function(response){
+       $scope.goals=response;
+      console.log($scope.goals)
+          $scope.getgoals();
+          $scope.goalsObj = {};
+          $scope.goalsObj = {
+            new_goal:'',
+            goal_date:'',
+            selected_img:'',
+            selectedImgName:'',
+            selected_img_base64:''
+          };
+          document.getElementById("inputFile").value = null;
+          $scope.formattedDate = '';
+        }
+      )
+      .catch(function(e){
+        alert(e)
+      })
+          }
+   /* $scope.fun=function(goal,date1){
       console.log(goal);
       console.log(date1);
       $scope.formattedDate = moment(date1).format('YYYY-MM-DD');
@@ -121,7 +189,7 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         alert(e)
       })
       document.getElementById("goal").value="";
-          }
+          }*/
         //function for getting comments for the mentee goals
       $scope.getcomments=function(){
           console.log($rootScope.id)
@@ -171,23 +239,42 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         })
       }
       //function for the mentee to add schedule 
-      $scope.addschedules=function(date1,stime,ftime,description,type){
-        $scope.date1 = moment(date1).format('YYYY-MM-DD');
-        $scope.stime1=moment(stime).format('HH:mm');
-        $scope.ftime1=moment(ftime).format('HH:mm');
+      $scope.scheduleObj={};
+      $scope.scheduleObj={
+        date:'',
+        stime:'',
+        ftime:'',
+        type:'',
+        description:''
+      }
+      $scope.addschedules=function(){
+        $scope.date1 = moment($scope.scheduleObj.date).format('YYYY-MM-DD');
+        $scope.stime1=moment($scope.scheduleObj.stime).format('HH:mm');
+        $scope.ftime1=moment($scope.scheduleObj.ftime).format('HH:mm');
+        if($scope.date1=="Invalid date"&&$scope.stime1=="Invalid date"&&$scope.ftime1=="Invalid date")
+          {alert("select valid values") }
+          else{
       $http(
         {
           url:$rootScope.url+"/myproject/meeting_schedule.php",
           method:"GET",
           params: {date: $scope.date1,start_time:$scope.stime1,end_time:$scope.ftime1,
-            mentor_id:$rootScope.mentor_id,
-            mentee_id:$rootScope.id,comment:description}
+            mentor_id:$rootScope.mentor_id,mentee_id:$rootScope.id,
+            comment:$scope.scheduleObj.description}
         }
       )
       .then(function(response){
         $scope.result=response.data;
         console.log($scope.result)
+        $scope.scheduleObj={
+          date1:'',
+          stime:'',
+          ftime:'',
+          type:'',
+          description:''
+        }
       })
+    }
       }
        //function for the mentee to get schedule 
       $scope.getschedules=function(){
