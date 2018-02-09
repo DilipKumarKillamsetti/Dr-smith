@@ -16,24 +16,30 @@ angular.module('drsmith.controllers.commentsctrl', [])
         $scope.comment="";
       })
     }
+    $scope.inter_commentObj={};
+    $scope.inter_commentObj={
+      comment:''
+    };
     $scope.addintercomment=function(comment){
       console.log($stateParams.interaction_id)
       console.log($rootScope.id)
       console.log($rootScope.type)
-      console.log(comment)
+      console.log( $scope.inter_commentObj.comment)
       $http(
         {
           url:$rootScope.url+"/myproject/meeting_schedule_comment.php",
           method:"GET",
          params:{schedule_id:$stateParams.interaction_id,commentor_id:$rootScope.id,
-                  comment_by:$rootScope.type,comment_text:comment}
+                  comment_by:$rootScope.type,comment_text:$scope.inter_commentObj.comment}
         }
       )
       .then(function(response){
         $scope.newcomments=response.data;
         console.log($scope.newcomments);
         $scope.getintercomments();
-        
+        $scope.inter_commentObj={
+          comment:''
+        };
       })
      
      }

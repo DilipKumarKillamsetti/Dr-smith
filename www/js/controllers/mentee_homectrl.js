@@ -207,19 +207,26 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         })
       }
 //function for adding comments for the mentee goals
-      $scope.addcomment=function(comment){
+    $scope.commentObj_goal={};
+        $scope.commentObj_goal={
+          comment:''
+        }
+      $scope.addcomment=function(){
         console.log($rootScope.id)
         console.log($stateParams.goal_id)
         console.log($rootScope.type)
-        console.log(comment)
+        console.log($scope.commentObj_goal.comment)
         $http({
             url:$rootScope.url+"/myproject/add_mentee_goals_comment.php",
             method:"GET",
             params:{commentor_id:$rootScope.id,mentee_goal_id:$stateParams.goal_id,
-            comment_by:$rootScope.type,comment_text:comment}
+            comment_by:$rootScope.type,comment_text:$scope.commentObj_goal.comment}
         })
         .then(function(response){
             console.log(response.data)
+            $scope.commentObj_goal={
+              comment:''
+            }
             $scope.getcomments();
         })
 

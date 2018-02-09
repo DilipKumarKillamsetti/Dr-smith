@@ -173,7 +173,7 @@ angular.module('drsmith.controllers.menteectrl', [])
             $scope.taskObj.selected_img=document.getElementById("inputFile").files;
             // var selectedfile = document.getElementById("inputFile").files;
             console.log($scope.taskObj.selected_img[0])
-            if($scope.taskObj.selected_img.length < 1 || $scope.taskObj.task_date==undefined)
+            if($scope.taskObj.selected_img.length < 1 && $scope.taskObj.task_date==undefined)
             {
             alert("selelct value");
             }
