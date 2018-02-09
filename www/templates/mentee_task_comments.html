@@ -1,21 +1,71 @@
-<ion-view title="TaskComments ">
-        <ion-content ng-init="getcomments_on_task()">
-                <ion-item ng-repeat="task in task">
-                        <h4>Task:</h4>{{task.tasks}}
-                        <a><img src="{{url}}/myproject/download.php?nama={{task.file_url}}" width="40" height="40" alt="error"></a>
-                        </ion-item>
+<ion-view title="Task Comments ">
+        <ion-content class="shz-bg-shade" ng-init="getcomments_on_task()">
+                <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="task in task">
+                        
+                        
+                     <div class=row>
+                    <p class="col" style="color: #0066cb"><i>Due Date:{{task.due_date}}</i></p>
+                    <div style="text-align: right">
+                        <a  href="{{url}}/myproject/download.php?nama={{task.file_url}}" class="col shz-clear-link" style="color: #0066cb"><img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > {{task.file_name}} </a>
+                    </div>
+                         
+                </div>
+                    <div class=row>
+                    <div class="shz-full-description shz-clear-link" >
+                        <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" href="#/app/goal_comments/{{goal.id}}"><span style="color: #0066cb;">Task {{task.id}}:</span> askdfjl sdkjlfk lkasjdfl aksjdlfk jaslkdfjlei alsdjfaie klaksdjlfijei sdfljeif Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  asdfef  {{task.tasks}} </a>
+                        </h3>
+                    </div>
+                </div>
+                    <div class="shz-separator"></div>
+                    <div class=row>
+                                <div class="col" style="text-align: left;">
+                                 <p style="color: #1fb12a; float: left; " >{{task.completed_date}}</p>
+                                      </div>
+                                <div class="col" style="text-align: left;">
+                                 <p  style="color: #999;" >  {{task.edited_date}} </p>
+                              </div>
+                              
+                               <div class="col" style="text-align: right;">
+                                   <a><img src="img/edit_icon.png" width="20" height="20" alt="error"></a>    
+                                   <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
+                                </div>
+                            </div>
+                    
+            </ion-item>
+            
             <ion-list>
-                <ion-item ng-repeat="comment in task_comments">
-                      comment:  {{comment.comment_text}}
-                        <br>
-                        comment by: {{comment.comment_by}}
-                        <br>
-                        posted on:{{comment.date}}
+                <ion-item  class="card shz-comment-box" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="comment in task_comments">
+                      <div class=row>
+                        
+                         <div class="shz-profilePic">
+                    <img src="img/logo.png" class="profile" width="75px" height="75px" style="border: 6px solid white;border-radius: 50%;"/><br>
+                     <!--<img class="profile" width="100px" height="100px" style="border: 8px solid white;border-radius: 50%;" ng-click="editUser()" src="images/logo.png" ng-show="!userinfojson.image || userinfojson.image=='' || userinfojson.image==null"> -->
+                </div>
+                    <div class="shz-full-description shz-clear-link" style="padding: 5px; margin-top: 20px" >
+                        <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" href="#/app/goal_comments/{{goal.id}}">n unknown printer took a galley of type spe centuries, but also the leap into electronic typesetting, remaining essd in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. {{comment.comment_text}} </a>
+                        </h3>
+                    </div>
+                </div>
+                    <div class=row>
+                          <p class="col" style="color: #0066cb"><i>{{comment.date}}</i></p>
+                               <div style="text-align:right;">
+                                   <a  href="{{url}}/myproject/download.php?nama={{task.file_url}}" class="col shz-clear-link" style="color: #0066cb"> {{comment.comment_by}} </a>
+                                </div>
+                         </div>
+                
                 </ion-item>
             </ion-list>
-            <label class="item item-input item-floating-label">
+            <div class="card " style="margin: 0 auto; width: 96%;min-height: 80px;padding: 5px; box-shadow:inset 1px 2px 15px #9e9e9e;">
+                    <input style="width: 100%; background-color: transparent;min-height: 80px;"type="text" id="commentbox" placeholder="Add Comment Here" ng-model="comment">
+            </div>
+            
+           <!-- <label class="item item-input item-floating-label">
                     <input type="text" id="commentbox" placeholder="Add Comment Here" ng-model="comment">
-            </label>
-            <button class="button button-block button-positive" ng-click="addcomment_on_task(comment)">Comment</button>
+            </label>-->
+            <center>
+                <button class="button  button-positive" ng-click="addcomment_on_task(comment)">Comment</button>
+            </center>
+            
+          
         </ion-content>
     </ion-view>

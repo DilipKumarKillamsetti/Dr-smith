@@ -6,33 +6,37 @@
                                 
                                 <p class="col" style="color: #0066cb"><i>Due Date:{{goal.due_date}}</i></p>
                                <div style="text-align: right">
-                                   <a class="col " style="color: #0066cb"><img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > Filename</a>
+                                   <a  href="{{url}}/myproject/download.php?nama={{goal.file_url}}" class="col shz-clear-link" style="color: #0066cb"><img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > {{goal.file_name}} </a>
+                                  
                                 </div>
                          </div>
                           
                         <div class=row>
-                              <div class="shz-goal-description" >
-                                     <h3 style="white-space: initial;"><a href="#/app/goal_comments/{{goal.id}}">{{goal.goals}} </a>
+                              <div class="shz-half-description shz-clear-link" >
+                                  <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" href="#/app/goal_comments/{{goal.id}}"><span style="color: #0066cb;">Goal {{goal.id}}:</span> askdfjl sdkjlfk lkasjdfl aksjdlfk jaslkdfjlei alsdjfaie klaksdjlfijei sdfljeif sldfijelis jlfei selief aslkdjfl laijfei la slfijeilf jliasjdf iadjfliaejlei ladsfijel ldsjfi  dfi lidf dif fidif d ifd id idf {{goal.goals}} </a>
                                      </h3>
                               </div>
                         </div>
         
-                          <div class="shz-separator">
-                            
-                            </div>
+                          <div class="shz-separator"></div>
                           <div class=row>
                                 <div class="col" style="text-align: left;">
-                                <p style="color: #1fb12a; float: left; " >Completion Date:{{goal.completed_date}}  </p>
-                                 <p  style="color: #999;" >Last Edited: {{goal.edited_date}} </p>
-                                </div>
+                                 <p style="color: #1fb12a; float: left; " >{{goal.completed_date}}</p>
+                                      </div>
+                                <div class="col" style="text-align: left;">
+                                 <p  style="color: #999;" >  {{goal.edited_date}} </p>
+                              </div>
+                              
                                <div class="col" style="text-align: right;">
                                    <a><img src="img/edit_icon.png" width="20" height="20" alt="error"></a>    
                                    <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
                                 </div>
                             </div>
 <!--                   <a href="#/app/goal_comments/{{goal.id}}">{{goal.goals}} </a> -->
+<!--
                       <a href="{{url}}/myproject/download.php?nama={{goal.file_url}}">
                         {{goal.file_name}}</a>
+-->
                       <!-- <a><img src="{{url}}/myproject/download.php?nama={{goal.file_url}}" width="40" height="40" alt="error"></a>          -->
 <!--                       <br>due_date:{{goal.due_date}}<br> -->
 <!--                       edited_date:{{goal.edited_date}}<br> -->
@@ -44,7 +48,8 @@
                         <input type="file" id="inputFile"  ng-model="files">
                       </label>
                 <button class="button button-block button-positive" ng-click="addgoal(new_goal,files)">Add Goal</button> -->
-                <button  style="width: 60%;margin: auto;" class="button button-block button-positive" ng-click="openModal()">Add Goal</button>
-                <ion-list>
+            <center>
+                <button class="button  button-positive" ng-click="openModal()">Add Goal</button></center>
+               
         </ion-content>
 </ion-view>

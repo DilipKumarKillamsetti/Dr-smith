@@ -7028,7 +7028,7 @@ textarea {
     
 }
 
-.shz-goal-description{
+.shz-half-description{
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis; 
@@ -7036,11 +7036,29 @@ textarea {
     width: 100%;
    
 }
+.shz-full-description{
+     white-space: nowrap; 
+    height: auto;
+}
 
 .shz-separator{
     height: 2px;
     background: #e1e1e1;
     border-bottom: 2px;
+}
+
+.shz-clear-link{
+    text-decoration: none;
+}
+
+.shz-gray-color{
+    color:#a1a1a1;
+}
+
+.shz-comment-box{
+    border-radius: 0px !important;
+    background: #efefef;
+    font-style: italic;
 }
 .item-input-wrapper ~ .button {
   margin-left: 10.66667px; }

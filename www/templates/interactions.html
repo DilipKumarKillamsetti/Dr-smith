@@ -1,14 +1,47 @@
-<ion-view title="Interactions">
-        <ion-content ng-init="getschedules()">
+<ion-view title="Interactions" >
+        <ion-content class="shz-bg-shade" ng-init="getschedules()">
          <h1> {{mentee_id}}</h1>
-                <ion-list>
-                   <ion-item ng-repeat="schedule in schedules track by $index">
-                     <a href="#/app/interaction_comments/{{schedule.id}}">      
+                <ion-list >
+                   <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="schedule in schedules track by $index">
+                    
+                       
+                       
+                       <div class=row>
+                                
+                                <p class="col" style="color: #0066cb"><i>By:{{goal.due_date}}</i></p>
+                               <div style="text-align: right">
+                                   <a  href="{{url}}/myproject/download.php?nama={{goal.file_url}}" class="col shz-clear-link" style="color: #0066cb"><img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > 40 mins </a>
+                                  
+                                </div>
+                         </div>
+                       
+                         <div class=row>
+                              <div class="shz-half-description shz-clear-link" >
+                                  <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" href="#/app/interaction_comments/{{schedule.id}}">aidf {{schedule.comment}} </a>
+                                     </h3>
+                              </div>
+                        </div>
+                       
+                       <div class="shz-separator"></div>
+                   <div class=row>
+                                <div class="col" style="text-align: left;">
+                                 <p style="color: #1fb12a; float: left; " >{{schedule.date}}</p>
+                                      </div>
+                              
+                               <div class="col" style="text-align: right;">
+                                  
+                                   <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
+                                </div>
+                            </div>
+                       
+                       
+                       
+                       <!--<a href="#/app/interaction_comments/{{schedule.id}}">      
                         <h2>{{schedule.comment}}</h2><br>
                         Date:{{schedule.date}}<br>
                        StartTime: {{schedule.start_time}}<br>
                         EndTime:{{schedule.end_time}}
-                      </a>
+                      </a>-->
                     </ion-item>
                     </ion-list>
                     <center> 
