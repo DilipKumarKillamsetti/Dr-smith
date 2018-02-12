@@ -1,26 +1,64 @@
-     <ion-view title="Goals">
-        <ion-content ng-init="get()"> 
-          <ion-list>
-                  <ion-item ng-repeat="goal in goals ">
-                      {{goal.goals}}
-                      <a href="{{url}}/myproject/download.php?nama={{goal.file_url}}">
-                        {{goal.file_name}}</a>
-          <!-- <a><img src="{{url}}/myproject/download.php?nama={{goal.file_url}}" width="40" height="40" alt=""></a> -->
-          <br>
-                      DueDate:{{goal.due_date}}<br>
-                      EditedDate:{{goal.edited_date}}<br>
-                      CompletedDate:{{goal.completed_date}}
+<ion-view title="Goals">
+  <ion-content class="shz-bg-shade" ng-init="get()"> 
+    <ion-list>
+            <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="goal in goals ">
+                
+                
+                 <div class=row>
+                          
+                          <p class="col" style="color: #0066cb"><i>Due Date:{{goal.due_date}}</i></p>
+                         <div style="text-align: right">
+                             <a  href="{{url}}/myproject/download.php?nama={{goal.file_url}}" class="col shz-clear-link" style="color: #0066cb"><img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > {{goal.file_name}} </a>
+                            
+                          </div>
+                   </div>
+                <div class=row>
+                        <div class="shz-half-description shz-clear-link" >
+                            <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" ><span style="color: #0066cb;">Goal {{goal.id}}:</span> askdfjl sdkjlfk lkasjdfl
+                               aksjdlfk jaslkdfjlei alsdjfaie klaksdjlfijei sdfljeif sldfijelis jlfei
+                                selief aslkdjfl laijfei la slfijeilf jliasjdf iadjfliaejlei ladsfijel ldsjfi 
+                                 dfi lidf dif fidif d ifd id idf {{goal.goals}} </a>
+                               </h3>
+                        </div>
+                  </div>
+                 <div class="shz-separator"></div>
+                <div class=row>
+                          <div class="col" style="text-align: left;">
+                           <p style="color: #1fb12a; float: left; " >{{goal.completed_date}}</p>
+                                </div>
+                          <div class="col" style="text-align: left;">
+                           <p  style="color: #999;" >  {{goal.edited_date}} </p>
+                        </div>
+                        
+                         <div class="col" style="text-align: right;">
+                             <a><img src="img/edit_icon.png" width="20" height="20" alt="error"></a>    
+                             <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
+                          </div>
+                  </div>
+                
+                <!--
+                {{goal.goals}}
+                <a href="{{url}}/myproject/download.php?nama={{goal.file_url}}">
+                  {{goal.file_name}}</a>
+    <!-- <a><img src="{{url}}/myproject/download.php?nama={{goal.file_url}}" width="40" height="40" alt=""></a> 
+    <br>
+                DueDate:{{goal.due_date}}<br>
+                EditedDate:{{goal.edited_date}}<br>
+                CompletedDate:{{goal.completed_date}} -->
 
-                  </ion-item>
-          </ion-list>
-                  <!-- <label class="item item-input item-floating-label">
-                      <input type="text" id="goal" placeholder="Add Goals Here" ng-model="new_goal">
-                      <input type="file" id="inputFile" ng-model="files" />
-                  </label>
-                  <label for="date">Due Date</label>
-                  <input id="date" type="date"  ng-model="date"/> -->
-        
-
-          <button class="button button-block button-positive" ng-click="openModal()">ADD</button>
-        </ion-content>
-      </ion-view>
+            </ion-item>
+    </ion-list>
+            <!-- <label class="item item-input item-floating-label">
+                <input type="text" id="goal" placeholder="Add Goals Here" ng-model="new_goal">
+                <input type="file" id="inputFile" ng-model="files" />
+            </label>
+            <label for="date">Due Date</label>
+            <input id="date" type="date"  ng-model="date"/> -->
+  
+      
+<center>
+<button class="button  button-positive" ng-click="openModal()">ADD</button>
+</center>
+  </ion-content>
+</ion-view>     
+     
