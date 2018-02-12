@@ -1,3 +1,125 @@
+<ion-view title="Mentee Details">
+    <ion-content class="shz-bg-shade">
+        <div class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-init="details()">
+            <div class="item-text-wrap screen-center" >
+                <div class="shz-profilePic">
+                    <img src="img/logo.png" class="profile" width="85px" height="85px" style="border: 6px solid white;border-radius: 50%;"/><br>
+                     <!--<img class="profile" width="100px" height="100px" style="border: 8px solid white;border-radius: 50%;" ng-click="editUser()" src="images/logo.png" ng-show="!userinfojson.image || userinfojson.image=='' || userinfojson.image==null"> -->
+                </div>
+            </div> 
+            <div class="shz-screen-center" ng-init="details()">
+                 <div style="height: 5px; position: absolute; top: -100px; left: 0; bottom: 0; right: 20px; text-align:right; margin: 0; ">
+                          <h5 >Mumbai</h5>
+                    </div>
+               <center>
+                     
+                        <h3>
+                        {{mentee.name}}
+                        </h3>
+                        <h5>
+                       Contact  {{mentee.address}}
+                        </h5>
+                        <h5>
+                           Mentor: {{mentor_name}}
+                        </h5>
+                          <h5>
+                           Total Interactions: 
+                        </h5>
+                
+                </center>
+            </div>
+            
+            
+        </div>
+        
+         <div class="row">
+                <div class="col">
+              <center>
+                  <a href="#/app/menteegoals/{{mentee.id}}/{{mentee.name}}/{{mentee.address}}">
+                    <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive"  >
+                        Learning Goals
+                    </button>
+                  </a>
+                </center>
+                </div>
+                <div class="col">
+              <center>
+                  <a href="#/app/menteetasks/{{mentee.id}}/{{mentee.name}}/{{mentee.address}}">
+                    <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive"  >
+                        Tasks
+                    </button>
+                  </a>
+                </center>
+                </div>
+            
+            </div>
+        
+        <div class="row">
+                <div class="col">
+              <center>
+                  <a href="#/app/mentee_goals/{{mentee.row.id}}">
+                    <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive" >
+                        Send Message
+                    </button>
+                    </a>
+                </center>
+                </div>
+                <div class="col">
+              <center>
+                  <a    href="#/app/interactions/{{mentee.id}}">
+                    <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive"  >
+                        Interactions
+                    </button>
+                  </a>
+                </center>
+                </div>
+            </div>
+        
+        <div class="row">
+                <div class="col">
+				<center>
+                  
+                    <button style ="width: 60%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3); margin: 5%;" class=" button button-positive" ng-click="openModal()" >
+                        Schedule Meet
+                    </button>
+                   
+                </center>
+                </div>
+                
+            </div>
+        
+        
+        <!--<div ng-init="details()">
+       <center>
+                <h4>
+                  id:  {{mentee.id}}
+                </h4>
+                <h4>
+                  name:  {{mentee.name}}
+                </h4>
+                <h4>
+                address:{{mentee.address}}
+                </h4>
+                <h4>
+                Mentor Name:{{mentor_name}}
+                </h4>
+        </center>-->
+    </div>
+
+
+ </ion-content>
+</ion-view>
+
+
+
+
+
+
+
+
+
+<!-- 
+
 <ion-view title="menteeDetails">
     <ion-content>
         <div ng-init="details()">
@@ -20,7 +142,7 @@
   <h4>  <a href="#/app/menteegoals/{{mentee.id}}/{{mentee.name}}/{{mentee.address}}">Mentee Goals</a></h4>
         <br />
    <h4>  <a href="#/app/menteetasks/{{mentee.id}}/{{mentee.name}}/{{mentee.address}}">Tasks</a></h4>
- 
+  -->
         <!-- <label class="item item-input item-floating-label">
                 <input type="text" id="task" placeholder="Add Task Here"   ng-model="new_task">
                 <input type="file" id="inputFile" ng-model="files" />
@@ -39,9 +161,9 @@
             <input id="finishtime" type="time" ng-model="ftime" />
             <button ng-click="addschedules(date,stime,ftime,mentee.id)">Submit</button>
         </div> -->
-        <button class="button button-block button-positive" ng-click="openModal()">ADD</button>
+        <!-- <button class="button button-block button-positive" ng-click="openModal()">ADD</button>
         <div>
              <h3>   <a href="#/app/interactions/{{mentee.id}}">Interactions</a></h3>
         </div>
     </ion-content>
-</ion-view>
+</ion-view> -->

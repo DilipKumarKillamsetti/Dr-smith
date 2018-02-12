@@ -33,7 +33,7 @@ angular.module('drsmith', [
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider)
 {
-  $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.tabs.position('top');
   $stateProvider
 
   //SIDE MENU ROUTES

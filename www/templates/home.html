@@ -1,12 +1,47 @@
 <ion-view title={{title}}>
-    <ion-content>
+    <ion-content class="shz-bg-shade">
         <ion-list>
-            <ion-item class="item-remove-animate item-avatar item-icon-right"type="item-text-wrap" ng-repeat="mentee in mentees">
+            <ion-item  class=" card item item-remove-animate  item-icon-right" type="item-text-wrap" ng-repeat="mentee in mentees" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);">
             <!-- <a>  <img src="{{url}}/myproject/download.php?nama={{mentee.file_url}}"
                  width="40" height="40" alt="error" /></a> -->
-            <a  href="#/app/mentee/{{mentee.id}}" > <h2>{{mentee.name}}</h2></a>
+             <div class=row>
+                <div class="">
+                    <img src="img/logo.png" class="profile" width="75px" height="75px" style="border: 6px solid white;border-radius: 50%;"/>
+                     <!--<img class="profile" width="100px" height="100px" style="border: 8px solid white;border-radius: 50%;" ng-click="editUser()" src="images/logo.png" ng-show="!userinfojson.image || userinfojson.image=='' || userinfojson.image==null"> -->
+                </div>
+                    <div class="shz-full-description shz-clear-link" style="padding: 5px; margin-top: 20px" >
+                        <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" href="#/app/mentee/{{mentee.id}}">{{mentee.name}}</a>
+                        </h3>
+                        <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color">Description about the user</a>
+                        </h3>
+                    </div>
+                </div>    
+            <!--<a  href="#/app/mentee/{{mentee.id}}" > <h2>{{mentee.name}}</h2 ></a>-->
             <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<ion-view title={{title}}>
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right"type="item-text-wrap" ng-repeat="mentee in mentees"> -->
+            <!-- <a>  <img src="{{url}}/myproject/download.php?nama={{mentee.file_url}}"
+                 width="40" height="40" alt="error" /></a> -->
+            <!-- <a  href="#/app/mentee/{{mentee.id}}" > <h2>{{mentee.name}}</h2></a>
+            <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view> -->

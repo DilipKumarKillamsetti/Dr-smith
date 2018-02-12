@@ -6,13 +6,14 @@
                                 
                                 <p class="col" style="color: #0066cb"><i>Due Date:{{goal.due_date}}</i></p>
                                <div style="text-align: right">
-                                   <a class="col " style="color: #0066cb"><img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > Filename</a>
+                                   <a  href="{{url}}/myproject/download.php?nama={{goal.file_url}}" class="col" style="color: #0066cb">{{goal.file_name}}
+                                     <img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > </a>
                                 </div>
                          </div>
                           
                         <div class=row>
-                              <div class="shz-goal-description" >
-                                     <h3 style="white-space: initial;"><a href="#/app/goal_comments/{{goal.id}}">{{goal.goals}} </a>
+                              <div class="shz-half-description" >
+                                     <h3 style="white-space: initial;"><a class="shz-gray-color shz-clear-link" href="#/app/goal_comments/{{goal.id}}">{{goal.goals}} </a>
                                      </h3>
                               </div>
                         </div>
@@ -30,15 +31,17 @@
                                    <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
                                 </div>
                             </div>
+                          </ion-item>
+                        </ion-list>
 <!--                   <a href="#/app/goal_comments/{{goal.id}}">{{goal.goals}} </a> -->
-                      <a href="{{url}}/myproject/download.php?nama={{goal.file_url}}">
-                        {{goal.file_name}}</a>
+                      <!-- <a href="{{url}}/myproject/download.php?nama={{goal.file_url}}">
+                        {{goal.file_name}}</a> -->
                       <!-- <a><img src="{{url}}/myproject/download.php?nama={{goal.file_url}}" width="40" height="40" alt="error"></a>          -->
 <!--                       <br>due_date:{{goal.due_date}}<br> -->
 <!--                       edited_date:{{goal.edited_date}}<br> -->
 <!--                       completed_date:{{goal.completed_date}} -->
-                           </ion-item>
-                 </ion-list>
+                           
+                
                   <!-- <label class="item item-input item-floating-label">
                         <input type="text" id="goal" placeholder="Add Goal Here"   ng-model="new_goal">
                         <input type="file" id="inputFile"  ng-model="files">

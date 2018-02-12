@@ -1,4 +1,73 @@
 <ion-view title="Learning Goals">
+    <ion-content class="shz-bg-shade">
+        
+         <ion-item  class=" card item item-remove-animate  item-icon-right" type="item-text-wrap"  style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);">
+        <div class=row>
+                <div class="">
+                    <img src="img/logo.png" class="profile" width="75px" height="75px" style="border: 6px solid white;border-radius: 50%;"/>
+                     <!--<img class="profile" width="100px" height="100px" style="border: 8px solid white;border-radius: 50%;" ng-click="editUser()" 
+					 src="images/logo.png" ng-show="!userinfojson.image || userinfojson.image=='' || userinfojson.image==null"> -->
+                </div>
+                    <div class="shz-full-description shz-clear-link" style="padding: 5px; margin-top: 20px" >
+                        <h3>{{mentee_id}}</h3>
+                        <h3 style="white-space: initial;"><a class='shz-clear-link shz-gray-color' ">{{mentee_name}}</a>
+                        </h3>
+                        <h3 style="white-space: initial;"><a clsass="shz-clear-link shz-gray-color">{{mentee_address}}</a>
+                        </h3>
+                    </div>
+                </div>    
+        </ion-item>
+
+        
+        
+        <ion-list ng-init="getmenteegoals()" >
+                        <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="menteegoal in menteegoals track by $index">
+                         <div class=row>
+                                <p class="col" style="color: #0066cb"><i>Due Date:{{menteegoal.due_date}}</i></p>
+                               <div style="text-align: right">
+                                   <a  href="{{url}}/myproject/download.php?nama={{menteegoal.file_url}}" class="col shz-clear-link" style="color: #0066cb"><img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > {{menteegoal.file_name}} </a>
+                                </div>
+                         </div>
+                          
+                        <div class=row>
+                              <div class="shz-half-description shz-clear-link" >
+                                  <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" href="#/app/menteegoals_comments/{{menteegoal.id}}/{{menteegoal.mentee_id}}"><span style="color: #0066cb;">Goal {{goal.id}}:</span> {{menteegoal.goals}} </a>
+                                     </h3>
+                              </div>
+                        </div>
+        
+                          <div class="shz-separator"></div>
+                          <div class=row>
+                                <div class="col" style="text-align: left;">
+                                 <p style="color: #1fb12a; float: left; " >{{menteegoal.completed_date}}</p>
+                                      </div>
+                                <div class="col" style="text-align: left;">
+                                 <p  style="color: #999;" >  {{menteegoal.edited_date}} </p>
+                              </div>
+                              
+                               <div class="col" style="text-align: right;">
+                                   <a><img src="img/edit_icon.png" width="20" height="20" alt="error"></a>    
+                                   <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
+                                </div>
+                            </div>
+                           </ion-item>
+                 </ion-list>
+        
+    </ion-content>
+</ion-view>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-view title="Learning Goals">
     <ion-content>
             <center>
                     <h5>
@@ -16,13 +85,13 @@
     <a href="#/app/menteegoals_comments/{{menteegoal.id}}/{{menteegoal.mentee_id}}">  
             {{menteegoal.goals}}</a>
             <a href="{{url}}/myproject/download.php?nama={{menteegoal.file_url}}">
-                {{menteegoal.file_name}}</a>
+                {{menteegoal.file_name}}</a> -->
             <!-- <a><img src="{{url}}/myproject/download.php?nama={{menteegoal.file_url}}" width="40" height="40" alt="error"></a> -->
-            <br>
+            <!-- <br>
             due_date:{{menteegoal.due_date}}<br>
             edited_date:{{menteegoal.edited_date}}<br>
             completed_date:{{menteegoal.completed_date}}
             </ion-item>
 </ion-list>
     </ion-content>
-</ion-view>
+</ion-view> -->

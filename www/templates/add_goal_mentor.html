@@ -2,13 +2,10 @@
     <ion-content>
             <label class="item item-input item-floating-label">
                     <input type="text" id="goal" placeholder="Add Goals Here" ng-model="goalsObj.new_goal">
-                    {{goalsObj.new_goal}}
                     <input type="file" id="inputFile" ng-model="goalsObj.img_base64" />
-                    {{goalsObj.img_base64}}
                 </label>
                 <label for="date">Due Date</label>
                 <input id="date" type="date"  ng-model="goalsObj.goal_date"/>
-                {{date12}}
         <button class="button button-block button-positive" ng-click="add()">ADD</button>
         <button class="button  button-positive" ng-click="closeModal()">close</button>
         </ion-content>

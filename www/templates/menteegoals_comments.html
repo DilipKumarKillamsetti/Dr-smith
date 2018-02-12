@@ -1,5 +1,102 @@
 <ion-view title="Goal Comments">
 
+    <ion-content class="shz-bg-shade"ng-init="getcomments()">
+        
+        
+        <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="goal in goal">
+             
+                
+                <div class=row>
+                    <p class="col" style="color: #0066cb"><i>Due Date:{{goal.due_date}}</i></p>
+                    <div style="text-align: right">
+                        <a  href="{{url}}/myproject/download.php?nama={{goal.file_url}}" class="col shz-clear-link" style="color: #0066cb"><img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > {{goal.file_name}} </a>
+                    </div>
+                </div>
+                <div class=row>
+                    <div class="shz-full-description shz-clear-link" >
+                        <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color"><span style="color: #0066cb;">Goal {{goal.id}}:</span> {{goal.goals}} </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="shz-separator"></div>
+                <div class=row>
+                                <div class="col" style="text-align: left;">
+                                 <p style="color: #1fb12a; float: left; " >{{goal.completed_date}}</p>
+                                      </div>
+                                <div class="col" style="text-align: left;">
+                                 <p  style="color: #999;" >  {{goal.edited_date}} </p>
+                              </div>
+                              
+                               <div class="col" style="text-align: right;">
+                                   <a><img src="img/edit_icon.png" width="20" height="20" alt="error"></a>    
+                                   <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
+                                </div>
+                            </div>
+                
+            </ion-item>
+        
+        
+        
+        
+         <ion-list>
+                <ion-item class="card shz-comment-box" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="comment in comments">
+                    
+                    <div class=row>
+                        
+                         <div class="shz-profilePic">
+                    <img src="img/logo.png" class="profile" width="75px" height="75px" style="border: 6px solid white;border-radius: 50%;"/><br>
+                     <!--<img class="profile" width="100px" height="100px" style="border: 8px solid white;border-radius: 50%;" ng-click="editUser()" src="images/logo.png" ng-show="!userinfojson.image || userinfojson.image=='' || userinfojson.image==null"> -->
+                </div>
+                    <div class="shz-full-description shz-clear-link" style="padding: 5px; margin-top: 20px" >
+                        <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" >
+                           {{comment.comment_text}} </a>
+                        </h3>
+                    </div>
+                </div>
+                     <div class=row>
+                          <p class="col" style="color: #0066cb"><i>{{comment.posted_date}}</i></p>
+                               <div style="text-align:right;">
+                                   <a   class="col shz-clear-link" style="color: #0066cb"> {{comment.comment_by}} </a>
+                                </div>
+                         </div>
+                    
+                </ion-item>
+            </ion-list>
+         <div class="card " style="margin: 0 auto; width: 96%;min-height: 80px;padding: 5px; box-shadow:inset 1px 2px 15px #9e9e9e;">
+                    <input style="width: 100%; background-color: transparent;min-height: 80px;"type="text" id="commentbox" placeholder="Add Comment Here" ng-model="commentObj_goal.comment">
+            </div>
+          
+            <center>
+                <button  class="button  button-positive" ng-click="addcomment()">Comment</button>
+        </center>
+        
+     
+    </ion-content>
+</ion-view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<ion-view title="Goal Comments">
+
     <ion-content ng-init="getcomments()">
         <ion-item ng-repeat="goal in goal">
                <h3>
@@ -25,4 +122,4 @@
         </label>
         <button class="button button-block button-positive" ng-click="addcomment()">Comment</button>
     </ion-content>
-</ion-view>
+</ion-view> -->
