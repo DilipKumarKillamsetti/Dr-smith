@@ -26,11 +26,13 @@
                            <p style="color: #1fb12a; float: left; " >{{goal.completed_date}}</p>
                                 </div>
                           <div class="col" style="text-align: left;">
-                           <p  style="color: #999;" >  {{goal.edited_date}} </p>
+                           <p  style="color: #999;" > {{goal.edited_date}} </p>
                         </div>
                         
                          <div class="col" style="text-align: right;">
-                             <a><img src="img/edit_icon.png" width="20" height="20" alt="error"></a>    
+                             <button ng-click="open_edit_modal(goal.id)">
+                               edit
+                             </button>    
                              <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
                           </div>
                   </div>

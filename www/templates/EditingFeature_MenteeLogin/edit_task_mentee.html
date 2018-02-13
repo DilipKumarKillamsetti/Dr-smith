@@ -1,0 +1,13 @@
+<ion-modal-view>
+        <ion-content>
+                <label class="item item-input item-floating-label">
+                        <input type="text" id="task" placeholder="Edit Goals Here" ng-model="edit_mentee_taskObj.new_task">
+                        <input type="file" id="inputFile" ng-model="edit_mentee_taskObj.img_base64" />
+                    </label>
+                    <label for="date">Due Date</label>
+                    <input id="date" type="date"  ng-model="edit_mentee_taskObj.task_date"/>
+            <button class="button button-block button-positive" 
+            ng-click="edit_mentee_task(menteetask_id);close_edit_modal_mentee_tasks()">Save</button>
+            <button class="button  button-positive" ng-click="close_edit_modal_mentee_tasks()">close</button>
+            </ion-content>
+    </ion-modal-view>

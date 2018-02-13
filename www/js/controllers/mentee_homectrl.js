@@ -32,7 +32,22 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
       {
       $scope.modal1.hide();
       };
-      //modal for add interactions in the interaction page
+      //modal for add task(Self) mentee_task page
+      $ionicModal.fromTemplateUrl('templates/add_mentee_task.html',{
+        scope: $scope,
+        animation: 'slide-in-up'
+      })
+      .then(function(modal){
+        $scope.add_task_modal=modal;
+            });
+      $scope.openModal_task = function()
+       { 
+         $scope.add_task_modal.show(); 
+      };
+       $scope.closeModal_task = function()
+        {
+        $scope.add_task_modal.hide();
+        };
       
 
 
@@ -231,7 +246,7 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         })
 
       }
-      //function for getting tasks which are set by the mentor
+      //function for getting tasks which are set by the mentor and self
       $scope.gettasks=function(){
         $http(
         {
@@ -245,6 +260,89 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
 
         })
       }
+      //function for adding tasks (Self)
+      $scope.taskObj = {};
+      $scope.taskObj = {
+        new_task:'',
+        task_date:'',
+        selected_img:'',
+        selectedImgName:'',
+        selected_img_base64:''
+      };
+      $scope.addtask=function(){
+        $scope.taskObj.selected_img=document.getElementById("inputFile").files;
+        // var selectedfile = document.getElementById("inputFile").files;
+        console.log($scope.taskObj.selected_img[0])
+        if($scope.taskObj.selected_img.length < 1 && $scope.taskObj.task_date==undefined)
+        {
+        alert("selelct value");
+        }
+        else if( $scope.taskObj.selected_img.length>0 ){
+            
+          $scope.taskObj.selectedImgName = $scope.taskObj.selected_img[0].name;
+          var filetoload=$scope.taskObj.selected_img[0];
+          var fileReader= new FileReader();
+          fileReader.readAsDataURL(filetoload);
+          fileReader.onload=function(fileLoadedEvent){
+            $scope.taskObj.selected_img_base64 =fileLoadedEvent.target.result;
+              $scope.fun1();   
+          }
+      }
+      else
+       {  $scope.fun1();}
+      }
+  //sub function for add task with file function
+    $scope.fun1=function(){
+      $scope.formattedDate1 = moment($scope.taskObj.task_date).format('YYYY-MM-DD');
+    console.log( $scope.formattedDate1)
+      $http(
+        {
+          url:$rootScope.url+"/myproject/add-mentee-task.php",
+          method:"POST",
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          data:{mentor_id:$rootScope.mentor_id,id:$rootScope.id,task: $scope.taskObj.new_task,
+            name: $scope.taskObj.selectedImgName,shab:$scope.taskObj.selected_img_base64,
+            due_date:$scope.formattedDate1}
+    })
+      .then(function(response){
+      $scope.task=response;
+      console.log($scope.task)
+      $scope.taskObj = {
+        new_task:'',
+        task_date:'',
+        selected_img:'',
+        selectedImgName:'',
+        selected_img_base64:''
+      };
+      document.getElementById("inputFile").value=null;
+      $scope.formattedDate1 ="";
+          $scope.gettasks();
+        }
+      )
+      .catch(function(e){
+        alert(e)
+      })
+
+      document.getElementById("task").value="";
+          }
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       //function for the mentee to add schedule 
       $scope.scheduleObj={};
       $scope.scheduleObj={

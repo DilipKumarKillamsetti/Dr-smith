@@ -10,7 +10,7 @@
                 </div>
                     <div class="shz-full-description shz-clear-link" style="padding: 5px; margin-top: 20px" >
                         <h3>{{mentee_id}}</h3>
-                        <h3 style="white-space: initial;"><a class='shz-clear-link shz-gray-color' ">{{mentee_name}}</a>
+                        <h3 style="white-space: initial;"><a class='shz-clear-link shz-gray-color'>{{mentee_name}}</a>
                         </h3>
                         <h3 style="white-space: initial;"><a clsass="shz-clear-link shz-gray-color">{{mentee_address}}</a>
                         </h3>
@@ -31,7 +31,8 @@
                           
                         <div class=row>
                               <div class="shz-half-description shz-clear-link" >
-                                  <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" href="#/app/menteegoals_comments/{{menteegoal.id}}/{{menteegoal.mentee_id}}"><span style="color: #0066cb;">Goal {{goal.id}}:</span> {{menteegoal.goals}} </a>
+                                  <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" href="#/app/menteegoals_comments/{{menteegoal.id}}/{{menteegoal.mentee_id}}">
+                                    <span style="color: #0066cb;">Goal {{menteegoal.id}}:</span> {{menteegoal.goals}} </a>
                                      </h3>
                               </div>
                         </div>
@@ -46,7 +47,7 @@
                               </div>
                               
                                <div class="col" style="text-align: right;">
-                                   <a><img src="img/edit_icon.png" width="20" height="20" alt="error"></a>    
+                                  <button ng-click="open_edit_modal_mentee_goals(menteegoal.id)">edit</button>
                                    <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
                                 </div>
                             </div>
