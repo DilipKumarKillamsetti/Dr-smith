@@ -48,8 +48,41 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         {
         $scope.add_task_modal.hide();
         };
-      
-
+        //modal for edit task in mentee login
+        $ionicModal.fromTemplateUrl('templates/EditingFeature_MenteeLogin/edit_task_mentee.html',{
+          scope: $scope,
+          animation: 'slide-in-up'
+        })
+        .then(function(modal){
+          $scope.edit_task_modal=modal;
+              });
+        $scope.openModal_task_edit = function(task_id)
+         { 
+           $scope.task_id=task_id;
+           $scope.edit_task_modal.show(); 
+        };
+         $scope.closeModal_task_edit = function()
+          {
+            $scope.task_id="" 
+          $scope.edit_task_modal.hide();
+          };
+          //modal for edit goal in mentee login
+          $ionicModal.fromTemplateUrl('templates/EditingFeature_MenteeLogin/edit_goal_mentee.html',{
+            scope: $scope,
+            animation: 'slide-in-up'
+          })
+          .then(function(modal){
+            $scope.edit_goal_modal=modal;
+                });
+          $scope.openModal_goal_edit = function(goal_id)
+           { 
+             $scope.goal_id=goal_id;
+             $scope.edit_goal_modal.show(); 
+          };
+           $scope.closeModal_goal_edit = function()
+            {
+            $scope.edit_goal_modal.hide();
+            };
 
       //funuction for getting mentee details in the mentee_home page
       $scope.get=function(){
@@ -74,6 +107,10 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
           })
           .then(function(response){
             $scope.goals=response.data;
+            for(var i=0;i<$scope.goals.length;i++)
+            {
+              $scope.goals[i].edited_date=moment($scope.goals[i].edited_date).format('YYYY-MM-DD')
+            }
             console.log($scope.goals)
       
           }
@@ -205,7 +242,7 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
       })
       document.getElementById("goal").value="";
           }*/
-        //function for getting comments for the mentee goals
+     //function for getting comments for the mentee goals
       $scope.getcomments=function(){
           console.log($rootScope.id)
           console.log($stateParams.goal_id)
@@ -256,6 +293,10 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         })
         .then(function(response){
           $scope.menteetasks=response.data;
+          for(var i=0;i<$scope.menteetasks.length;i++)
+            {
+              $scope.menteetasks[i].edited_date=moment($scope.menteetasks[i].edited_date).format('YYYY-MM-DD')
+            }
           console.log($scope.menteetasks)
 
         })
@@ -325,24 +366,6 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
 
       document.getElementById("task").value="";
           }
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       //function for the mentee to add schedule 
       $scope.scheduleObj={};
       $scope.scheduleObj={
@@ -392,5 +415,157 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         })
         .then(function(response){$scope.schedules=response.data;console.log($scope.schedules)})
       }
+
+      //function for editing mentee tasks
+      $scope.edit_mentee_taskObj={
+        new_task:'',
+        task_date:'',
+        selected_img:'',
+        selectedImgName:'',
+        selected_img_base64:''
+               }
+      $scope.edit_mentee_task=function(menteetask_id){
+        console.log($scope.edit_mentee_taskObj.new_task)
+        console.log($scope.edit_mentee_taskObj.task_date);
+      $scope.edit_mentee_taskObj.selected_img = document.getElementById("inputFile").files;
+    
+      if($scope.edit_mentee_taskObj.selected_img.length < 1 && $scope.edit_mentee_taskObj.new_task=="")
+      {
+        alert("selelct value");
+      }
+      else if($scope.edit_mentee_taskObj.selected_img.length > 0)
+      {
+        $scope.edit_mentee_taskObj.selectedImgName = $scope.edit_mentee_taskObj.selected_img[0].name;
+        console.log($scope.edit_mentee_taskObj.selectedImgName)
+        var filetoload = $scope.edit_mentee_taskObj.selected_img[0];
+        var fileReader= new FileReader();
+        fileReader.readAsDataURL(filetoload);
+        fileReader.onload=function(fileLoadedEvent)
+        {
+          $scope.edit_mentee_taskObj.selected_img_base64 = fileLoadedEvent.target.result;
+          $scope.fun2(menteetask_id);
+        }
+      }
+      else
+      {
+        $scope.fun2(menteetask_id);
+      }
+      }
+      $scope.fun2=function(menteetask_id){
+        console.log($scope.edit_mentee_taskObj.new_task, $scope.edit_mentee_taskObj.task_date);
+        if($scope.edit_mentee_taskObj.task_date!=""){
+        $scope.menteeTask_DueDate = moment($scope.edit_mentee_taskObj.task_date).format('YYYY-MM-DD');
+        console.log($scope.menteeTask_DueDate)
+        }
+        $http(
+          {
+            url:$rootScope.url+"/myproject/edit_mentee_task.php",
+             method:"POST",
+             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            data:{editor_id:$rootScope.id,edited_by:$rootScope.type,
+              name:$scope.edit_mentee_taskObj.selectedImgName,task:$scope.edit_mentee_taskObj.new_task,
+              shab:$scope.edit_mentee_taskObj.selected_img_base64,
+              task_id:menteetask_id,due_date:$scope.menteeTask_DueDate}
+       })
+        .then(function(response){
+        console.log(response.data)
+            $scope.gettasks();
+            $scope.edit_mentee_taskObj = {};
+            $scope.edit_mentee_taskObj = {
+              new_task:'',
+              task_date:'',
+              selected_img:'',
+              selectedImgName:'',
+              selected_img_base64:''
+            };
+            document.getElementById("inputFile").value = null;
+            $scope.menteeTask_DueDate = '';
+          }
+        )
+        .catch(function(e){
+          alert(e)
+        })
+      }
+
+      //function for mentee goal edit in mentee login
+      $scope.edit_mentee_goalObj={
+        new_goal:'',
+        goal_date:'',
+        selected_img:'',
+        selectedImgName:'',
+        selected_img_base64:''
+      }
+      $scope.edit_mentee_goal=function(menteegoal_id){
+        console.log($scope.edit_mentee_goalObj.new_goal)
+        console.log($scope.edit_mentee_goalObj.goal_date);
+      $scope.edit_mentee_goalObj.selected_img = document.getElementById("inputFile").files;
+    
+      if($scope.edit_mentee_goalObj.selected_img.length < 1 && $scope.edit_mentee_goalObj.new_goal=="")
+      {
+        alert("selelct value");
+      }
+      else if($scope.edit_mentee_goalObj.selected_img.length > 0)
+      {
+        $scope.edit_mentee_goalObj.selectedImgName = $scope.edit_mentee_goalObj.selected_img[0].name;
+        console.log($scope.edit_mentee_goalObj.selectedImgName)
+        var filetoload = $scope.edit_mentee_goalObj.selected_img[0];
+        var fileReader= new FileReader();
+        fileReader.readAsDataURL(filetoload);
+        fileReader.onload=function(fileLoadedEvent)
+        {
+          $scope.edit_mentee_goalObj.selected_img_base64 = fileLoadedEvent.target.result;
+          $scope.fun1(menteegoal_id);
+        }
+      }
+      else
+      {
+        $scope.fun1(menteegoal_id);
+      }
+      }
+      $scope.fun1=function(menteegoal_id){
+        console.log($scope.edit_mentee_goalObj.new_goal, $scope.edit_mentee_goalObj.goal_date);
+        if($scope.edit_mentee_goalObj.goal_date!=""){
+        $scope.menteeGoal_DueDate = moment($scope.edit_mentee_goalObj.goal_date).format('YYYY-MM-DD');
+        console.log($scope.menteeGoal_DueDate)
+        }
+        $http(
+          {
+            url:$rootScope.url+"/myproject/edit_mentee_goal_1.php",
+             method:"POST",
+             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            data:{editor_id:$rootScope.id,edited_by:$rootScope.type,
+              name:$scope.edit_mentee_goalObj.selectedImgName,goal:$scope.edit_mentee_goalObj.new_goal,
+              shab:$scope.edit_mentee_goalObj.selected_img_base64,
+              goal_id:menteegoal_id,due_date:$scope.menteeGoal_DueDate}
+       })
+        .then(function(response){
+        console.log(response.data)
+            $scope.getgoals();
+            $scope.edit_mentee_goalObj = {};
+            $scope.edit_mentee_goalObj = {
+              new_goal:'',
+              goal_date:'',
+              selected_img:'',
+              selectedImgName:'',
+              selected_img_base64:''
+            };
+            document.getElementById("inputFile").value = null;
+            $scope.menteeGoal_DueDate = '';
+          }
+        )
+        .catch(function(e){
+          alert(e)
+        })
+      }
+
+
+
+
+
+
+
+
+
+
        
 })

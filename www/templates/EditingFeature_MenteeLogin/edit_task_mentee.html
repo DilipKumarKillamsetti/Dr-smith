@@ -7,7 +7,7 @@
                     <label for="date">Due Date</label>
                     <input id="date" type="date"  ng-model="edit_mentee_taskObj.task_date"/>
             <button class="button button-block button-positive" 
-            ng-click="edit_mentee_task(menteetask_id);close_edit_modal_mentee_tasks()">Save</button>
-            <button class="button  button-positive" ng-click="close_edit_modal_mentee_tasks()">close</button>
+            ng-click="edit_mentee_task(task_id);closeModal_task_edit()">Save</button>
+            <button class="button  button-positive" ng-click="closeModal_task_edit()">close</button>
             </ion-content>
     </ion-modal-view>

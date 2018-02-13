@@ -27,7 +27,7 @@
                                  <p  style="color: #999;" >Last Edited: {{goal.edited_date}} </p>
                                 </div>
                                <div class="col" style="text-align: right;">
-                                   <a><img src="img/edit_icon.png" width="20" height="20" alt="error"></a>    
+                                  <button ng-click="openModal_goal_edit(goal.id)">Edit</button>    
                                    <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
                                 </div>
                             </div>
