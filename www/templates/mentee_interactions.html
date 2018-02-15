@@ -3,11 +3,18 @@
                 <ion-list>
                    <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="schedule in schedules track by $index">
                        
-                       <div class=row> 
-                                    <p class="col" style="color: #0066cb"><i>By:{{goal.due_date}}</i></p>
-                                   <div style="text-align: right">
-                                       <a   class="col shz-clear-link" style="color: #0066cb"><img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > 40 mins </a>
+                       <div class="row"> 
+                                    <p class="col" style="color: #0066cb"><i>By: {{schedule.added_by}}</i></p>
+                                    <div style="text-align: left" ng-show="schedule.meeting_type == 'audio'">
+                                        <a   class="col shz-clear-link" style="color: #0066cb"><img src="img/audio-icon.png" width="18" height="20" alt="error" > Audio </a>
+                                     </div>
+                                     <div style="text-align: left" ng-show="schedule.meeting_type == 'video'">
+                                        <a   class="col shz-clear-link" style="color: #0066cb"><img src="img/video-icon.png" width="18" height="20" alt="error" > Video </a>
+                                     </div>
+                                   <div style="text-align: right" id="duration" >
+                                       <a   class="col shz-clear-link" style="color: #0066cb"><img src="img/timer-icon.png" width="18" height="20" alt="error">{{duration(schedule.start_time,schedule.end_time)}}mins</a>
                                     </div>
+                                    
                              </div>
                        
                         <div class=row>

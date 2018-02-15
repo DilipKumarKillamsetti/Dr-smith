@@ -1,9 +1,11 @@
 angular.module('drsmith.controllers.menteectrl', [])
 .controller('menteectrl',function($scope,$http,$rootScope,$stateParams,$state,$ionicModal){
     //function for getting mentee details in the mentee details page
+   
         $scope.details=function(){
-          var id=$stateParams.id;
+          $scope.mentee_id=$stateParams.id;
           $scope.mentor_name=$rootScope.name;
+          console.log($scope.mentee_id)
           $http(
             {
                 url:$rootScope.url+"/myproject/login_read.php",
@@ -13,7 +15,7 @@ angular.module('drsmith.controllers.menteectrl', [])
           .then(function(response){
             $scope.mentees=response.data;
             for(var i=1;i<$scope.mentees.length+1;i++){
-                if(id==i){
+                if($scope.mentee_id==i){
                   $scope.mentee=$scope.mentees[i-1];
                   break;
                 }
@@ -134,6 +136,7 @@ angular.module('drsmith.controllers.menteectrl', [])
               url:$rootScope.url+"/myproject/meeting_schedule.php",
               method:"GET",
               params: {date:$scope.date1,start_time:$scope.stime1,end_time:$scope.ftime1,
+                added_by:$rootScope.type, meeting_type:$scope.scheduleObj.type,
                 mentor_id:$rootScope.id,mentee_id:mentee_id,comment:$scope.scheduleObj.description}
             })
           .then(function(response){
@@ -149,20 +152,46 @@ angular.module('drsmith.controllers.menteectrl', [])
           })
         }
         }
-    //function for getting schedules which are added by the mentee and mentor both    
-   $scope.getschedules=function(){
-          $scope.mentee_id=$stateParams.mentee_id;
+        $scope.duration=function(now,then){
+          var startTime=moment(now, "HH:mm");
+          var endTime=moment(then, "HH:mm");
+          var duration = moment.duration(endTime.diff(startTime));
+          var hours = parseInt(duration.asHours());
+          var minutes = parseInt(duration.asMinutes());
+          return (minutes);
+        }
+    //function for getting schedules which are added by the mentee and mentor both 
+    $scope.inischedule=function()
+    {
+      $scope.mentee_id =$stateParams.mentee_id;
+    }
+    $scope.completeImg = "img/completion-icon.png";
+    // $scope.changeCompleteImg = function(taskId)
+    // {
+    //   console.log( $scope.menteetasks);
+    //   if($scope.completeImg == "img/completion-icon.png")
+    //   {
+    //     $scope.completeImg = "img/incomplete-icon.png";
+    //   }
+    //   else
+    //   {
+    //     $scope.completeImg = "img/completion-icon.png";
+    //   }
+    // }
+    
+   $scope.getschedules=function(mentee_id){
+         
           $http(
             {
               url:$rootScope.url+"/myproject/view_meeting_schedule.php",
               method:"GET",
-              params:{mentor_id:$rootScope.id,mentee_id:$stateParams.mentee_id}
+              params:{mentor_id:$rootScope.id,mentee_id:$scope.mentee_id}
             })
             .then(function(response){$scope.schedules=response.data;console.log($scope.schedules)})
         }
     //function for the mentor to get the goals of mentee
       $scope.getmenteegoals=function(){
-        $scope.mentee_id=$stateParams.mentee_id;
+        console.log($stateParams.mentee_id)
         $scope.mentee_name=$stateParams.mentee_name;
         $scope.mentee_address=$stateParams.mentee_address;
         $http(
@@ -254,7 +283,7 @@ angular.module('drsmith.controllers.menteectrl', [])
 
       //function for mentor to get the tasks which are set by mentor
       $scope.gettasks=function(){
-        $scope.mentee_id=$stateParams.mentee_id;
+        console.log($stateParams.mentee_id)
         $scope.mentee_name=$stateParams.mentee_name;
         $scope.mentee_address=$stateParams.mentee_address;
         console.log($stateParams.mentee_id)

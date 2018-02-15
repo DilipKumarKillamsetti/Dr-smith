@@ -18,8 +18,15 @@
   font-style: normal; 
 }
 
+@font-face {
+  font-family: "MyriadPro";
+  src: url("../fonts/MyriadPro-Regular.otf");
+  font-weight: normal;
+  font-style: normal; 
+}
+
 body {
-  font-family: sans-serif;
+  font-family: 'MyriadPro';
 }
 .ion, .ionicons,
 .ion-alert:before,
@@ -3043,7 +3050,7 @@ html {
   -ms-user-select: none;
   user-select: none;
   /*font-family: sans-serif;*/
-  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'MyriadPro';
   /* 1 */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -3329,7 +3336,7 @@ body,
   word-wrap: break-word;
   font-size: 14px;
   /*font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
-  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'MyriadPro';
   line-height: 20px;
   text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
@@ -3568,7 +3575,7 @@ h1, h2, h3, h4, h5, h6,
   color: #000;
   font-weight: 500;
   /*font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
-  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'MyriadPro';
   line-height: 1.2; }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small,
   .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
@@ -5058,7 +5065,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
   font-weight: 400;
   font-size: 14px;
   /*font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
-  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'MyriadPro';
   opacity: 0.7; }
   .tab-item:hover {
     cursor: pointer; }
@@ -6870,7 +6877,7 @@ button,
 select,
 textarea {
   /*font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
-  font-family: 'Alegreya Sans', sans-serif; }
+  font-family: 'MyriadPro'; }
 
 .item-input {
   display: -webkit-box;
@@ -7035,11 +7042,13 @@ textarea {
     text-overflow: ellipsis; 
    height: 50px;
     width: 100%;
+    padding-left: 5px;
    
 }
 .shz-full-description{
      white-space: nowrap; 
     height: auto;
+    padding-left: 5px;
 }
 
 .shz-separator{
@@ -10836,3 +10845,7 @@ ion-spinner.spinner-on-load {
     font-size: 22px;
     font-weight: 400;
     font-size: 16px; }
+.tab-nav tabs
+{
+    height: 60px !important;
+}

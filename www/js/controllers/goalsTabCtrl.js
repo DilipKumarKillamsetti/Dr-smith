@@ -89,39 +89,6 @@ $scope.add = function()
   }
 
 }
-
-/*var base64=null;
-var name=null;
-$scope.add=function(goal,files,date1){
-  console.log(goal)
-  console.log($rootScope.id)
-  var selectedfile = document.getElementById("inputFile").files;
-  console.log(selectedfile)
-  if(selectedfile.length < 1 && goal==undefined)
-  {
-    // pop up
-   alert("selelct value");
-  }
-  else if(selectedfile.length>0){
-       
-  name = selectedfile[0].name;
-    var filetoload=selectedfile[0];
-    alert(selectedfile[0].name, "calling...")
-    var fileReader= new FileReader();
-    alert(fileReader)
-    fileReader.readAsDataURL(filetoload);
-    fileReader.onload=function(fileLoadedEvent){
-      base64=fileLoadedEvent.target.result;
-      $scope.fun(goal,date1);   
-      selectedfile="";
-    }
-}
-else
-{ 
-  $scope.fun(goal,date1);
-}
-}*/
-
 $scope.fun=function(){
   console.log($scope.goalsObj.new_goal, $scope.goalsObj.goal_date);
   $scope.formattedDate = moment($scope.goalsObj.goal_date).format('YYYY-MM-DD');

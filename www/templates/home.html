@@ -1,4 +1,7 @@
-<ion-view title={{title}}>
+<ion-view >
+        <ion-nav-title>
+                <img src="img/logo-header.png" alt="" height="25px" style="margin-top:12px;"/>
+            </ion-nav-title>
     <ion-content class="shz-bg-shade">
         <ion-list>
             <ion-item  class=" card item item-remove-animate  item-icon-right" type="item-text-wrap" ng-repeat="mentee in mentees" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);">
@@ -13,11 +16,11 @@
                         <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" href="#/app/mentee/{{mentee.id}}">{{mentee.name}}</a>
                         </h3>
                         <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color">Description about the user</a>
-                        </h3>
+                        </h3> 
                     </div>
                 </div>    
             <!--<a  href="#/app/mentee/{{mentee.id}}" > <h2>{{mentee.name}}</h2 ></a>-->
-            <i class="icon ion-chevron-right icon-accessory"></i>
+            <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
             </ion-item>
         </ion-list>
     </ion-content>

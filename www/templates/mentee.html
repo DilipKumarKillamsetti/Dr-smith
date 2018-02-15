@@ -1,6 +1,6 @@
 <ion-view title="Mentee Details">
     <ion-content class="shz-bg-shade">
-        <div class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-init="details()">
+        <div class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-init="details();getschedules(mentee_id)">
             <div class="item-text-wrap screen-center" >
                 <div class="shz-profilePic">
                     <img src="img/logo.png" class="profile" width="85px" height="85px" style="border: 6px solid white;border-radius: 50%;"/><br>
@@ -23,7 +23,7 @@
                            Mentor: {{mentor_name}}
                         </h5>
                           <h5>
-                           Total Interactions: 
+                           Total Interactions: {{schedules.length}}
                         </h5>
                 
                 </center>
@@ -59,7 +59,7 @@
               <center>
                   <a href="#/app/mentee_goals/{{mentee.row.id}}">
                     <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive" >
-                        Send Message
+                        Message
                     </button>
                     </a>
                 </center>

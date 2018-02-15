@@ -1,4 +1,7 @@
-<ion-view title="Goals">
+<ion-view >
+    <ion-nav-title>
+        <img src="img/logo-header.png" alt="" height="25px" style="margin-top:12px;"/>
+    </ion-nav-title>
   <ion-content class="shz-bg-shade" ng-init="get()"> 
     <ion-list>
             <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="goal in goals ">
@@ -30,9 +33,10 @@
                         </div>
                         
                          <div class="col" style="text-align: right;">
-                             <button ng-click="open_edit_modal(goal.id)">
+                            <img ng-click="open_edit_modal(goal.id)" src="img/edit_icon.png"/ width="20px">  
+                             <!-- <button ng-click="open_edit_modal(goal.id)">
                                edit
-                             </button>    
+                             </button>     -->
                              <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
                           </div>
                   </div>

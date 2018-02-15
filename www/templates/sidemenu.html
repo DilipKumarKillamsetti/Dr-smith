@@ -12,15 +12,15 @@
           </ion-nav-bar>
           <ion-tabs class="tabs-icon-top tabs-positive" ng-class="{'tabs-item-hide': $root.hideTab}">
 
-            <ion-tab title="Home" icon-off="ion-home" icon-on="ion-home-active" href="#/app/home">
+            <ion-tab title="Mentee List" icon-off="ion-navicon" icon-on="ion-navicon" href="#/app/home">
               <ion-nav-view name="tab-home"></ion-nav-view>
             </ion-tab>
       
-            <ion-tab title="Goals" icon-off="ion-ionic" icon-on="ion-home-active" href="#/app/goals">
+            <ion-tab title="My Goals" icon-off="ion-ionic" icon-on="ion-ionic" href="#/app/goals">
               <ion-nav-view name="tab-goals" cache-view="false" ></ion-nav-view>
             </ion-tab>
       
-            <ion-tab title="Forum" icon-off="ion-chatbubbles" icon-on="ion-chatbubbles-active" href="#/app/forum">
+            <ion-tab title="Mentor Forum" icon-off="ion-chatboxes" icon-on="ion-chatboxes" href="#/app/forum">
               <ion-nav-view name="tab-forum" cache-view="false"></ion-nav-view>
             </ion-tab>
 
@@ -46,8 +46,13 @@
                       <h2 class="menu-text">Home</h2>
                       <i class="item-pointer-icon icon ion-chevron-right"></i>
                     </ion-item>
-                    
-                    <ion-item ui-sref-active="active" class="item-icon-left item-icon-right" menu-close >
+
+                    <ion-item class="item-icon-left item-icon-right" menu-close >
+                      <h2 class="menu-text">My Profile</h2>
+                      <i class="item-pointer-icon icon ion-chevron-right"></i>
+                    </ion-item>
+
+                    <ion-item  class="item-icon-left item-icon-right" menu-close >
                       <h2 class="menu-text">Webinar</h2>
                       <i class="item-pointer-icon icon ion-chevron-right"></i>
                     </ion-item>
@@ -57,23 +62,34 @@
                       <i class="item-pointer-icon icon ion-chevron-right"></i>
                     </ion-item>
 
-                    <ion-item ui-sref-active="active" class="item-icon-left item-icon-right" menu-close >
-                      <h2 class="menu-text">Settings</h2>
+                    
+                    <ion-item class="item-icon-left item-icon-right" menu-close ui-sref="app.mentee_home" ng-show="$root.hideTab">
+                      <h2 class="menu-text">MyMentor</h2>
+                      <i class="item-pointer-icon icon ion-chevron-right"></i>
+                    </ion-item>
+
+                    <ion-item class="item-icon-left item-icon-right" menu-close >
+                      <h2 class="menu-text">OpenForum</h2>
+                      <i class="item-pointer-icon icon ion-chevron-right"></i>
+                    </ion-item>
+
+                    <ion-item class="item-icon-left item-icon-right" menu-close ui-sref="app.home" ng-show="!$root.hideTab">
+                      <h2 class="menu-text">MentorForum</h2>
                       <i class="item-pointer-icon icon ion-chevron-right"></i>
                     </ion-item>
 
                     <ion-item ui-sref-active="active" class="item-icon-left item-icon-right" menu-close >
-                      <h2 class="menu-text">Support</h2>
+                      <h2 class="menu-text">Resorces</h2>
                       <i class="item-pointer-icon icon ion-chevron-right"></i>
                     </ion-item>
 
-                    <ion-item ui-sref-active="active" class="item-icon-left item-icon-right" menu-close >
-                      <h2 class="menu-text">My Profile</h2>
+                    <ion-item class="item-icon-left item-icon-right" menu-close >
+                      <h2 class="menu-text">Report Abuse</h2>
                       <i class="item-pointer-icon icon ion-chevron-right"></i>
                     </ion-item>
 
-                    <ion-item ui-sref-active="active" class="item-icon-left item-icon-right" menu-close >
-                      <h2 class="menu-text">Create Class</h2>
+                    <ion-item class="item-icon-left item-icon-right" menu-close >
+                      <h2 class="menu-text">Help</h2>
                       <i class="item-pointer-icon icon ion-chevron-right"></i>
                     </ion-item>
 

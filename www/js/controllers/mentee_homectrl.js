@@ -83,7 +83,19 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
             {
             $scope.edit_goal_modal.hide();
             };
-
+            $scope.duration=function(now,then){
+              var startTime=moment(now, "HH:mm");
+              var endTime=moment(then, "HH:mm");
+              var duration = moment.duration(endTime.diff(startTime));
+              var hours = parseInt(duration.asHours());
+              var minutes = parseInt(duration.asMinutes());
+              return (minutes);
+            }
+            // $('#duration').click(function() {
+            //   var now  = "04/09/2013 11:20:30";
+            //   var then = "04/09/2013 14:20:30";
+            //   $scope.duration=moment.utc(moment(now,"DD/MM/YYYY HH:mm:ss").diff(moment(then,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss")
+            // });
       //funuction for getting mentee details in the mentee_home page
       $scope.get=function(){
           $http({
@@ -382,17 +394,18 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         if($scope.date1=="Invalid date"&&$scope.stime1=="Invalid date"&&$scope.ftime1=="Invalid date")
           {alert("select valid values") }
           else{
-      $http(
-        {
+            $http({
           url:$rootScope.url+"/myproject/meeting_schedule.php",
           method:"GET",
           params: {date: $scope.date1,start_time:$scope.stime1,end_time:$scope.ftime1,
             mentor_id:$rootScope.mentor_id,mentee_id:$rootScope.id,
+            meeting_type:$scope.scheduleObj.type,
+            added_by:$rootScope.type,
             comment:$scope.scheduleObj.description}
-        }
-      )
+        })
       .then(function(response){
         $scope.result=response.data;
+        $scope.getschedules();
         console.log($scope.result)
         $scope.scheduleObj={
           date1:'',
@@ -413,7 +426,10 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
           method:"GET",
           params:{mentor_id:$rootScope.mentor_id,mentee_id:$rootScope.id}
         })
-        .then(function(response){$scope.schedules=response.data;console.log($scope.schedules)})
+        .then(function(response){
+          $scope.schedules=response.data;
+          console.log($scope.schedules)
+        })
       }
 
       //function for editing mentee tasks

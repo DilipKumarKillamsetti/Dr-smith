@@ -6,7 +6,7 @@
                                 
                                 <p class="col" style="color: #0066cb"><i>Due Date:{{goal.due_date}}</i></p>
                                <div style="text-align: right">
-                                   <a  href="{{url}}/myproject/download.php?nama={{goal.file_url}}" class="col" style="color: #0066cb">{{goal.file_name}}
+                                   <a  href="{{url}}/myproject/download.php?nama={{goal.file_url}}" class="col shz-clear-link" style="color: #0066cb">{{goal.file_name}}
                                      <img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > </a>
                                 </div>
                          </div>
@@ -27,7 +27,8 @@
                                  <p  style="color: #999;" >Last Edited: {{goal.edited_date}} </p>
                                 </div>
                                <div class="col" style="text-align: right;">
-                                  <button ng-click="openModal_goal_edit(goal.id)">Edit</button>    
+                                  <img ng-click="openModal_goal_edit(goal.id)" src="img/edit_icon.png"/ width="20px">  
+                                  <!-- <button ng-click="openModal_goal_edit(goal.id)">Edit</button>     -->
                                    <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 <ion-view title={{title}} class="shz-bg-shade">
-    <ion-content ng-init="get()">
+    <ion-content ng-init="get();getschedules()">
         <div class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);">
             <div class="item-text-wrap screen-center">
                 <div class="shz-profilePic">
@@ -23,7 +23,7 @@
                            Mentor: {{mentee.mentor}}
                         </h5>
                           <h5>
-                           Total Interactions: {{mentee.mentor}}
+                           Total Interactions: {{schedules.length}}
                         </h5>
                 
                 </center>
