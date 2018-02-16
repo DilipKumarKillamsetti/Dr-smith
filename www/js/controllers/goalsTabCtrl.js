@@ -42,6 +42,21 @@ $scope.close_edit_modal=function()
   $scope.goal_id=null;
   $scope.edit_modal.hide();
 }
+$scope.update=function(goal_id)
+{
+  var currentDate  = new Date();
+  currentDate=moment(currentDate).format('YYYY-MM-DD')
+  console.log(goal_id,currentDate)
+  $http({
+    url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+    method:"GET",
+    params:{goal_id:goal_id,completed_date:currentDate}
+  })
+  .then(function(response){
+    console.log(response.data)
+    $scope.get();
+  })
+}
   $scope.get=function(){
     // console.log($rootScope.id)
     $http(
@@ -54,6 +69,7 @@ $scope.close_edit_modal=function()
       $scope.goals=response.data;
       for(var i=0;i<$scope.goals.length;i++){
         $scope.goals[i].edited_date=moment($scope.goals[i].edited_date).format('YYYY-MM-DD')
+        // $scope.goals[i].completed_date=moment($scope.goals[i].completed_date).format('YYYY-MM-DD')
       }
        console.log($scope.goals)
 
@@ -89,6 +105,7 @@ $scope.add = function()
   }
 
 }
+
 $scope.fun=function(){
   console.log($scope.goalsObj.new_goal, $scope.goalsObj.goal_date);
   $scope.formattedDate = moment($scope.goalsObj.goal_date).format('YYYY-MM-DD');

@@ -18,9 +18,12 @@
                             <div class="shz-separator"></div>
                             
                             <div class=row>
-                                <div class="col" style="text-align: left;">
+                                <div class="col" style="text-align: left;" ng-show="completed || task.complete=='1'">
                                  <p style="color: #1fb12a; float: left; " >{{task.completed_date}}</p>
                                       </div>
+                                      <div class="col" style="text-align: left;" ng-hide="completed || task.complete=='1'">
+                                        <p style="color: #999; float: left; " >{{task.completed_date}}</p>
+                                             </div>
                                 <div class="col" style="text-align: left;">
                                  <p  style="color: #999;" >  {{task.edited_date}} </p>
                               </div>
@@ -28,7 +31,7 @@
                                <div class="col" style="text-align: right;">
                                         <img ng-click="openModal_task_edit(task.id)" src="img/edit_icon.png"/ width="20px">  
                                    <!-- <button ng-click="openModal_task_edit(task.id)">Edit </button>  -->
-                                   <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
+                                   <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="task.complete=='1' || completed " ng-click="task_update(task.id)"/>
                                 </div>
                             </div>
                             <!-- <a><img src="{{url}}/myproject/download.php?nama={{task.file_url}}" width="40" height="40" alt="error"></a> -->

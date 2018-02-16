@@ -23,13 +23,14 @@
                             </div>
                           <div class=row>
                                 <div class="col" style="text-align: left;">
-                                <p style="color: #1fb12a; float: left; " >Completion Date:{{goal.completed_date}}  </p>
+                                <p style="color: #1fb12a; float: left; "  ng-show="completed || goal.complete=='1'">Completion Date:{{goal.completed_date}}  </p>
+                                <p style="color: #999; float: left; " ng-hide="completed || goal.complete=='1'" >Completion Date:{{goal.completed_date}}  </p>
                                  <p  style="color: #999;" >Last Edited: {{goal.edited_date}} </p>
                                 </div>
                                <div class="col" style="text-align: right;">
                                   <img ng-click="openModal_goal_edit(goal.id)" src="img/edit_icon.png"/ width="20px">  
                                   <!-- <button ng-click="openModal_goal_edit(goal.id)">Edit</button>     -->
-                                   <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
+                                  <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="goal.complete=='1' || completed " ng-click="goal_update(goal.id)"/>
                                 </div>
                             </div>
                           </ion-item>

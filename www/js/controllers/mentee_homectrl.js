@@ -91,11 +91,52 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
               var minutes = parseInt(duration.asMinutes());
               return (minutes);
             }
-            // $('#duration').click(function() {
-            //   var now  = "04/09/2013 11:20:30";
-            //   var then = "04/09/2013 14:20:30";
-            //   $scope.duration=moment.utc(moment(now,"DD/MM/YYYY HH:mm:ss").diff(moment(then,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss")
-            // });
+            $scope.task_update=function(task_id)
+            {
+              var currentDate  = new Date();
+              currentDate=moment(currentDate).format('YYYY-MM-DD')
+              console.log(task_id,currentDate)
+              $http({
+                url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+                method:"GET",
+                params:{task_id:task_id,completed_date:currentDate}
+              })
+              .then(function(response){
+                console.log(response.data)
+                $scope.gettasks();
+              })
+            }
+            $scope.goal_update=function(goal_id)
+            {
+              var currentDate  = new Date();
+              currentDate=moment(currentDate).format('YYYY-MM-DD')
+              console.log(goal_id,currentDate)
+              $http({
+                url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+                method:"GET",
+                params:{goal_id:goal_id,completed_date:currentDate}
+              })
+              .then(function(response){
+                console.log(response.data)
+                $scope.getgoals();
+              })
+            }
+            $scope.interaction_update=function(interaction_id)
+            {
+              var currentDate  = new Date();
+              currentDate=moment(currentDate).format('YYYY-MM-DD')
+              console.log(interaction_id,currentDate)
+              $http({
+                url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+                method:"GET",
+                params:{interaction_id:interaction_id,completed_date:currentDate}
+              })
+              .then(function(response){
+                console.log(response.data)
+                $scope.getschedules();
+              })
+            }
+            
       //funuction for getting mentee details in the mentee_home page
       $scope.get=function(){
           $http({

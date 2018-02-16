@@ -1,4 +1,4 @@
-<ion-view title="Mentee Interactions">
+<ion-view title="Interactions">
         <ion-content class="shz-bg-shade"ng-init="getschedules()">
                 <ion-list>
                    <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="schedule in schedules track by $index">
@@ -25,12 +25,15 @@
                             </div>
                          <div class="shz-separator"></div>
                        <div class=row>
+                            <div class="col" style="text-align: left;">
+                                    <p style="color: #1fb12a; float: left; " >{{schedule.cpmpleted_date}}</p>
+                                         </div>
                                     <div class="col" style="text-align: left;">
                                      <p style="color: #1fb12a; float: left; " >{{schedule.date}}</p>
                                           </div>
                                   
                                    <div class="col" style="text-align: right;">
-                                      
+                                    <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="schedule.complete=='1' || completed " ng-click="interaction_update(schedule.id)"/>
                                        <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
                                     </div>
                                 </div>

@@ -39,9 +39,12 @@
         
                           <div class="shz-separator"></div>
                           <div class=row>
-                                <div class="col" style="text-align: left;">
+                                <div class="col" style="text-align: left;" ng-show=completed>
                                  <p style="color: #1fb12a; float: left; " >{{menteegoal.completed_date}}</p>
                                       </div>
+                                <div class="col" style="text-align: left;" ng-hide=completed>
+                                    <p style="color: #999; float: left; " >{{menteegoal.completed_date}}</p>
+                                    </div>      
                                 <div class="col" style="text-align: left;">
                                  <p  style="color: #999;" >  {{menteegoal.edited_date}} </p>
                               </div>
@@ -49,7 +52,7 @@
                                <div class="col" style="text-align: right;">
                                     <img ng-click="open_edit_modal_mentee_goals(menteegoal.id)" src="img/edit_icon.png"/ width="20px">  
                                   <!-- <button ng-click="open_edit_modal_mentee_goals(menteegoal.id)">edit</button> -->
-                                   <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
+                                  <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="menteegoal.complete=='1' || completed " ng-click="mentee_goal_update(menteegoal.id)"/>
                                 </div>
                             </div>
                            </ion-item>

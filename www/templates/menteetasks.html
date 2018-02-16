@@ -41,14 +41,17 @@
                                     <div class=row>
                                         <div class="col" style="text-align: left;">
                                          <p style="color: #1fb12a; float: left; " >{{menteetask.completed_date}}</p>
-                                              </div>
+                                         </div>
+                                         <div class="col" style="text-align: left;">
+                                                <p style="color: #999;; float: left; " >{{menteetask.completed_date}}</p>
+                                                     </div>
                                         <div class="col" style="text-align: left;">
                                          <p  style="color: #999;" >  {{menteetask.edited_date}} </p>
                                       </div>
                                       
                                        <div class="col" style="text-align: right;">
                                           <img ng-click="open_edit_modal_mentee_tasks(menteetask.id)" src="img/edit_icon.png"/ width="20px">  
-                                           <a style="margin-left: 15px;"><img ng-src="{{completeImg}}" ng-click="changeCompleteImg(menteetask.id);" width="20" height="20" alt="error"></a>
+                                          <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="menteetask.complete=='1' || completed " ng-click="mentee_task_update(menteetask.id)"/>
                                         </div>
                                     </div>
                                     <!-- <a><img src="{{url}}/myproject/download.php?nama={{task.file_url}}" width="40" height="40" alt="error"></a> -->

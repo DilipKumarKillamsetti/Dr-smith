@@ -298,6 +298,7 @@ angular.module('drsmith.controllers.menteectrl', [])
           for(var i=0;i<$scope.menteetasks.length;i++)
           {
             $scope.menteetasks[i].edited_date=moment($scope.menteetasks[i].edited_date).format('YYYY-MM-DD')
+            $scope.menteetasks[i].completed_date=moment($scope.menteetasks[i].completed_date).format('YYYY-MM-DD')
           }
           console.log($scope.menteetasks)
 
@@ -370,6 +371,51 @@ angular.module('drsmith.controllers.menteectrl', [])
 
           document.getElementById("task").value="";
               }
+          $scope.mentee_goal_update=function(goal_id){
+            var currentDate  = new Date();
+            currentDate=moment(currentDate).format('YYYY-MM-DD')
+            console.log(goal_id,currentDate)
+            $http({
+              url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+              method:"GET",
+              params:{goal_id:goal_id,completed_date:currentDate}
+            })
+            .then(function(response){
+              console.log(response.data)
+              $scope.getmenteegoals();
+            })
+
+          }
+          $scope.mentee_task_update=function(task_id){
+            var currentDate  = new Date();
+            currentDate=moment(currentDate).format('YYYY-MM-DD')
+            console.log(task_id,currentDate)
+            $http({
+              url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+              method:"GET",
+              params:{task_id:task_id,completed_date:currentDate}
+            })
+            .then(function(response){
+              console.log(response.data)
+              $scope.gettasks();
+            })
+
+          }
+          $scope.interaction_update=function(interaction_id,mentee_id){
+            var currentDate  = new Date();
+            currentDate=moment(currentDate).format('YYYY-MM-DD')
+            console.log(task_id,currentDate)
+            $http({
+              url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+              method:"GET",
+              params:{interaction_id:interaction_id,completed_date:currentDate}
+            })
+            .then(function(response){
+              console.log(response.data)
+              $scope.getschedules(mentee_id)
+            })
+
+          }
 
      //function for editing mentee tasks
               $scope.edit_mentee_taskObj={
