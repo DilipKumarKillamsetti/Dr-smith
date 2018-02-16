@@ -187,7 +187,13 @@ angular.module('drsmith.controllers.menteectrl', [])
               method:"GET",
               params:{mentor_id:$rootScope.id,mentee_id:$scope.mentee_id}
             })
-            .then(function(response){$scope.schedules=response.data;console.log($scope.schedules)})
+            .then(function(response){
+              $scope.schedules=response.data;console.log($scope.schedules)
+              for(var i=0;i<$scope.schedules.length;i++)
+              {
+                $scope.schedules[i].date=moment($scope.schedules[i].date).format('YYYY-MM-DD')
+              }
+            })
         }
     //function for the mentor to get the goals of mentee
       $scope.getmenteegoals=function(){
@@ -203,9 +209,9 @@ angular.module('drsmith.controllers.menteectrl', [])
           .then(function(response){
             $scope.menteegoals=response.data;
             for(var i=0;i<$scope.menteegoals.length;i++)
-          {
-            $scope.menteegoals[i].edited_date=moment($scope.menteegoals[i].edited_date).format('YYYY-MM-DD')
-          }
+              {
+                $scope.menteegoals[i].edited_date=moment($scope.menteegoals[i].edited_date).format('YYYY-MM-DD')
+              }
             console.log($scope.menteegoals)
           })
         };
@@ -376,7 +382,7 @@ angular.module('drsmith.controllers.menteectrl', [])
             currentDate=moment(currentDate).format('YYYY-MM-DD')
             console.log(goal_id,currentDate)
             $http({
-              url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+              url:$rootScope.url+"/myproject/mentee_goal_completed.php",
               method:"GET",
               params:{goal_id:goal_id,completed_date:currentDate}
             })
@@ -391,7 +397,7 @@ angular.module('drsmith.controllers.menteectrl', [])
             currentDate=moment(currentDate).format('YYYY-MM-DD')
             console.log(task_id,currentDate)
             $http({
-              url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+              url:$rootScope.url+"/myproject/mentee_task_completed.php",
               method:"GET",
               params:{task_id:task_id,completed_date:currentDate}
             })
@@ -401,18 +407,19 @@ angular.module('drsmith.controllers.menteectrl', [])
             })
 
           }
-          $scope.interaction_update=function(interaction_id,mentee_id){
+          $scope.interaction_update=function(interaction_id){
+            console.log($scope.mentee_id)
             var currentDate  = new Date();
             currentDate=moment(currentDate).format('YYYY-MM-DD')
-            console.log(task_id,currentDate)
+            console.log(interaction_id,currentDate)
             $http({
-              url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+              url:$rootScope.url+"/myproject/meeting_schedule_completed.php",
               method:"GET",
               params:{interaction_id:interaction_id,completed_date:currentDate}
             })
             .then(function(response){
               console.log(response.data)
-              $scope.getschedules(mentee_id)
+              $scope.getschedules($scope.mentee_id)
             })
 
           }

@@ -1,5 +1,18 @@
+
+
 <ion-modal-view title="Scheduel Meeting">
         <ion-content>
+
+                        <div class="row">
+                                        <div class="col">
+                                            <h4 class="shz-popup-title">Schedule Meeting</h4>
+                                        </div>
+                                        <div class="col-right" style="text-align: center;">
+                                            <button class="shz-popup-close" ng-click="closeModal_interactions()">X</button>
+                                        </div>
+                        </div>
+                        <div class="shz-separator" ></div>
+
                 <div>
                         <label for="date">Date</label>
                         <br>
@@ -11,8 +24,8 @@
                         <input id="date" type="date"  ng-model="scheduleObj.date1"/>
                         <input id="starttime" type="time" ng-model="scheduleObj.stime" />
                         <input id="finishtime" type="time" ng-model="scheduleObj.ftime" />
-                        <button ng-click="addschedules(mentee_id)">Submit</button>
+                        <button class="button button-positive" ng-click="addschedules(mentee_id)">Submit</button>
                     </div>
-                    <button ng-click="closeModal_interactions()">close</button>
+                    <!-- <button ng-click="closeModal_interactions()">close</button> -->
         </ion-content>
     </ion-modal-view>

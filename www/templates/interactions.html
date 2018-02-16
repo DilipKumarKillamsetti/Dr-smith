@@ -28,12 +28,17 @@
                    
                    <div class="shz-separator"></div>
                <div class=row>
-                            <div class="col" style="text-align: left;">
-                             <p style="color: #1fb12a; float: left; " >{{schedule.date}}</p>
+                            <div class="col" style="text-align: left;" ng-show="schedule.complete=='1' || completed ">
+                             <p style="color: #1fb12a; float: left; " >{{schedule.completed_date}}</p>
                                   </div>
-                          
+                            <div class="col" style="text-align: left;" ng-hide="schedule.complete=='1' || completed ">
+                                <p style="color: #999; float: left; " >{{schedule.completed_date}}</p>
+                                        </div>
+                            <div class="col" style="text-align: left;" >
+                                    <p style="color: #999; float: left; " >{{schedule.date}}</p>
+                                            </div>
                            <div class="col" style="text-align: right;">
-                            <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="schedule.complete=='1' || completed " ng-click="schedule_update(schedule.id)"/>
+                            <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="schedule.complete=='1' || completed " ng-click="interaction_update(schedule.id)"/>
                                <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
                             </div>
                         </div>

@@ -1331,7 +1331,11 @@ body {
     content: ""; }
   
   .ion-checkmark-circled:before {
-    content: ""; }
+    content: "";
+    
+}
+
+
   
   .ion-checkmark-round:before {
     content: ""; }
@@ -5278,7 +5282,10 @@ ion-tabs.tabs-color-active-dark .tab-item {
   left: 0;
   z-index: 10;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+background-color: rgba(0,0,0,0.4);
+
+}
 
 .modal-backdrop-bg {
   pointer-events: none; }
@@ -5286,21 +5293,33 @@ ion-tabs.tabs-color-active-dark .tab-item {
 .modal {
   display: block;
   position: absolute;
+  border-radius: 3px;
   top: 0;
   z-index: 10;
   overflow: hidden;
-  min-height: 100%;
-  width: 100%;
-  background-color: #fff; }
+ top:25%;
+    bottom: 25%;
+    right: 10%;
+    left: 10%;
+  min-height: 300px;
+  width: 80%;
+  background-color: white;
+  text-align: center;
+   
+    
+    
+}
 
 @media (min-width: 680px) {
   .modal {
+      border-radius: 3px;
     top: 20%;
     right: 20%;
     bottom: 20%;
     left: 20%;
-    min-height: 240px;
-    width: 60%; }
+    min-height: 300px;
+    width: 60%;
+    }
   .modal.ng-leave-active {
     bottom: 0; }
   .platform-ios.platform-cordova .modal-wrapper .modal .bar-header:not(.bar-subheader) {
@@ -7097,6 +7116,30 @@ textarea {
 .shz-text-capitalize{
     text-transform: capitalize;
 }
+.shz-popup-title{
+    text-align:left;
+    padding-left: 10px;
+}
+
+.shz-popup-close{
+    text-align: right;
+    border-radius: 500px !important; 
+    background-color: #0066cb !important;
+    color:white !important;
+    font-size: 16px;
+    border: none;
+}
+
+/*
+.shz-checkbox:before{
+    width: 5px;
+    height: 5px;
+    content: url(../img/completion-icon.png);
+}
+.shz-checbox:after{
+     content: url(../img/incomplete-icon.png);
+}*/
+
 
 .item-input-wrapper ~ .button {
   margin-left: 10.66667px; }
@@ -7282,105 +7325,53 @@ input[type="checkbox"][readonly] {
  */
 .checkbox {
   position: relative;
-  display: inline-block;
+  display: inline;
   padding: 7px 7px;
-  cursor: pointer; }
+  cursor: pointer; 
+
+}
   .checkbox input:before,
   .checkbox .checkbox-icon:before {
-    border-color: #ddd; }
+   
+      width: 25px;
+      height: 25px;
+      background-color: gray;
+      border: none;
+      border-radius: 500px;
+      background: url(../img/incomplete-icon.png);
+      background-repeat: no-repeat;
+      background-size: 19px 19px;
+
+}
+
   .checkbox input:checked:before,
   .checkbox input:checked + .checkbox-icon:before {
-    background: #2B7BF2;
-    border-color: #2B7BF2; }
+      
+    background: yellow;
+}
 
-.checkbox-light input:before,
-.checkbox-light .checkbox-icon:before {
-  border-color: #ddd; }
 
-.checkbox-light input:checked:before,
-.checkbox-light input:checked + .checkbox-icon:before {
-  background: #ddd;
-  border-color: #ddd; }
 
-.checkbox-stable input:before,
-.checkbox-stable .checkbox-icon:before {
-  border-color: #b2b2b2; }
 
-.checkbox-stable input:checked:before,
-.checkbox-stable input:checked + .checkbox-icon:before {
-  background: #b2b2b2;
-  border-color: #b2b2b2; }
 
-.checkbox-positive input:before,
-.checkbox-positive .checkbox-icon:before {
-  border-color: #2B7BF2; }
-
-.checkbox-positive input:checked:before,
-.checkbox-positive input:checked + .checkbox-icon:before {
-  background: #2B7BF2;
-  border-color: #2B7BF2; }
-
-.checkbox-calm input:before,
-.checkbox-calm .checkbox-icon:before {
-  border-color: #11c1f3; }
-
-.checkbox-calm input:checked:before,
-.checkbox-calm input:checked + .checkbox-icon:before {
-  background: #11c1f3;
-  border-color: #11c1f3; }
-
-.checkbox-assertive input:before,
-.checkbox-assertive .checkbox-icon:before {
-  border-color: #ef473a; }
-
-.checkbox-assertive input:checked:before,
-.checkbox-assertive input:checked + .checkbox-icon:before {
-  background: #ef473a;
-  border-color: #ef473a; }
-
-.checkbox-balanced input:before,
-.checkbox-balanced .checkbox-icon:before {
-  border-color: #33cd5f; }
-
-.checkbox-balanced input:checked:before,
-.checkbox-balanced input:checked + .checkbox-icon:before {
-  background: #33cd5f;
-  border-color: #33cd5f; }
-
-.checkbox-energized input:before,
-.checkbox-energized .checkbox-icon:before {
-  border-color: #ffc900; }
-
-.checkbox-energized input:checked:before,
-.checkbox-energized input:checked + .checkbox-icon:before {
-  background: #ffc900;
-  border-color: #ffc900; }
-
-.checkbox-royal input:before,
-.checkbox-royal .checkbox-icon:before {
-  border-color: #886aea; }
-
-.checkbox-royal input:checked:before,
-.checkbox-royal input:checked + .checkbox-icon:before {
-  background: #886aea;
-  border-color: #886aea; }
-
-.checkbox-dark input:before,
-.checkbox-dark .checkbox-icon:before {
-  border-color: #444; }
-
-.checkbox-dark input:checked:before,
-.checkbox-dark input:checked + .checkbox-icon:before {
-  background: #444;
-  border-color: #444; }
 
 .checkbox input:disabled:before,
 .checkbox input:disabled + .checkbox-icon:before {
-  border-color: #ddd; }
+ width: 25px;
+    height: 25px;
+    background-color: green;
+     border: none;
+    border-radius: 500px;
+    
+     background: url(../img/completion-icon.png);
+      background-repeat: no-repeat;
+      background-size: 22px 22px;
+
+}
 
 .checkbox input:disabled:checked:before,
 .checkbox input:disabled:checked + .checkbox-icon:before {
-  background: #ddd; }
+  background: yellow; }
 
 .checkbox.checkbox-input-hidden input {
   display: none !important; }
@@ -7428,7 +7419,9 @@ input:checked + .checkbox-icon:before {
   border-top: 0;
   border-right: 0;
   content: ' ';
-  opacity: 0; }
+  opacity: 0;
+border: none;
+}
 
 .platform-android .checkbox-platform input:before,
 .platform-android .checkbox-platform .checkbox-icon:before,
@@ -7468,7 +7461,7 @@ input:checked + .checkbox-icon:after {
   opacity: 1; }
 
 .item-checkbox {
-  padding-left: 60px; }
+  padding-left: 25px; }
   .item-checkbox.active {
     box-shadow: none; }
 
@@ -7478,7 +7471,9 @@ input:checked + .checkbox-icon:after {
   right: 8px;
   left: 8px;
   z-index: 3;
-  margin-top: -21px; }
+  margin-top: -28px; 
+border: none !important;
+}
 
 .item-checkbox.item-checkbox-right {
   padding-right: 60px;
@@ -7487,6 +7482,17 @@ input:checked + .checkbox-icon:after {
 .item-checkbox-right .checkbox input,
 .item-checkbox-right .checkbox-icon {
   float: right; }
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Toggle

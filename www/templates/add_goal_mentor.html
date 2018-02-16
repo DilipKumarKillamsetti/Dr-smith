@@ -1,12 +1,25 @@
-<ion-modal-view>
+<ion-modal-view >
     <ion-content>
-            <label class="item item-input item-floating-label">
+        <div class="row">
+            <div class="col">
+                <h4 class="shz-popup-title">New Goal</h4>
+            </div>
+            <div class="col-right" style="text-align: center;">
+                <button class="shz-popup-close" ng-click="closeModal()">X</button>
+            </div>
+        </div>
+        <div class="shz-separator" ></div>
+                <label class="item item-input item-floating-label">
                     <input type="text" id="goal" placeholder="Add Goals Here" ng-model="goalsObj.new_goal">
+                     <div class="shz-separator" ></div>
                     <input type="file" id="inputFile" ng-model="goalsObj.img_base64" />
                 </label>
+        
+         <div class="shz-separator" ></div>
                 <label for="date">Due Date</label>
                 <input id="date" type="date"  ng-model="goalsObj.goal_date"/>
-        <button class="button button-block button-positive" ng-click="add();closeModal()">ADD</button>
-        <button class="button  button-positive" ng-click="closeModal()">close</button>
-        </ion-content>
+         <div class="shz-separator" ></div><br/>
+        <button class="button  button-positive" ng-click="add();closeModal()">Add</button>
+       
+    </ion-content>
 </ion-modal-view>

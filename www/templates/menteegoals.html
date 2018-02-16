@@ -39,10 +39,10 @@
         
                           <div class="shz-separator"></div>
                           <div class=row>
-                                <div class="col" style="text-align: left;" ng-show=completed>
+                                <div class="col" style="text-align: left;" ng-show="completed || menteegoal.complete=='1'">
                                  <p style="color: #1fb12a; float: left; " >{{menteegoal.completed_date}}</p>
                                       </div>
-                                <div class="col" style="text-align: left;" ng-hide=completed>
+                                <div class="col" style="text-align: left;" ng-hide="completed || menteegoal.complete=='1'">
                                     <p style="color: #999; float: left; " >{{menteegoal.completed_date}}</p>
                                     </div>      
                                 <div class="col" style="text-align: left;">

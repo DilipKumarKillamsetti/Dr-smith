@@ -39,10 +39,10 @@
                                     <div class="shz-separator"></div>
                                     
                                     <div class=row>
-                                        <div class="col" style="text-align: left;">
+                                        <div class="col" style="text-align: left;" ng-show="menteetask.complete=='1' || completed ">
                                          <p style="color: #1fb12a; float: left; " >{{menteetask.completed_date}}</p>
                                          </div>
-                                         <div class="col" style="text-align: left;">
+                                         <div class="col" style="text-align: left;" ng-hide="menteetask.complete=='1' || completed ">
                                                 <p style="color: #999;; float: left; " >{{menteetask.completed_date}}</p>
                                                      </div>
                                         <div class="col" style="text-align: left;">

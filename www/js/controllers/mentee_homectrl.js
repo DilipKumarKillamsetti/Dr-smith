@@ -97,7 +97,7 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
               currentDate=moment(currentDate).format('YYYY-MM-DD')
               console.log(task_id,currentDate)
               $http({
-                url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+                url:$rootScope.url+"/myproject/mentee_task_completed.php",
                 method:"GET",
                 params:{task_id:task_id,completed_date:currentDate}
               })
@@ -112,7 +112,7 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
               currentDate=moment(currentDate).format('YYYY-MM-DD')
               console.log(goal_id,currentDate)
               $http({
-                url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+                url:$rootScope.url+"/myproject/mentee_goal_completed.php",
                 method:"GET",
                 params:{goal_id:goal_id,completed_date:currentDate}
               })
@@ -127,7 +127,7 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
               currentDate=moment(currentDate).format('YYYY-MM-DD')
               console.log(interaction_id,currentDate)
               $http({
-                url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+                url:$rootScope.url+"/myproject/meeting_schedule_completed.php",
                 method:"GET",
                 params:{interaction_id:interaction_id,completed_date:currentDate}
               })
@@ -183,7 +183,7 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         console.log($scope.goalsObj.new_goal, $scope.goalsObj.goal_date);
         $scope.goalsObj.selected_img = document.getElementById("inputFile").files;
 
-        if($scope.goalsObj.selected_img.length < 1 && $scope.goalsObj.new_goal=="")
+        if($scope.goalsObj.selected_img.length < 1 || $scope.goalsObj.new_goal=="")
         {
           alert("selelct value");
         }
@@ -500,15 +500,15 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         fileReader.onload=function(fileLoadedEvent)
         {
           $scope.edit_mentee_taskObj.selected_img_base64 = fileLoadedEvent.target.result;
-          $scope.fun2(menteetask_id);
+          $scope.fun3(menteetask_id);
         }
       }
       else
       {
-        $scope.fun2(menteetask_id);
+        $scope.fun3(menteetask_id);
       }
       }
-      $scope.fun2=function(menteetask_id){
+      $scope.fun3=function(menteetask_id){
         console.log($scope.edit_mentee_taskObj.new_task, $scope.edit_mentee_taskObj.task_date);
         if($scope.edit_mentee_taskObj.task_date!=""){
         $scope.menteeTask_DueDate = moment($scope.edit_mentee_taskObj.task_date).format('YYYY-MM-DD');
@@ -571,15 +571,15 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         fileReader.onload=function(fileLoadedEvent)
         {
           $scope.edit_mentee_goalObj.selected_img_base64 = fileLoadedEvent.target.result;
-          $scope.fun1(menteegoal_id);
+          $scope.fun2(menteegoal_id);
         }
       }
       else
       {
-        $scope.fun1(menteegoal_id);
+        $scope.fun2(menteegoal_id);
       }
       }
-      $scope.fun1=function(menteegoal_id){
+      $scope.fun2=function(menteegoal_id){
         console.log($scope.edit_mentee_goalObj.new_goal, $scope.edit_mentee_goalObj.goal_date);
         if($scope.edit_mentee_goalObj.goal_date!=""){
         $scope.menteeGoal_DueDate = moment($scope.edit_mentee_goalObj.goal_date).format('YYYY-MM-DD');
