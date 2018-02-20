@@ -7141,6 +7141,36 @@ textarea {
 }*/
 
 
+
+
+
+.shz-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 56px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.shz-container input {
+    position: absolute;
+    opacity:1;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
 .item-input-wrapper ~ .button {
   margin-left: 10.66667px; }
 
@@ -7319,6 +7349,12 @@ input[type="radio"][readonly],
 input[type="checkbox"][readonly] {
   background-color: transparent; }
 
+
+
+
+input[type="checkbox"][disabled]{
+    background-color: green;
+}
 /**
  * Checkbox
  * --------------------------------------------------
@@ -7349,8 +7385,6 @@ input[type="checkbox"][readonly] {
       
     background: yellow;
 }
-
-
 
 
 
@@ -10883,3 +10917,68 @@ ion-spinner.spinner-on-load {
 {
     height: 60px !important;
 }
+
+
+
+
+.shz-container input {
+    position: absolute;
+    opacity:0;
+    cursor: pointer;
+}
+/* Create a custom checkbox */
+.shz-checkmark {
+    position: absolute;
+    top:-25px;
+    
+    margin-right: 10px;
+    height: 22px;
+    width: 22px;
+    background-color: #aaa;
+    border-radius:500px;
+}
+
+/* On mouse-over, add a grey background color */
+.shz-container:hover input ~ .shz-checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.shz-container input:checked ~ .shz-checkmark {
+    background-color: green;
+    
+}
+input[type="checkbox"]:disabled ~ .shz-checkmark {
+  background:green;
+} 
+    
+/* Create the checkmark/indicator (hidden when not checked) */
+.shz-checkmark:after {
+    content: "";
+    position: absolute;
+    display: block;
+}
+
+/* Show the checkmark when checked */
+.shz-container input:checked ~ .shz-checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.shz-container .shz-checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 8px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+    
+.shz-right-margin{
+    margin-right: 15px;
+}
+
+

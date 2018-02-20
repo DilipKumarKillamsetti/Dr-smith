@@ -11,7 +11,7 @@
                     <input id="date" type="date"  ng-model="scheduleObj.date1"/>
                     <input id="starttime" type="time" ng-model="scheduleObj.stime" />
                     <input id="finishtime" type="time" ng-model="scheduleObj.ftime" />
-                    <button ng-click="addschedules(mentee.id)">
+                    <button ng-click="addschedules(mentee.id);closeModal()">
                         Submit</button>
                 </div>
                 <button ng-click="closeModal()">close</button>

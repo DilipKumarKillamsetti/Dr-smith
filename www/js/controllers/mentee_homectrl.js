@@ -1,6 +1,7 @@
 angular.module('drsmith.controllers.mentee_homectrl', [])
 .controller('mentee_homectrl',function($scope,$rootScope,$http,$stateParams,$ionicModal){
   //modal for add mentee goals 
+  console.clear()
   $ionicModal.fromTemplateUrl('templates/add_mentee_goals.html',{
     scope: $scope,
     animation: 'slide-in-up'
@@ -56,8 +57,11 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         .then(function(modal){
           $scope.edit_task_modal=modal;
               });
-        $scope.openModal_task_edit = function(task_id)
+        $scope.openModal_task_edit = function(task_id,task_desc,task_duedate)
          { 
+          task_duedate = new Date(task_duedate)
+          $scope.edit_mentee_taskObj.new_task = task_desc;
+          $scope.edit_mentee_taskObj.task_date = task_duedate;
            $scope.task_id=task_id;
            $scope.edit_task_modal.show(); 
         };
@@ -74,8 +78,11 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
           .then(function(modal){
             $scope.edit_goal_modal=modal;
                 });
-          $scope.openModal_goal_edit = function(goal_id)
+          $scope.openModal_goal_edit = function(goal_id,goal_desc,goal_duedate)
            { 
+            goal_duedate = new Date(goal_duedate)
+            $scope.edit_mentee_goalObj.new_goal = goal_desc;
+            $scope.edit_mentee_goalObj.goal_date = goal_duedate;
              $scope.goal_id=goal_id;
              $scope.edit_goal_modal.show(); 
           };
@@ -162,7 +169,9 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
             $scope.goals=response.data;
             for(var i=0;i<$scope.goals.length;i++)
             {
-              $scope.goals[i].edited_date=moment($scope.goals[i].edited_date).format('YYYY-MM-DD')
+              $scope.goals[i].completed_date=moment($scope.goals[i].completed_date).format('DD-MM-YYYY')
+              $scope.goals[i].due_date=moment($scope.goals[i].due_date).format('DD-MM-YYYY')
+              $scope.goals[i].edited_date=moment($scope.goals[i].edited_date).format('DD-MM-YYYY')
             }
             console.log($scope.goals)
       
@@ -348,7 +357,9 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
           $scope.menteetasks=response.data;
           for(var i=0;i<$scope.menteetasks.length;i++)
             {
-              $scope.menteetasks[i].edited_date=moment($scope.menteetasks[i].edited_date).format('YYYY-MM-DD')
+              $scope.menteetasks[i].due_date=moment($scope.menteetasks[i].due_date).format('DD-MM-YYYY')
+              $scope.menteetasks[i].completed_date=moment($scope.menteetasks[i].completed_date).format('DD-MM-YYYY')
+              $scope.menteetasks[i].edited_date=moment($scope.menteetasks[i].edited_date).format('DD-MM-YYYY')
             }
           console.log($scope.menteetasks)
 
@@ -514,6 +525,8 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         $scope.menteeTask_DueDate = moment($scope.edit_mentee_taskObj.task_date).format('YYYY-MM-DD');
         console.log($scope.menteeTask_DueDate)
         }
+        var edited_date = new Date();
+        edited_date = moment(edited_date).format('YYYY-MM-DD');
         $http(
           {
             url:$rootScope.url+"/myproject/edit_mentee_task.php",
@@ -521,7 +534,7 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data:{editor_id:$rootScope.id,edited_by:$rootScope.type,
               name:$scope.edit_mentee_taskObj.selectedImgName,task:$scope.edit_mentee_taskObj.new_task,
-              shab:$scope.edit_mentee_taskObj.selected_img_base64,
+              shab:$scope.edit_mentee_taskObj.selected_img_base64,edited_date:edited_date,
               task_id:menteetask_id,due_date:$scope.menteeTask_DueDate}
        })
         .then(function(response){
@@ -585,6 +598,8 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         $scope.menteeGoal_DueDate = moment($scope.edit_mentee_goalObj.goal_date).format('YYYY-MM-DD');
         console.log($scope.menteeGoal_DueDate)
         }
+        var edited_date = new Date();
+        edited_date = moment(edited_date).format('YYYY-MM-DD');
         $http(
           {
             url:$rootScope.url+"/myproject/edit_mentee_goal_1.php",
@@ -593,7 +608,9 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
             data:{editor_id:$rootScope.id,edited_by:$rootScope.type,
               name:$scope.edit_mentee_goalObj.selectedImgName,goal:$scope.edit_mentee_goalObj.new_goal,
               shab:$scope.edit_mentee_goalObj.selected_img_base64,
-              goal_id:menteegoal_id,due_date:$scope.menteeGoal_DueDate}
+              goal_id:menteegoal_id,due_date:$scope.menteeGoal_DueDate,
+              edited_date:edited_date
+            }
        })
         .then(function(response){
         console.log(response.data)

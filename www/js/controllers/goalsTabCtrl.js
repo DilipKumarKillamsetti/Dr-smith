@@ -1,6 +1,7 @@
 angular.module('drsmith.controllers.goalsTabCtrl', [])
 .controller('goalsctrl',function($scope,$rootScope,$http, $ionicModal)
 {
+  console.clear()
   $scope.goalsObj = {};
   $scope.goalsObj = {
     new_goal:'',
@@ -32,8 +33,13 @@ angular.module('drsmith.controllers.goalsTabCtrl', [])
   .then(function(modal){
     $scope.edit_modal=modal;
   });
-$scope.open_edit_modal=function(goal_id)
+$scope.open_edit_modal=function(goal_id,due_date,goal_desc)
 {
+  console.log(due_date)
+  due_date = new Date(due_date);
+  console.log(due_date)
+  $scope.edit_goalObj.new_goal = goal_desc;
+  $scope.edit_goalObj.goal_date = due_date;
   $scope.goal_id=goal_id;
   $scope.edit_modal.show();
 }
@@ -42,6 +48,7 @@ $scope.close_edit_modal=function()
   $scope.goal_id=null;
   $scope.edit_modal.hide();
 }
+//function for completed date submission for mentor_goals
 $scope.update=function(goal_id)
 {
   var currentDate  = new Date();
@@ -68,8 +75,9 @@ $scope.update=function(goal_id)
     .then(function(response){
       $scope.goals=response.data;
       for(var i=0;i<$scope.goals.length;i++){
-        $scope.goals[i].edited_date=moment($scope.goals[i].edited_date).format('YYYY-MM-DD')
-        // $scope.goals[i].completed_date=moment($scope.goals[i].completed_date).format('YYYY-MM-DD')
+        $scope.goals[i].due_date = moment($scope.goals[i].due_date).format('MMM-DD-YYYY')
+        $scope.goals[i].edited_date=moment($scope.goals[i].edited_date).format('DD-MM-YYYY ')
+        $scope.goals[i].completed_date=moment($scope.goals[i].completed_date).format('DD-MM-YYYY')
       }
        console.log($scope.goals)
 
@@ -138,6 +146,19 @@ $scope.fun=function(){
   })
   //document.getElementById("goal").value="";
       }
+      $scope.delete=function(goal_id)
+      {
+          confirm("Are You Sure To Delete");
+          $http({
+            url:$rootScope.url+"/myproject/add_mentor_goal_with_file.php",
+            method:GET,
+            params:{id:goal_id}
+          })
+          .then(function(response){
+            console.log(response)
+          })
+
+      }
       $scope.edit_goalObj={
         new_goal:'',
         goal_date:'',
@@ -178,13 +199,21 @@ $scope.fun1=function(goal_id){
   $scope.formattedDate1 = moment($scope.edit_goalObj.goal_date).format('YYYY-MM-DD');
   console.log($scope.formattedDate1)
   }
+  var edited_date = new Date();
+   edited_date = moment(edited_date).format('YYYY-MM-DD')
   $http(
     {
       url:$rootScope.url+"/myproject/edit_mentor_goal.php",
        method:"POST",
        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      data:{mentor_id:$rootScope.id,name:$scope.edit_goalObj.selectedImgName,goal:$scope.edit_goalObj.new_goal,
-        shab:$scope.edit_goalObj.selected_img_base64,goal_id:goal_id}
+      data:{
+        mentor_id:$rootScope.id,
+        name:$scope.edit_goalObj.selectedImgName,
+        goal:$scope.edit_goalObj.new_goal,
+        shab:$scope.edit_goalObj.selected_img_base64,
+        goal_id:goal_id , 
+        due_date : $scope.formattedDate1 ,
+        edited_date : edited_date}
  })
   .then(function(response){
    $scope.goals=response.data;

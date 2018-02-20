@@ -48,12 +48,23 @@
                                 <div class="col" style="text-align: left;">
                                  <p  style="color: #999;" >  {{menteegoal.edited_date}} </p>
                               </div>
-                              
-                               <div class="col" style="text-align: right;">
-                                    <img ng-click="open_edit_modal_mentee_goals(menteegoal.id)" src="img/edit_icon.png"/ width="20px">  
-                                  <!-- <button ng-click="open_edit_modal_mentee_goals(menteegoal.id)">edit</button> -->
+                              <div class="col shz-right-margin" style="text-align: right;">
+                                    <img class="shz-right-margin" ng-click="open_edit_modal_mentee_goals(menteegoal.id,menteegoal.goals,menteegoal.due_date)" src="img/edit_icon.png"/ width="20px">  
+                                     <label class="shz-container">
+                                         <input  type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="menteegoal.complete=='1' || completed" ng-click="mentee_goal_update(menteegoal.id)"/>                                
+                                        <span class="shz-checkmark"></span>
+                                     </label>
+              
+                                  </div>
+
+
+
+
+                               <!-- <div class="col" style="text-align: right;">
+                                    <img ng-click="open_edit_modal_mentee_goals(menteegoal.id,menteegoal.goals,menteegoal.due_date)" src="img/edit_icon.png"/ width="20px">  
+                                  
                                   <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="menteegoal.complete=='1' || completed " ng-click="mentee_goal_update(menteegoal.id)"/>
-                                </div>
+                                </div> -->
                             </div>
                            </ion-item>
                  </ion-list>

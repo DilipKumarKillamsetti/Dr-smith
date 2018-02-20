@@ -1,5 +1,6 @@
 angular.module('drsmith.controllers.commentsctrl', [])
 .controller("commentsctrl",function($scope,$http,$rootScope,$stateParams){
+  console.clear()
     $scope.getintercomments=function(){
       $http(
         {
@@ -25,6 +26,7 @@ angular.module('drsmith.controllers.commentsctrl', [])
       console.log($rootScope.id)
       console.log($rootScope.type)
       console.log( $scope.inter_commentObj.comment)
+      if($scope.inter_commentObj.comment.length>0){
       $http(
         {
           url:$rootScope.url+"/myproject/meeting_schedule_comment.php",
@@ -41,6 +43,10 @@ angular.module('drsmith.controllers.commentsctrl', [])
           comment:''
         };
       })
+    }
+    else{
+      alert("Please Enter Comment")
+    }
      
      }
      //function for mentor will get the comments on goals of mentee
@@ -70,6 +76,7 @@ angular.module('drsmith.controllers.commentsctrl', [])
      console.log($rootScope.id)
      console.log()
      console.log($rootScope.type)
+     if($scope.commentObj_goal.comment.length>0){
     $http(
       {
         url:$rootScope.url+"/myproject/add_mentee_goals_comment.php",
@@ -85,6 +92,10 @@ angular.module('drsmith.controllers.commentsctrl', [])
       }
       $scope.getcomments();
     })
+  }
+  else{
+    alert("Please Enter Comment")
+  }
     
    }
     //function for mentor and mentee will get the comments on tasks 
@@ -108,9 +119,11 @@ angular.module('drsmith.controllers.commentsctrl', [])
   }
   $scope.addcomment_on_task=function(){
     console.log($scope.commentObj.comment)
+    console.log($scope.commentObj.comment.length)
     console.log($stateParams.id)
     console.log($rootScope.id)
     console.log($rootScope.type)
+    if($scope.commentObj.comment.length>0){
    $http(
      {
        url:$rootScope.url+"/myproject/add_mentee_task_comment.php",
@@ -126,6 +139,10 @@ angular.module('drsmith.controllers.commentsctrl', [])
       comment:''
     }
    })
+  }
+  else{
+    alert("Please Enter text")
+  }
    
   }
   })

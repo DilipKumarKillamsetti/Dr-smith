@@ -26,16 +26,29 @@
                          <div class="shz-separator"></div>
                        <div class=row>
                             <div class="col" style="text-align: left;">
-                                    <p style="color: #1fb12a; float: left; " >{{schedule.cpmpleted_date}}</p>
-                                         </div>
+                                    <p style="color: #1fb12a; float: left; " ng-show="schedule.complete=='1' || completed " >{{schedule.completed_date}}</p>
+                                    <p style="color:gray; float: left; " ng-hide="schedule.complete=='1' || completed " >{{schedule.completed_date}}</p>
+                            </div>
                                     <div class="col" style="text-align: left;">
-                                     <p style="color: #1fb12a; float: left; " >{{schedule.date}}</p>
-                                          </div>
+                                     <p style="color:gray;  float: left; " >{{schedule.date}}</p>
+                                    </div>
+
+
+                                          <div class="col shz-right-margin" style="text-align: right;">
+                                                <img class="shz-right-margin"  width="20px"> 
+                                                 <label class="shz-container">
+                                                     <input  type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="schedule.complete=='1' || completed " ng-click="interaction_update(schedule.id)"/>                                
+                                                    <span class="shz-checkmark"></span>
+                                                 </label>
+                                            </div>
                                   
-                                   <div class="col" style="text-align: right;">
+
+
+                                          
+                                   <!--div class="col" style="text-align: right;">
                                     <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="schedule.complete=='1' || completed " ng-click="interaction_update(schedule.id)"/>
                                        <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
-                                    </div>
+                                    </div-->
                                 </div>
                     </ion-item>
                     </ion-list>

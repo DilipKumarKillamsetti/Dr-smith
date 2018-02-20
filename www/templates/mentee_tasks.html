@@ -28,11 +28,23 @@
                                  <p  style="color: #999;" >  {{task.edited_date}} </p>
                               </div>
                               
-                               <div class="col" style="text-align: right;">
-                                        <img ng-click="openModal_task_edit(task.id)" src="img/edit_icon.png"/ width="20px">  
-                                   <!-- <button ng-click="openModal_task_edit(task.id)">Edit </button>  -->
+
+                              <div class="col shz-right-margin" style="text-align: right;">
+                                        <img class="shz-right-margin" ng-click="openModal_task_edit(task.id,task.tasks,task.due_date)" src="img/edit_icon.png"/ width="20px">  
+                                         <label class="shz-container">
+                                             <input  type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="task.complete=='1' || completed " ng-click="task_update(task.id)"/>                                
+                                            <span class="shz-checkmark"></span>
+                                         </label>
+                  
+                                      </div>
+
+
+
+
+                               <!--div class="col" style="text-align: right;">
+                                        <img ng-click="openModal_task_edit(task.id,task.tasks,task.due_date)" src="img/edit_icon.png"/ width="20px">  
                                    <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="task.complete=='1' || completed " ng-click="task_update(task.id)"/>
-                                </div>
+                                </div -->
                             </div>
                             <!-- <a><img src="{{url}}/myproject/download.php?nama={{task.file_url}}" width="40" height="40" alt="error"></a> -->
                            

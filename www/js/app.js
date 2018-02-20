@@ -97,6 +97,36 @@ angular.module('drsmith', [
       }
     }
   })
+  .state('app.resources',{
+    url:"/resources",
+    views: {
+      'tab-home': {
+        templateUrl:"templates/resources.html",
+        controller:'sideMenuCtrl'
+      }
+    }
+    
+  })
+  .state('app.profile',{
+    url:"/profile",
+    views: {
+      'tab-home': {
+        templateUrl:"templates/profile.html",
+        controller:'sideMenuCtrl'
+      }
+    } 
+  })
+
+  .state('app.mentorslist',{
+    url:"/mentorslist",
+    views: {
+      'tab-home': {
+        templateUrl:"templates/mentorslist.html",
+        controller:'sideMenuCtrl'
+      }
+    }
+    
+  })
   //state for mentee login and functionality-->mentee goals and adding goals
   .state('app.mentee_goals',{
     url:'/mentee_goals/:mentee_id',

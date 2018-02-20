@@ -34,17 +34,22 @@
                           <div class="col" style="text-align: left;">
                            <p  style="color: #999;" > {{goal.edited_date}} </p>
                         </div>
-                        
-                         <div class="col" style="text-align: right;">
-                            <img ng-click="open_edit_modal(goal.id)" src="img/edit_icon.png"/ width="20px">  
-                             <!-- <button ng-click="open_edit_modal(goal.id)"> edit </button>     -->
-                             <span>{{completed}}</span>
-                             <ion-checkbox  ng-disabled="goal.complete=='1' ||  completed" ng-click="update(goal.id)" ng-model="completed" class="checkbox"></ion-checkbox> 
-                              <!--<input type="checkbox" ng-model="completed" ng-disabled="goal.complete=='1' || completed " ng-click="update(goal.id)"/>-->
-                             <!-- <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a> -->
+                        <div class="col shz-right-margin" style="text-align: right;">
+                            <img class="shz-right-margin" ng-click="open_edit_modal(goal.id,goal.due_date,goal.goals)" src="img/edit_icon.png"/ width="20px">  
+                             <label class="shz-container">
+                                 <input  type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="goal.complete=='1' || completed" ng-click="update(goal.id)"/>                                
+                                <span class="shz-checkmark"></span>
+                             </label>
+      
                           </div>
+                         <!-- <div class="col" style="text-align: right;">
+                            <img ng-click="open_edit_modal(goal.id,goal.goals,goal.due_date)" src="img/edit_icon.png"/ width="20px">  
+                              <input type="checkbox" ng-model="completed" ng-disabled="goal.complete=='1' || completed " ng-click="update(goal.id)"/>
+                             
+                          </div> -->
                   </div>
-                
+                </ion-item>
+       </ion-list>
                 <!--
                 {{goal.goals}}
                 <a href="{{url}}/myproject/download.php?nama={{goal.file_url}}">
@@ -55,8 +60,8 @@
                 EditedDate:{{goal.edited_date}}<br>
                 CompletedDate:{{goal.completed_date}} -->
 
-            </ion-item>
-    </ion-list>
+          
+  
             <!-- <label class="item item-input item-floating-label">
                 <input type="text" id="goal" placeholder="Add Goals Here" ng-model="new_goal">
                 <input type="file" id="inputFile" ng-model="files" />

@@ -48,11 +48,25 @@
                                         <div class="col" style="text-align: left;">
                                          <p  style="color: #999;" >  {{menteetask.edited_date}} </p>
                                       </div>
-                                      
-                                       <div class="col" style="text-align: right;">
-                                          <img ng-click="open_edit_modal_mentee_tasks(menteetask.id)" src="img/edit_icon.png"/ width="20px">  
+
+
+
+                                      <div class="col shz-right-margin" style="text-align: right;">
+                                                <img class="shz-right-margin" ng-click="open_edit_modal_mentee_tasks(menteetask.id,menteetask.tasks,menteetask.due_date)" src="img/edit_icon.png"/ width="20px">  
+                                                 <label class="shz-container">
+                                                     <input  type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="menteetask.complete=='1' || completed" ng-click="mentee_task_update(menteetask.id)"/>                                
+                                                    <span class="shz-checkmark"></span>
+                                                 </label>
+                          
+                                              </div>
+            
+
+
+
+                                       <!-- <div class="col" style="text-align: right;">
+                                          <img ng-click="open_edit_modal_mentee_tasks(menteetask.id,menteetask.tasks,menteetask.due_date)" src="img/edit_icon.png"/ width="20px">  
                                           <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="menteetask.complete=='1' || completed " ng-click="mentee_task_update(menteetask.id)"/>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <!-- <a><img src="{{url}}/myproject/download.php?nama={{task.file_url}}" width="40" height="40" alt="error"></a> -->
                                    
@@ -62,7 +76,7 @@
                                                 
                                                    
                                         <center>    
-                                                <button class="button  button-positive" ng-click="opentaskModel()">AddTask</button>
+                                                <button class="button  button-positive" ng-click="opentaskModel()">Add Task</button>
                                         </center>
         </ion-content>
         </ion-view>

@@ -37,10 +37,18 @@
                             <div class="col" style="text-align: left;" >
                                     <p style="color: #999; float: left; " >{{schedule.date}}</p>
                                             </div>
-                           <div class="col" style="text-align: right;">
+
+                        <div class="col shz-right-margin" style="text-align: right;">
+                                <img class="shz-right-margin"  width="20px"> 
+                            <label class="shz-container">
+                                <input  type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="schedule.complete=='1' || completed " ng-click="interaction_update(schedule.id)"/>                                
+                            <span class="shz-checkmark"></span>
+                            </label>
+                        </div>
+                         <!-- <div class="col" style="text-align: right;">
                             <input type="checkbox" name="CompletedDate" ng-model="completed" ng-disabled="schedule.complete=='1' || completed " ng-click="interaction_update(schedule.id)"/>
-                               <a style="margin-left: 15px;"><img src="img/completion-icon.png" width="20" height="20" alt="error"></a>
-                            </div>
+                              
+                            </div> -->
                         </div>
                    
                    
