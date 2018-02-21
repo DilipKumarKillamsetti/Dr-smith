@@ -1,0 +1,24 @@
+<ion-view >
+    <ion-nav-title>
+        <img src="img/logo-header.png" alt="" height="25px" style="margin-top:12px;"/>
+    </ion-nav-title>
+  <ion-content>
+        <ion-list ng-init="get_discussions_openforum()">
+            <ion-item ng-repeat="discussion in discussions track by $index">
+              {{discussion.description}}<br>
+              {{discussion.started_by}}
+              {{replies.length}}
+              <ion-list ng-init="get_discussions_replies(discussion.id)">
+                  <ion-item ng-repeat="reply in replies track by $index">
+                        {{reply}}
+                  </ion-item>
+
+              </ion-list>
+
+            </ion-item>
+        </ion-list>
+        <center>
+            <button ng-click="">Start New Discussion</button>
+        </center>
+  </ion-content>
+</ion-view>

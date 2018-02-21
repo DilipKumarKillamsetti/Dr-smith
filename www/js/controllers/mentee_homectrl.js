@@ -1,7 +1,7 @@
 angular.module('drsmith.controllers.mentee_homectrl', [])
 .controller('mentee_homectrl',function($scope,$rootScope,$http,$stateParams,$ionicModal){
   //modal for add mentee goals 
-  console.clear()
+  //console.clear()
   $ionicModal.fromTemplateUrl('templates/add_mentee_goals.html',{
     scope: $scope,
     animation: 'slide-in-up'

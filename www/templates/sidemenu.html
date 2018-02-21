@@ -20,7 +20,7 @@
         <ion-nav-view name="tab-goals" cache-view="false" ></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Mentor Forum" icon-off="shz-tab-forum" icon-on="shz-tab-forum" href="#/app/forum">
+      <ion-tab title="Mentor Forum" icon-off="shz-tab-forum" icon-on="shz-tab-forum" ui-sref="app.mentorforum">
         <ion-nav-view name="tab-forum" cache-view="false"></ion-nav-view>
       </ion-tab>
 
@@ -52,7 +52,7 @@
                 <i class="item-pointer-icon icon ion-chevron-right"></i>
               </ion-item>
 
-              <ion-item class="item-icon-left item-icon-right" menu-close  ng-show="$root.type=='mentee'">
+              <ion-item class="item-icon-left item-icon-right" menu-close ui-sref="app.mymentor"  ng-show="$root.type=='mentee'">
                 <h2 class="menu-text">My Mentor</h2>
                 <i class="item-pointer-icon icon ion-chevron-right"></i>
               </ion-item>
@@ -72,15 +72,18 @@
                 <i class="item-pointer-icon icon ion-chevron-right"></i>
               </ion-item>
 
-              <ion-item class="item-icon-left item-icon-right" menu-close >
+
+              <ion-item class="item-icon-left item-icon-right" menu-close ui-sref="app.mentorforum" ng-show="$root.type == 'mentor'">
+                  <h2 class="menu-text">Mentor Forum</h2>
+                  <i class="item-pointer-icon icon ion-chevron-right"></i>
+                </ion-item>
+
+              <ion-item class="item-icon-left item-icon-right" menu-close ui-sref="app.openforum">
                 <h2 class="menu-text">Open Forum</h2>
                 <i class="item-pointer-icon icon ion-chevron-right"></i>
               </ion-item>
 
-              <ion-item class="item-icon-left item-icon-right" menu-close ng-show="$root.type == 'mentor'">
-                <h2 class="menu-text">Mentor Forum</h2>
-                <i class="item-pointer-icon icon ion-chevron-right"></i>
-              </ion-item>
+             
 
               <ion-item ui-sref-active="active" class="item-icon-left item-icon-right" menu-close ui-sref="app.resources">
                 <h2 class="menu-text">Resources</h2>

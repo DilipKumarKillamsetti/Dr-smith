@@ -2,7 +2,9 @@
     <ion-content ng-init="load_resources()">
         <ion-list  ng-repeat="file in files">
             <ion-item>
-               {{file}}
+                <a href="{{url}}/myproject/download.php?nama={{file.file_url}}">{{file.file_name}}</a>
+                {{file.size}}
+                {{file.uploaded_date}}
             </ion-item>
         </ion-list>
     </ion-content>

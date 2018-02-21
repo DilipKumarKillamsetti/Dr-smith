@@ -117,6 +117,16 @@ angular.module('drsmith', [
     } 
   })
 
+  .state('app.mymentor',{
+    url:"/mymentor",
+    views: {
+      'tab-home': {
+        templateUrl:"templates/mymentor.html",
+        controller:'sideMenuCtrl'
+      }
+    } 
+  })
+
   .state('app.mentorslist',{
     url:"/mentorslist",
     views: {
@@ -125,7 +135,28 @@ angular.module('drsmith', [
         controller:'sideMenuCtrl'
       }
     }
-    
+  })
+
+
+
+  .state('app.mentorforum',{
+    url:"/mentorforum",
+    views: {
+      'tab-forum': {
+        templateUrl:"templates/mentorforum.html",
+        controller:'forumTabctrl'
+      }
+    } 
+  })
+
+  .state('app.openforum',{
+    url:"/openforum",
+    views: {
+      'tab-home': {
+        templateUrl:"templates/openforum.html",
+        controller:'forumTabctrl'
+      }
+    } 
   })
   //state for mentee login and functionality-->mentee goals and adding goals
   .state('app.mentee_goals',{

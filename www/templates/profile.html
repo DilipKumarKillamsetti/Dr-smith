@@ -1,9 +1,32 @@
 <ion-view title="Profile" >
     <ion-content ng-init="profile()">
-        <ion-list  ng-repeat="file in files">
+        <ion-list>
             <ion-item>
-               {{file}}
+                <center>
+                <img ng-src="{{url}}/myproject/download.php?nama={{details.file_url}}" alt="error"  width="50px">
+            </center>
+                <br>
+               {{details.location}}<br>
+               {{details.name}}<br>
+               <input type="text" id="password"  ng-readonly=editable 
+                ng-model="details.password">
+               
+               <br>
+               {{details.phone_no}}
+              
             </ion-item>
         </ion-list>
+        
+        Hobbies<input type="text" id="hobbies" ng-readonly="editable"  ng-model="details.hobbies">
+        Likes<input type="text" id="likes" ng-readonly="editable"  ng-model="details.likes">
+        Dislikes<input type="text" id="dislikes" ng-readonly="editable"  ng-model="details.dislikes">
+        Intrests<input type="text" id="interests" ng-readonly= "editable" ng-model="details.interests">
+        About Me<input type="text" id="aboutme" ng-readonly="editable" ng-model="details.about_me">
+        <center>
+                
+                <button ng-click="edit_profile()" >edit</button>
+                <button ng-click="update_profile(details.password,details.hobbies,details.likes,details.dislikes,details.interests,details.about_me)">
+                    update</button>
+        </center>
     </ion-content>
 </ion-view>
