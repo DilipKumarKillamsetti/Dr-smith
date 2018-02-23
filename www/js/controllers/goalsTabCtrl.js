@@ -1,15 +1,13 @@
 angular.module('drsmith.controllers.goalsTabCtrl', [])
-.controller('goalsctrl',function($scope,$rootScope,$http, $ionicModal)
+.controller('goalsctrl',function($scope,$rootScope,$http,$window ,$timeout, $ionicModal)
 {
   console.clear()
-  $scope.goalsObj = {};
-  $scope.goalsObj = {
-    new_goal:'',
-    goal_date:'',
-    selected_img:'',
-    selectedImgName:'',
-    selected_img_base64:''
-  };
+  $scope.date = new Date();
+  $scope.doRefresh=function(){
+    console.log('Begin async operation......');
+    $timeout($scope.get(),1500)
+  }
+
   //modal for adding goals of mentor
   $ionicModal.fromTemplateUrl('templates/add_goal_mentor.html',{
     scope: $scope,
@@ -49,13 +47,26 @@ $scope.close_edit_modal=function()
   $scope.edit_modal.hide();
 }
 //function for completed date submission for mentor_goals
+
+$scope.confirm_=function(goal_id)
+{
+ var a= confirm("Are you sure to complete goal ?")
+  console.log(a, "...confirmm....")
+  if(a)
+  {
+    $scope.update(goal_id);
+  }
+  else{
+    $scope.completed=false;
+  }
+}
 $scope.update=function(goal_id)
 {
   var currentDate  = new Date();
   currentDate=moment(currentDate).format('YYYY-MM-DD')
   console.log(goal_id,currentDate)
   $http({
-    url:$rootScope.url+"/myproject/mentor_goal_completed.php",
+    url:localStorage.getItem('url')+"/myproject/mentor_goal_completed.php",
     method:"GET",
     params:{goal_id:goal_id,completed_date:currentDate}
   })
@@ -65,12 +76,12 @@ $scope.update=function(goal_id)
   })
 }
   $scope.get=function(){
-    // console.log($rootScope.id)
+    // console.log(localStorage.getItem('id'))
     $http(
     {
-      url:$rootScope.url+"/myproject/mentor-goal1.php",
+      url:localStorage.getItem('url')+"/myproject/mentor-goal1.php",
       method:"GET",
-      params:{id:$rootScope.id}
+      params:{id:localStorage.getItem('id')}
     })
     .then(function(response){
       $scope.goals=response.data;
@@ -78,6 +89,7 @@ $scope.update=function(goal_id)
         $scope.goals[i].due_date = moment($scope.goals[i].due_date).format('MMM-DD-YYYY')
         $scope.goals[i].edited_date=moment($scope.goals[i].edited_date).format('DD-MM-YYYY ')
         $scope.goals[i].completed_date=moment($scope.goals[i].completed_date).format('DD-MM-YYYY')
+        $scope.$broadcast('scroll.refreshComplete');
       }
        console.log($scope.goals)
 
@@ -85,31 +97,39 @@ $scope.update=function(goal_id)
   )
 }
 //function for adding mentor goals with file
+$scope.goalsObj = {};
+$scope.goalsObj = {
+  new_goal:'',
+  goal_date:'',
+  selected_img:'',
+  selectedImgName:'',
+  selected_img_base64:''
+};
 $scope.add = function()
 {
   console.log($scope.goalsObj.new_goal, $scope.goalsObj.goal_date);
   $scope.goalsObj.selected_img = document.getElementById("inputFile").files;
 
-  if($scope.goalsObj.selected_img.length < 1 && $scope.goalsObj.new_goal=="")
+  if($scope.goalsObj.goal_date =="" || $scope.goalsObj.new_goal=="")
   {
     alert("selelct value");
   }
-  else if($scope.goalsObj.selected_img.length > 0)
+  else 
   {
+    if($scope.goalsObj.selected_img.length > 0){
     $scope.goalsObj.selectedImgName = $scope.goalsObj.selected_img[0].name;
     var filetoload = $scope.goalsObj.selected_img[0];
     var fileReader= new FileReader();
     fileReader.readAsDataURL(filetoload);
 
-    fileReader.onload=function(fileLoadedEvent)
-    {
+    fileReader.onload=function(fileLoadedEvent){
       $scope.goalsObj.selected_img_base64 = fileLoadedEvent.target.result;
       $scope.fun();
     }
   }
-  else
-  {
-    $scope.fun();
+    else{
+      $scope.fun();
+    }
   }
 
 }
@@ -121,10 +141,10 @@ $scope.fun=function(){
   console.log($scope.formattedDate)
   $http(
     {
-      url:$rootScope.url+"/myproject/add_mentor_goal_with_file.php",
+      url:localStorage.getItem('url')+"/myproject/add_mentor_goal_with_file.php",
        method:"POST",
        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      data:{id:$rootScope.id,name:$scope.goalsObj.selectedImgName,goal:$scope.goalsObj.new_goal,shab:$scope.goalsObj.selected_img_base64,due_date:$scope.formattedDate}
+      data:{id:localStorage.getItem('id'),name:$scope.goalsObj.selectedImgName,goal:$scope.goalsObj.new_goal,shab:$scope.goalsObj.selected_img_base64,due_date:$scope.formattedDate}
  })
   .then(function(response){
    $scope.goals=response;
@@ -150,7 +170,7 @@ $scope.fun=function(){
       {
           confirm("Are You Sure To Delete");
           $http({
-            url:$rootScope.url+"/myproject/add_mentor_goal_with_file.php",
+            url:localStorage.getItem('url')+"/myproject/add_mentor_goal_with_file.php",
             method:GET,
             params:{id:goal_id}
           })
@@ -203,11 +223,11 @@ $scope.fun1=function(goal_id){
    edited_date = moment(edited_date).format('YYYY-MM-DD')
   $http(
     {
-      url:$rootScope.url+"/myproject/edit_mentor_goal.php",
+      url:localStorage.getItem('url')+"/myproject/edit_mentor_goal.php",
        method:"POST",
        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data:{
-        mentor_id:$rootScope.id,
+        mentor_id:localStorage.getItem('id'),
         name:$scope.edit_goalObj.selectedImgName,
         goal:$scope.edit_goalObj.new_goal,
         shab:$scope.edit_goalObj.selected_img_base64,
@@ -239,9 +259,9 @@ $scope.fun1=function(goal_id){
 //   console.log(goal_id,$scope.edit_goalObj.new_goal)
 //   $http(
 //     {
-//       url:$rootScope.url+"/myproject/edit_mentor_goal.php",
+//       url:localStorage.getItem('url')+"/myproject/edit_mentor_goal.php",
 //       method:"GET",
-//       params:{mentor_id:$rootScope.id,goal:$scope.edit_goalObj.new_goal,goal_id:goal_id}
+//       params:{mentor_id:localStorage.getItem('id'),goal:$scope.edit_goalObj.new_goal,goal_id:goal_id}
 //     }
 //   )
 //  .then(function(response){

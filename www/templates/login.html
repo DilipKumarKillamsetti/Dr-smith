@@ -6,31 +6,51 @@
     <ion-content>
       
     </ion-content>
+    <form name="loginForm"  nonvalidate>
       <div class="shz-page-center">
             <div class="  shz-screen-center ">
                 <center >
                     <img  src="img/smith-logo.jpg" class="shz-main-logo">
                 </center>
+               
                 <div class="item-input-inset" style="width:98%;">
                     <label class="item-input-wrapper input shz-login-inputs">
-                        <input type="text" placeholder="Mobile Number"  ng-model="Email">
+                        <input type="number" placeholder="Mobile Number" name="mobileno"  ng-model="Email"
+                        ng-pattern-restrict="[0-9]+" pattern="[0-9]+" ng-minlength="6" ng-maxlength="12" required>
                     </label>
                 </div>
+                    <!--p ng-show="loginForm.mobileno.$invalid && !loginForm.mobileno.$pristine" class="help-block">
+                        Mobile No is Mandatory     
+                    </p>
+                    
+                    <p ng-show="loginForm.mobileno.$error.maxlength" class="help-block">
+                            mobile no exceeds the limit
+                     </p-->
+
                 <div class="item-input-inset" style="width:98%;">
-                    <label class="item-input-wrapper input shz-login-inputs">
-                        <input type="password" placeholder="Password" ng-model="Password">
+                    <label class="item-input-wrapper input shz-login-inputs" >
+                        <input type="password" placeholder="Password" name="password" ng-model="Password"
+                         ng-minlength="3" ng-maxlength="10" required>
                     </label>
                 </div>
+                <!--p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine" class="help-block">
+                    password is Mandatory     
+                </p>
+                <p ng-show="loginForm.password.$error.maxlength" class="help-block">
+                        Password Exceeds the Limit
+                 </p-->
             </div>
             <div>
             <center>
-                    <button class="shz-btn button button-positive"  ng-click="redirect(Email,Password)">
+                    <button class="shz-btn button button-positive" 
+                    ng-click="redirect(Email,Password,loginForm.$valid)"  >
                         Login
                     </button><br/><br/>
                
                 </center>
             </div>
         </div>
+    </form>
     
    
 </ion-view>

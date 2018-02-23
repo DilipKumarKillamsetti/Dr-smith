@@ -4,7 +4,7 @@ angular.module('drsmith.controllers.commentsctrl', [])
     $scope.getintercomments=function(){
       $http(
         {
-          url:$rootScope.url+"/myproject/view_meeting_schedule_comment.php",
+          url:localStorage.getItem('url')+"/myproject/view_meeting_schedule_comment.php",
           method:"GET",
           params:{schedule_id:$stateParams.interaction_id}
         }
@@ -23,16 +23,16 @@ angular.module('drsmith.controllers.commentsctrl', [])
     };
     $scope.addintercomment=function(comment){
       console.log($stateParams.interaction_id)
-      console.log($rootScope.id)
-      console.log($rootScope.type)
+      console.log(localStorage.getItem('id'))
+      console.log(localStorage.getItem('type'))
       console.log( $scope.inter_commentObj.comment)
       if($scope.inter_commentObj.comment.length>0){
       $http(
         {
-          url:$rootScope.url+"/myproject/meeting_schedule_comment.php",
+          url:localStorage.getItem('url')+"/myproject/meeting_schedule_comment.php",
           method:"GET",
-         params:{schedule_id:$stateParams.interaction_id,commentor_id:$rootScope.id,
-                  comment_by:$rootScope.type,comment_text:$scope.inter_commentObj.comment}
+         params:{schedule_id:$stateParams.interaction_id,commentor_id:localStorage.getItem('id'),
+                  comment_by:localStorage.getItem('type'),comment_text:$scope.inter_commentObj.comment}
         }
       )
       .then(function(response){
@@ -53,15 +53,16 @@ angular.module('drsmith.controllers.commentsctrl', [])
    $scope.getcomments=function(){
     $http(
       {
-        url:$rootScope.url+"/myproject/mentee_goals_comment.php",
+        url:localStorage.getItem('url')+"/myproject/mentee_goals_comment.php",
         method:"GET",
-        params:{id:$rootScope.id,mentee_goal_id:$stateParams.id}
+        params:{id:localStorage.getItem('id'),mentee_goal_id:$stateParams.id}
       }
     )
     .then(function(response){
       console.log(response.data)
       $scope.comments=response.data.comment;
       $scope.goal=response.data.goal;
+      $scope.mentee_id=$scope.goal[0].mentee_id;
       console.log($scope.comments)
       console.log($scope.goal) 
     })
@@ -73,15 +74,16 @@ angular.module('drsmith.controllers.commentsctrl', [])
     }
    $scope.addcomment=function(){
      console.log($stateParams.id)
-     console.log($rootScope.id)
+     console.log(localStorage.getItem('id'))
      console.log()
-     console.log($rootScope.type)
+     console.log(localStorage.getItem('type'))
      if($scope.commentObj_goal.comment.length>0){
     $http(
       {
-        url:$rootScope.url+"/myproject/add_mentee_goals_comment.php",
+        url:localStorage.getItem('url')+"/myproject/add_mentee_goals_comment.php",
         method:"GET",
-       params:{mentee_goal_id:$stateParams.id,comment_text:$scope.commentObj_goal.comment,commentor_id:$rootScope.id,comment_by:$rootScope.type}
+       params:{mentee_goal_id:$stateParams.id,comment_text:$scope.commentObj_goal.comment,
+        commentor_id:localStorage.getItem('id'),comment_by:localStorage.getItem('type')}
       }
     )
     .then(function(response){
@@ -101,13 +103,14 @@ angular.module('drsmith.controllers.commentsctrl', [])
     //function for mentor and mentee will get the comments on tasks 
    $scope.getcomments_on_task=function(){
     $http({
-      url:$rootScope.url+"/myproject/mentee_task_comment.php",
+      url:localStorage.getItem('url')+"/myproject/mentee_task_comment.php",
       method:"GET",
       params:{mentee_task_id:$stateParams.id}
     })
     .then(function(response){
       $scope.task_comments=response.data.comment;
       $scope.task=response.data.task;
+      $scope.mentee_id=$scope.task[0].mentee_id;
       console.log($scope.task_comments)
       console.log($scope.task)
     })
@@ -117,18 +120,20 @@ angular.module('drsmith.controllers.commentsctrl', [])
   $scope.commentObj={
     comment:''
   }
-  $scope.addcomment_on_task=function(){
+  $scope.addcomment_on_task=function(mentee_id){
+    console.log(mentee_id)
     console.log($scope.commentObj.comment)
     console.log($scope.commentObj.comment.length)
     console.log($stateParams.id)
-    console.log($rootScope.id)
-    console.log($rootScope.type)
+    console.log(localStorage.getItem('id'))
+    console.log(localStorage.getItem('type'))
     if($scope.commentObj.comment.length>0){
    $http(
      {
-       url:$rootScope.url+"/myproject/add_mentee_task_comment.php",
+       url:localStorage.getItem('url')+"/myproject/add_mentee_task_comment.php",
        method:"GET",
-      params:{mentee_task_id:$stateParams.id,comment_text:$scope.commentObj.comment,commentor_id:$rootScope.id,comment_by:$rootScope.type}
+      params:{mentee_task_id:$stateParams.id,mentee_id:mentee_id,
+        comment_text:$scope.commentObj.comment,commentor_id:localStorage.getItem('id'),comment_by:localStorage.getItem('type')}
      }
    )
    .then(function(response){

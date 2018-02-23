@@ -1,0 +1,17 @@
+<ion-view >
+        <ion-nav-title>
+            <img src="img/logo-header.png" alt="" height="25px" style="margin-top:12px;"/>
+        </ion-nav-title>
+      <ion-content>
+            <ion-list ng-init="getmessages()">
+                <ion-item ng-repeat="message in messages">
+                    {{message.text}}
+                    {{message.posted_date}}
+                    {{message.posted_by}}
+                </ion-item>
+            </ion-list>
+            <center>
+                <input type="text" ng-model="text" /><button ng-click="message()"></button>
+            </center>
+      </ion-content>
+  </ion-view>

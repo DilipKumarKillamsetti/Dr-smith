@@ -1,12 +1,57 @@
 <ion-modal-view title="add Mentee task">
-    <ion-content>
-            <label class="item item-input item-floating-label">
-                    <input type="text" id="task" placeholder="Add Task Here"   ng-model="taskObj.new_task">
-                    <input type="file" id="inputFile" ng-model="testststs">
-            </label>
-            <label for="date">Due Date</label>
-            <input id="date" type="date"  ng-model="taskObj.task_date"/>
-     <button class="button button-block button-positive" ng-click="addtask()">AddTask</button>
-     <button class="button button-positive" ng-click="closetaskModal()">close</button>
-    </ion-content>
-</ion-modal-view>
+                <ion-content>
+                    
+            <!-- =========================================HEAD SECTION START========================================================== -->        
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="shz-popup-title">Add Task</h4>
+                        </div>
+                        <div class="col-right" style="text-align: center;">
+                            <button class="shz-popup-close" ng-click="closetaskModal()">X</button>
+                        </div>
+                    </div>
+                    
+                    <div class="shz-separator-full" ></div>
+            <!-- =========================================HEAD SECTION END========================================================== -->   
+                    
+            <!-- =========================================MAIN SECTION START========================================================== -->            
+                    
+                     <label class="item item-input item-floating-label">
+                        <textarea style=" height: 50px; width: 94%;resize: none; margin-top: 15px;margin-bottom: 15px;"type="text" id="goal" placeholder="Add Goals Here" ng-model="taskObj.new_task"></textarea>
+                        
+                        <div class="shz-separator" ></div>
+                        <div class=row style="padding-top:5px; padding-bottom: 5px;">
+                             <img src="img/file-pdf-icon.png" width="20" height="20" alt="error" >
+                             <label class="shz-file">Select a file
+                                 <input type="file" id="inputFile" ng-model="testststs" size="60" >
+                             </label> 
+                         
+                         </div>
+                    </label>
+                    
+                    <div class="shz-separator" ></div>
+                    
+                    
+                    <div class="item item-input item-floating-label">
+                            <div class=row style="padding-top:5px; padding-bottom: 5px;">
+                                <img src="img/sidebar-calendar.png" width="20" height="20" alt="error" >
+                                <label for="date">
+                                    <input id="date" type="date"   ng-model="taskObj.task_date"/>
+                                </label>
+                            </div>
+                        </div>
+                     
+                   
+                    
+                    <div class="shz-separator" ></div><br/>
+                    
+            <!-- =========================================MAIN SECTION END========================================================== -->       
+                    
+                    
+            <!-- =========================================BUTTON SECTION START ========================================================== -->         
+                   
+                    <button class="button button-positive" ng-click="addtask();closetaskModal()">Add Task</button>
+            <!-- =========================================BUTTON SECTION END ========================================================== -->               
+                    
+                </ion-content>
+            </ion-modal-view>

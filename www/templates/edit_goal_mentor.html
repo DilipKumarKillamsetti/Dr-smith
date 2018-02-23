@@ -1,12 +1,53 @@
 <ion-modal-view>
         <ion-content>
-                <label class="item item-input item-floating-label">
-                        <input type="text" id="goal" placeholder="Edit Goals Here" ng-model="edit_goalObj.new_goal">
-                        <input type="file" id="inputFile" ng-model="edit_goalObj.img_base64" />
-                    </label>
-                    <label for="date">Due Date</label>
-                    <input id="date" type="date"  ng-model="edit_goalObj.goal_date"/>
-            <button class="button button-block button-positive" ng-click="edit(goal_id);close_edit_modal()">Save</button>
-            <button class="button  button-positive" ng-click="close_edit_modal()">close</button>
+        
+<!-- =========================================HEAD SECTION START========================================================== -->        
+        <div class="row">
+            <div class="col">
+                <h4 class="shz-popup-title">Edit Goal</h4>
+            </div>
+            <div class="col-right" style="text-align: center;">
+                <button class="shz-popup-close" ng-click="close_edit_modal()">X</button>
+            </div>
+        </div>
+        
+        <div class="shz-separator-full" ></div>
+<!-- =========================================HEAD SECTION END========================================================== -->   
+<!-- =========================================MAIN SECTION START========================================================== -->            
+        
+        <label class="item item-input item-floating-label">
+            <textarea style=" height: 50px; width: 94%;resize: none; margin-top: 15px;margin-bottom: 15px;"type="text" id="goal" placeholder="Edit Goals Here" ng-model="edit_goalObj.new_goal"></textarea>
+            
+            <div class="shz-separator" ></div>
+            
+             <div class=row style="padding-top:5px; padding-bottom: 5px;">
+                 <img src="img/file-pdf-icon.png" width="20" height="20" alt="error" >
+                 <label class="shz-file">Select a file
+                     <input size="150" type="file" id="inputFile" ng-model="edit_goalObj.img_base64"  >
+                 </label> 
+            </div>
+            
+        </label>
+        
+        <div class="shz-separator" ></div>
+                
+         
+        <div class="item item-input item-floating-label">
+            <div class=row style="padding-top:5px; padding-bottom: 5px;">
+                <img src="img/sidebar-calendar.png" width="20" height="20" alt="error" >
+                <label for="date">
+                    <input id="date" type="date" min="{{date | date:'yyyy-MM-dd'}}" ng-model="edit_goalObj.goal_date"/>
+                </label>
+            </div>
+        </div>
+        
+        <div class="shz-separator" ></div><br/>
+        
+<!-- =========================================MAIN SECTION END========================================================== -->               
+<!-- =========================================BUTTON SECTION START ========================================================== -->           
+        
+        <button class="button  button-positive" ng-click="edit(goal_id);close_edit_modal()">Save</button>
+       
+<!-- =========================================BUTTON SECTION END ========================================================== -->                
             </ion-content>
     </ion-modal-view>

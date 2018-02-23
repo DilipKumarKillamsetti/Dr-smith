@@ -1,24 +1,38 @@
-<ion-view >
+<ion-view class="shz-bg-shade" >
     <ion-nav-title>
         <img src="img/logo-header.png" alt="" height="25px" style="margin-top:12px;"/>
     </ion-nav-title>
   <ion-content>
         <ion-list ng-init="get_discussions_openforum()">
-            <ion-item ng-repeat="discussion in discussions track by $index">
-              {{discussion.description}}<br>
-              {{discussion.started_by}}
-              {{replies.length}}
-              <ion-list ng-init="get_discussions_replies(discussion.id)">
-                  <ion-item ng-repeat="reply in replies track by $index">
-                        {{reply}}
-                  </ion-item>
 
-              </ion-list>
+                <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);padding:15px; margin-bottom: 0px !important;" ng-repeat="discussion in discussions track by $index">
+                        <div class="shz-half-description shz-clear-link"style="padding-left:0px;" >
+                            <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" >
+                                    <a class="shz-clear-link shz-list-title" ui-sref="app.open_forum_comments({id:discussion.id})"> {{discussion.discussion_text}} </a> <br/><br/>
+                               </h3>
+                        </div>
+          
+               <h3 class="shz-text-capitalize">Started By:  {{discussion.started_by}}</h3>
+               <h3 class="shz-text-capitalize">Posted Date: {{discussion.date}}</h3>
+                 
+               </ion-item>
 
-            </ion-item>
+
         </ion-list>
+       
         <center>
-            <button ng-click="">Start New Discussion</button>
+                <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3); margin-bottom: 0px !important;">
+                           
+                           
+                        <textarea style=" height: 60px; width: 94%;resize: none; margin-top: 5px;margin-left: 1px;"type="text" id="goal" placeholder="Type your text" ng-model="reportObj.text"></textarea>
+                   
+            </ion-item>
+            <br/>
+
+
+
+
+            <button class="button  button-positive" ng-click="add_discussion_openforum()">New Thread</button>
         </center>
   </ion-content>
 </ion-view>

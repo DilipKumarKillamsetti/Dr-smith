@@ -3502,7 +3502,7 @@ ion-infinite-scroll {
   top: 88px; }
 
 .has-tabs-top {
-  top: 99px; }
+  top: 119px; }
 
 .has-header.has-subheader.has-tabs-top {
   top: 137px; }
@@ -3919,15 +3919,12 @@ a.subdued {
     .bar.bar-stable.bar-footer {
       background-image: linear-gradient(180deg, #b2b2b2, #b2b2b2 50%, transparent 50%); }
   .bar.bar-positive {
-    border-color: #ddd;
-    background-color: #fff;
+    border-color: #0e61dc;
+    background-color: #2b7bf2;
     background-image: linear-gradient(0deg, #0e61dc, #0e61dc 50%, transparent 50%);
-    color: #0066cb;
-      height: 85px;
-      
-}
+    color: #fff; }
     .bar.bar-positive .title {
-      color: #0066cb; }
+      color: #fff; }
     .bar.bar-positive.bar-footer {
       background-image: linear-gradient(180deg, #0e61dc, #0e61dc 50%, transparent 50%); }
   .bar.bar-calm {
@@ -5304,8 +5301,7 @@ background-color: rgba(0,0,0,0.4);
     bottom: 25%;
     right: 10%;
     left: 10%;
-  min-height: 340px;
-    height: 340px;
+  min-height: 300px;
   width: 80%;
   background-color: white;
   text-align: center;
@@ -5321,7 +5317,7 @@ background-color: rgba(0,0,0,0.4);
     right: 20%;
     bottom: 20%;
     left: 20%;
-    min-height: 320px;
+    min-height: 300px;
     width: 60%;
     }
   .modal.ng-leave-active {
@@ -7087,13 +7083,6 @@ textarea {
     border-bottom: 2px;
 }
 
-.shz-separator-full{
-    height: 2px;
-    background: #aaa;
-    border-bottom: 2px;
-    width: 100%;
-}
-
 .shz-clear-link{
     text-decoration: none;
 }
@@ -7122,13 +7111,6 @@ textarea {
     color:#000;
     font-size: 16px;
     text-transform: capitalize;
-    text-decoration: none;
-}
-.shz-general-description{
-    font-size: 14px;
-    color: #aaa;
-    font-weight: normal !important;
-    
 }
 
 .shz-text-capitalize{
@@ -7137,7 +7119,6 @@ textarea {
 .shz-popup-title{
     text-align:left;
     padding-left: 10px;
-    margin: 0px;
 }
 
 .shz-popup-close{
@@ -7147,24 +7128,6 @@ textarea {
     color:white !important;
     font-size: 16px;
     border: none;
-   
-   
-}
-
-.shz-profile-title{
-    color:#0066cb;
-    text-transform: capitalize;
-}
-
-
-.shz-bg-input{
-    background-color: #fff !important;
-    padding: 15px !important;
-}
-
-.shz-bg-input:focus{
-     background-color: #fff!important;
-    padding:15px !important;
 }
 
 /*
@@ -9538,7 +9501,7 @@ ion-spinner.spinner-on-load {
     color: #FFFFFF; }
 
 .menu-outer {
-	 background-color: #fff; 
+	 background-color: #0e61dc; 
 	/*background-color: #93c83d;*/
 }
 /*  
@@ -9555,12 +9518,8 @@ ion-spinner.spinner-on-load {
     color: rgba(250, 250, 250, 0.7); 
 }
 .menu-outer ion-item .menu-text {
-      /* color: rgba(250, 250, 250, 0.7);
-      color:#f7f7f7;*/
-    
-    color:#222;
-    text-align: left;
-    margin-top: 5px;
+      /* color: rgba(250, 250, 250, 0.7);*/
+      color:#f7f7f7;
       font-weight: 500; 
 }
 .menu-outer ion-item .menu-icon {
@@ -9575,7 +9534,7 @@ ion-spinner.spinner-on-load {
 .menu-outer ion-item .item-content {
       background: transparent !important;
       padding-right: 32px !important;
-      padding-left: 15px !important; 
+      padding-left: 59px !important; 
 }
 .menu-outer ion-item .item-content.activated {
         border-color: transparent;
@@ -9592,13 +9551,13 @@ ion-spinner.spinner-on-load {
 .menu-outer ion-item.active .item-content {
         border-color: transparent;
         background-color: transparent;
-        color: #0066cb; 
+        color: #FFBB00; 
 }
 .menu-outer ion-item.active .menu-icon {
-        color: #0066cb; 
+        color: #FFBB00; 
 }
 .menu-outer ion-item.active .menu-text {
-        color: #0066cb; 
+        color: #FFBB00; 
 }
 
 .profile-view {
@@ -11022,68 +10981,4 @@ input[type="checkbox"]:disabled ~ .shz-checkmark {
     margin-right: 15px;
 }
 
-.shz-sidebar-padding{
-    padding-left: -20px !important;
-}
 
-textarea{
-    resize: none !important;
-}
-input[type="date"]{
-    color:#0066cb;
-    
-    margin-top: -10px;
-    padding-left: 15px !important;
-    font-size: 18px;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    color: #0066cb;
-    
-}
-
-.shz-file{
-   
-    font-size: 18px;
-    text-align: left;
-    display: table;
-    color: #0066cb;
-    padding-left: 15px !important;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-
-input[type="time"]{
-     margin-top: -10px;
-    padding-left: 15px!important;
-    font-size: 18px;
-    color: #0066cb;
-  
-    
-}
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -webkit-padding-end: 20px;
-    -moz-padding-end: 20px;
-    -webkit-padding-start: 2px;
-    -moz-padding-start: 2px;
-    background-color: #fff; /* fallback color if gradients are not supported */
-   
-    background-position: center right;
-    background-repeat: no-repeat;
-
-    
-    color: #0066cb;
-    font-size: 18px;
-    padding-left: 15px !important;
-    
-   border: none;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}

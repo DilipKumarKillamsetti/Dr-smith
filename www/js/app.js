@@ -84,6 +84,12 @@ angular.module('drsmith', [
       '': {
         templateUrl: "templates/login.html",
         controller:'loginctrl'
+      },
+      onEnter: function($state){
+        if(localStorage.getItem('login')=="true"){
+          $state.go('app.home');
+        }
+      
       }
     }
   })
@@ -137,13 +143,22 @@ angular.module('drsmith', [
     }
   })
 
-
-
   .state('app.mentorforum',{
     url:"/mentorforum",
     views: {
       'tab-forum': {
         templateUrl:"templates/mentorforum.html",
+        controller:'forumTabctrl'
+      }
+    } 
+  })
+
+  
+  .state('app.mentor_forum_comments',{
+    url:"/mentorforum_comments/:id",
+    views: {
+      'tab-forum': {
+        templateUrl:"templates/mentorforum_comments.html",
         controller:'forumTabctrl'
       }
     } 
@@ -158,6 +173,28 @@ angular.module('drsmith', [
       }
     } 
   })
+
+  .state('app.open_forum_comments',{
+    url:"/openforum_comments/:id",
+    views: {
+      'tab-home': {
+        templateUrl:"templates/openforum_comments.html",
+        controller:'forumTabctrl'
+      }
+    } 
+  })
+
+
+  .state('app.report_abuse',{
+    views: {
+      'tab-home': {
+        templateUrl:"templates/report_abuse.html",
+        controller:'sideMenuCtrl'
+      }
+    } 
+  })
+
+
   //state for mentee login and functionality-->mentee goals and adding goals
   .state('app.mentee_goals',{
     url:'/mentee_goals/:mentee_id',

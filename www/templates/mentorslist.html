@@ -1,10 +1,19 @@
 <ion-view title="Mentors List" >
-    <ion-content ng-init="mentorslist()">
+    <ion-content ng-init="mentorslist()" class="shz-bg-shade">
+            <ion-refresher on-refresh="doRefresh()">
+                    <ion-refresher-content>
+                    </ion-refresher-content>
+                  </ion-refresher>
+        
         <ion-list  ng-repeat="mentor in mentors">
-            <ion-item ng-hide="mentor.phone_no == $root.phoneno"> 
-              Id: {{mentor.id}}<br>
-              Name: {{mentor.name}}<br>
-               Contact:{{mentor.phone_no}}
+            <ion-item  ng-hide="mentor.phone_no == $root.phoneno" class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3); margin-bottom: 0px !important;">
+                <div class=row style="padding-top:15px; padding-bottom: 15px;">
+                    <a href="{{url}}/myproject/download.php?nama={{file.file_url}}" class="shz-list-title">{{mentor.name}}</a>
+                </div>
+                
+                <div class=row>
+                    <p style="float: left; " >{{mentor.phone_no}}</p>
+                </div>
             </ion-item>
         </ion-list>
     </ion-content>

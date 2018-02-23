@@ -1,0 +1,19 @@
+<ion-view >
+        <ion-nav-title>
+            <img src="img/logo-header.png" alt="" height="25px" style="margin-top:12px;"/>
+        </ion-nav-title>
+      <ion-content>
+            <ion-list ng-init="get_comment_open_forum()">
+                <ion-item ng-repeat="comment in comments">
+                       comment: {{comment.comment_text}}<br>
+                       posted time:{{comment.comment_time}}<br>
+                        Comment By:{{comment.comment_by}}
+                </ion-item>
+            </ion-list>
+           
+            <center>
+                <input type="text" ng-model="commentObj.text" />
+                <button class="button  button-positive" ng-click="add_comment_open_forum()">Comment</button>
+            </center>
+      </ion-content>
+    </ion-view>

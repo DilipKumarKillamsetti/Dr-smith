@@ -19,7 +19,7 @@
                                 <option value="audio">Audio Call</option>
                                 <option value="video">Video Call</option>
                       </select>
-                        <input id="date" type="date"  ng-model="scheduleObj.date1"/>
+                        <input id="date" type="date" min="{{date | date:'yyyy-MM-dd'}}"  ng-model="scheduleObj.date1"/>
                         <input id="starttime" type="time" ng-model="scheduleObj.stime" />
                         <input id="finishtime" type="time" ng-model="scheduleObj.ftime" />
                         <button class="button button-positive" ng-click="addschedules(mentee_id);closeModal_interactions()">Submit</button>
