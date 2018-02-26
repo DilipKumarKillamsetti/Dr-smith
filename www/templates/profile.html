@@ -1,7 +1,7 @@
 <ion-view title="Profile" >
-    <ion-content ng-init="profile()" class="shz-bg-shade">
-        <ion-list>
-            <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-init="details();getschedules(mentee_id)">
+    <ion-content  class="shz-bg-shade" >
+        <ion-list ng-init="profile()">
+            <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" >
                 
                 <br>
               
@@ -9,7 +9,7 @@
                 <div class="">
                     <center>
                     <img src="img/logo.png" class="profile" width="85px" height="85px" style="border: 6px solid white;border-radius: 50%;"/><br>
-                     <!--<img class="profile" width="100px" height="100px" style="border: 8px solid white;border-radius: 50%;" ng-click="editUser()" src="images/logo.png" ng-show="!userinfojson.image || userinfojson.image=='' || userinfojson.image==null"> -->
+                    
                     </center>
                 </div>
                
@@ -122,12 +122,8 @@
                     </div>
                     <div class="col">
                        
-                       
-                       
                          <textarea style=" height: 40px; width: 94%;resize: none;" type="text" id="interests"  ng-readonly="editable" ng-model="details.interests"></textarea>
                   
-                        
-                        
                     </div>
                     
                     
@@ -148,21 +144,14 @@
                 </div>
                 
                 
-               
-               
-              
                 <center>
-                    
                     <button class="button button-positive" ng-click="update_profile(details.password,details.hobbies,details.likes,details.dislikes,details.interests,details.about_me)">
                     Update</button>
         
                 </center>
                 <br/>
             </div> 
-        
-                
-               
-                
+         
                
             </ion-item>
             

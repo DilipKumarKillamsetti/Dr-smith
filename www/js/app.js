@@ -47,6 +47,7 @@ angular.module('drsmith', [
   // home page
   .state('app.home', {
     url: '/home',
+    cache:false,
     views: {
       'tab-home':{
         templateUrl: 'templates/home.html',
@@ -58,6 +59,7 @@ angular.module('drsmith', [
   // goals page
   .state('app.goals', {
     url: '/goals',
+    cache:false,
     views: {
       'tab-goals':{
         templateUrl: 'templates/goals.html',
@@ -69,6 +71,7 @@ angular.module('drsmith', [
   // forum page
   .state('app.forum', {
     url: '/forum',
+    cache:false,
     views: {
       'tab-forum':{
         templateUrl: 'templates/forum.html',
@@ -96,6 +99,7 @@ angular.module('drsmith', [
   //state for mentee login
   .state('app.mentee_home', {
     url: "/mentee_home",
+    cache:false,
     views: {
       'tab-home': {
         templateUrl: "templates/mentee_home.html",
@@ -105,6 +109,7 @@ angular.module('drsmith', [
   })
   .state('app.resources',{
     url:"/resources",
+    cache:false,
     views: {
       'tab-home': {
         templateUrl:"templates/resources.html",
@@ -115,16 +120,18 @@ angular.module('drsmith', [
   })
   .state('app.profile',{
     url:"/profile",
+    cache:false,
     views: {
       'tab-home': {
         templateUrl:"templates/profile.html",
-        controller:'sideMenuCtrl'
+        controller:'profileCtrl'
       }
     } 
   })
 
   .state('app.mymentor',{
     url:"/mymentor",
+    cache:false,
     views: {
       'tab-home': {
         templateUrl:"templates/mymentor.html",
@@ -135,6 +142,7 @@ angular.module('drsmith', [
 
   .state('app.mentorslist',{
     url:"/mentorslist",
+    cache:false,
     views: {
       'tab-home': {
         templateUrl:"templates/mentorslist.html",
@@ -145,6 +153,7 @@ angular.module('drsmith', [
 
   .state('app.mentorforum',{
     url:"/mentorforum",
+    cache:false,
     views: {
       'tab-forum': {
         templateUrl:"templates/mentorforum.html",
@@ -156,6 +165,7 @@ angular.module('drsmith', [
   
   .state('app.mentor_forum_comments',{
     url:"/mentorforum_comments/:id",
+    cache:false,
     views: {
       'tab-forum': {
         templateUrl:"templates/mentorforum_comments.html",
@@ -166,6 +176,7 @@ angular.module('drsmith', [
 
   .state('app.openforum',{
     url:"/openforum",
+    cache:false,
     views: {
       'tab-home': {
         templateUrl:"templates/openforum.html",
@@ -176,6 +187,7 @@ angular.module('drsmith', [
 
   .state('app.open_forum_comments',{
     url:"/openforum_comments/:id",
+    cache:false,
     views: {
       'tab-home': {
         templateUrl:"templates/openforum_comments.html",
@@ -186,6 +198,8 @@ angular.module('drsmith', [
 
 
   .state('app.report_abuse',{
+    url:"report_abuse",
+    cache:false,
     views: {
       'tab-home': {
         templateUrl:"templates/report_abuse.html",
@@ -198,6 +212,7 @@ angular.module('drsmith', [
   //state for mentee login and functionality-->mentee goals and adding goals
   .state('app.mentee_goals',{
     url:'/mentee_goals/:mentee_id',
+    cache:false,
     views:{
       'tab-home':{
         templateUrl:"templates/mentee_goals.html",
@@ -208,6 +223,7 @@ angular.module('drsmith', [
   //state for mentee login functionality --->display comments on goals written by mentee and mentor and add comment
   .state('app.goal_comments',{
     url:'/goal_comments/:goal_id',
+    cache:false,
     views:{
       'tab-home':{
         templateUrl:"templates/goal_comments.html",
@@ -218,6 +234,7 @@ angular.module('drsmith', [
     //state for mentee login functionality ---> display tasks given by mentor
   .state('app.mentee_tasks',{
     url:'/mentee_tasks',
+    cache:false,
     views:{
       'tab-home':{
         templateUrl:"templates/mentee_tasks.html",
@@ -228,6 +245,7 @@ angular.module('drsmith', [
  // state for mentee login functionality --->display comments on tasks written by mentor and mentee add comment
   .state('app.mentee_task_comments',{
     url:'/mentee_task_comments/:id',
+    cache:false,
     views:{
       'tab-home':{
         templateUrl:"templates/mentee_task_comments.html",
@@ -237,6 +255,7 @@ angular.module('drsmith', [
   })
   .state('app.mentee_interactions',{
     url:'/mentee_interactions',
+    cache:false,
     views:{
       'tab-home':{
         templateUrl:"templates/mentee_interactions.html",
@@ -247,6 +266,7 @@ angular.module('drsmith', [
 
   .state('app.mentee', {
     url: "/mentee/:id",
+    cache:false,
     views: {
       'tab-home': {
         templateUrl: "templates/mentee.html",
@@ -256,6 +276,7 @@ angular.module('drsmith', [
   })
   .state('app.menteegoals',{
     url:"/menteegoals/:mentee_id/:mentee_name/:mentee_address",
+    cache:false,
     views:{
       'tab-home':{
         templateUrl: "templates/menteegoals.html",
@@ -265,6 +286,7 @@ angular.module('drsmith', [
   })
   .state('app.menteegoals_comments', {
     url: "/menteegoals_comments/:id/:mentee_id",
+    cache:false,
     views: {
       'tab-home': {
         templateUrl: "templates/menteegoals_comments.html",
@@ -274,6 +296,7 @@ angular.module('drsmith', [
   })
   .state('app.menteetasks',{
     url:"/menteetasks/:mentee_id/:mentee_name/:mentee_address",
+    cache:false,
     views:{
       'tab-home':{
         templateUrl: "templates/menteetasks.html",
@@ -283,6 +306,7 @@ angular.module('drsmith', [
   })
   .state('app.menteetask_comments', {
     url: "/menteetask_comments/:id/:task",
+    cache:false,
     views: {
       'tab-home': {
         templateUrl: "templates/menteetask_comments.html",
@@ -292,6 +316,7 @@ angular.module('drsmith', [
   })
   .state('app.interactions',{
     url:'/interactions/:mentee_id',
+    cache:false,
     views: {
       'tab-home': {
         templateUrl:'templates/interactions.html',
@@ -301,6 +326,7 @@ angular.module('drsmith', [
   })
   .state('app.interaction_comments',{
     url:'/interaction_comments/:interaction_id',
+    cache:false,
     views:{
       'tab-home':{
         templateUrl:'templates/interaction_comments.html',

@@ -273,8 +273,10 @@ angular.module('drsmith.controllers.menteectrl', [])
         
         }
         $scope.fun1=function(menteegoal_id){
-          console.log($scope.edit_mentee_goalObj.new_goal, $scope.edit_mentee_goalObj.goal_date);
-          if( !$scope.edit_mentee_goalObj.goal_date ){
+          console.log($scope.edit_mentee_goalObj.new_goal)
+          console.log($scope.edit_mentee_goalObj.goal_date);
+          if( $scope.edit_mentee_goalObj.goal_date )
+          {
           $scope.menteeGoal_DueDate = moment($scope.edit_mentee_goalObj.goal_date).format('YYYY-MM-DD');
           console.log($scope.menteeGoal_DueDate)
           }
@@ -289,7 +291,7 @@ angular.module('drsmith.controllers.menteectrl', [])
                 name:$scope.edit_mentee_goalObj.selectedImgName,
                 goal:$scope.edit_mentee_goalObj.new_goal,
                 shab:$scope.edit_mentee_goalObj.selected_img_base64,
-                goal_id:menteegoal_id,due_date:$scope.menteeGoal_DueDate,
+                goal_id:menteegoal_id, due_date:$scope.menteeGoal_DueDate,
               edited_date:edited_date
             }
          })
@@ -405,8 +407,19 @@ angular.module('drsmith.controllers.menteectrl', [])
           .catch(function(e){
             alert(e)
           })
-
           document.getElementById("task").value="";
+              }
+              $scope.confirm=function(menteegoal_id){
+                var a = confirm("Are you sure?")
+                if(a)
+                {
+                  $scope.completed=true;
+                  $scope.mentee_goal_update(menteegoal_id)
+                }
+                else{
+                  console.log("hii.......")
+                  $scope.completed=false;
+                }
               }
           $scope.mentee_goal_update=function(goal_id){
            

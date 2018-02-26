@@ -9,6 +9,8 @@ angular.module('drsmith.controllers.forumTabctrl', [])
     $scope.discussionObj={
         text:""
     };
+
+    $scope.hidepage=true;
     $scope.add_discussion_mentorforum=function(){
         if($scope.discussionObj.text.length>0){
         $http(
@@ -42,6 +44,7 @@ angular.module('drsmith.controllers.forumTabctrl', [])
                 console.log(response.data)
                 $scope.discussions=response.data;
                 $scope.$broadcast('scroll.refreshComplete');
+                $scope.hidepage=false;
             })
     }
 
@@ -56,6 +59,7 @@ angular.module('drsmith.controllers.forumTabctrl', [])
          .then(function(response){
              console.log(response.data)
              $scope.comments=response.data;
+             $scope.hidepage=false;
          })
      }
      $scope.commentObj={
@@ -84,7 +88,7 @@ angular.module('drsmith.controllers.forumTabctrl', [])
              }
      }
 
-
+     
     $scope.add_discussion_openforum=function(){
         console.log(localStorage.getItem('name'))
         console.log(localStorage.getItem('id'))
@@ -122,6 +126,7 @@ angular.module('drsmith.controllers.forumTabctrl', [])
             .then(function(response){
                 console.log(response.data)
                 $scope.discussions=response.data;
+                $scope.hidepage=false;
             })
 
     }
@@ -136,6 +141,7 @@ angular.module('drsmith.controllers.forumTabctrl', [])
         .then(function(response){
             console.log(response.data)
             $scope.comments=response.data;
+            $scope.hidepage=false;
         })
     }
     $scope.commentObj={

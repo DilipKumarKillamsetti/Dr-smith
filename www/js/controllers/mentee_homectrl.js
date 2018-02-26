@@ -2,6 +2,7 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
 .controller('mentee_homectrl',function($scope,$rootScope,$http,$stateParams,$ionicModal){
   //modal for add mentee goals 
   //console.clear()
+
   $scope.date = new Date();
   $ionicModal.fromTemplateUrl('templates/add_mentee_goals.html',{
     scope: $scope,
@@ -361,13 +362,13 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
       };
       $scope.addtask=function(){
         $scope.taskObj.selected_img=document.getElementById("inputFile").files;
-        console.log($scope.taskObj.selected_img[0])
+        console.log($scope.taskObj.selected_img[0],$scope.taskObj.new_task,$scope.taskObj.task_date)
         if(!$scope.taskObj.task_date || $scope.taskObj.new_task=="" )
         {
         alert("selelct value");
         }
         else {
-          if( $scope.taskObj.selected_img.length>0 ){
+          if( $scope.taskObj.selected_img.length > 0 ){
           $scope.taskObj.selectedImgName = $scope.taskObj.selected_img[0].name;
           var filetoload=$scope.taskObj.selected_img[0];
           var fileReader= new FileReader();
@@ -385,7 +386,7 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
   //sub function for add task with file function
     $scope.fun1=function(){
       $scope.formattedDate1 = moment($scope.taskObj.task_date).format('YYYY-MM-DD');
-    console.log( $scope.formattedDate1)
+     console.log( $scope.formattedDate1)
       $http(
         {
           url:localStorage.getItem('url')+"/myproject/add-mentee-task.php",
@@ -408,13 +409,10 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
       document.getElementById("inputFile").value=null;
       $scope.formattedDate1 ="";
           $scope.gettasks();
-        }
-      )
+        })
       .catch(function(e){
         alert(e)
       })
-
-      document.getElementById("task").value="";
           }
       //function for the mentee to add schedule 
       $scope.scheduleObj={};
@@ -426,31 +424,36 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
         description:''
       }
       $scope.addschedules=function(){
+        console.log($scope.scheduleObj.date)
         $scope.date1 = moment($scope.scheduleObj.date).format('YYYY-MM-DD');
         $scope.stime1=moment($scope.scheduleObj.stime).format('HH:mm');
         $scope.ftime1=moment($scope.scheduleObj.ftime).format('HH:mm');
-        if($scope.date1=="Invalid date"&&$scope.stime1=="Invalid date"&&$scope.ftime1=="Invalid date")
-          {alert("select valid values") }
+        console.log($scope.scheduleObj.description)
+        console.log($scope.date1)
+        console.log($scope.stime1)
+        console.log($scope.ftime1)
+        if($scope.date1=="Invalid date" || $scope.stime1=="Invalid date" || $scope.ftime1=="Invalid date")
+          {
+            alert("select valid values")
+          }
           else{
             $http({
           url:localStorage.getItem('url')+"/myproject/meeting_schedule.php",
           method:"GET",
-          params: {date: $scope.date1,start_time:$scope.stime1,end_time:$scope.ftime1,
+          params: {
+            date: $scope.date1,start_time:$scope.stime1,end_time:$scope.ftime1,
             mentor_id:localStorage.getItem('mentor_id'),mentee_id:localStorage.getItem('id'),
             meeting_type:$scope.scheduleObj.type,
             added_by:localStorage.getItem('type'),
-            comment:$scope.scheduleObj.description}
+            comment:$scope.scheduleObj.description
+          }
         })
       .then(function(response){
         $scope.result=response.data;
         $scope.getschedules();
         console.log($scope.result)
         $scope.scheduleObj={
-          date1:'',
-          stime:'',
-          ftime:'',
-          type:'',
-          description:''
+          date1:'', stime:'',ftime:'',type:'',description:''
         }
       })
     }

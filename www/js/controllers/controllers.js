@@ -8,7 +8,8 @@ angular.module('drsmith.controllers',[
     'drsmith.controllers.commentsctrl',
     'drsmith.controllers.mentee_homectrl',
     'drsmith.controllers.forumTabctrl',
-    'drsmith.controllers.messageCtrl'
+    'drsmith.controllers.messageCtrl',
+    'drsmith.controllers.profileCtrl'
 
 ])
 
