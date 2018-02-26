@@ -35,7 +35,7 @@
                         <div class=row style="padding-top:5px; padding-bottom: 5px;">
                             <img src="img/sidebar-calendar.png" width="20" height="20" alt="error" >
                             <label for="date">
-                                <input id="date" type="date"   ng-model="taskObj.task_date"/>
+                                <input id="date" type="date" min="{{date | date:'yyyy-MM-dd'}}"  ng-model="taskObj.task_date"/>
                             </label>
                         </div>
                     </div>

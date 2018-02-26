@@ -54,6 +54,7 @@ $scope.confirm_=function(goal_id)
   console.log(a, "...confirmm....")
   if(a)
   {
+    $scope.completed=true;
     $scope.update(goal_id);
   }
   else{
@@ -75,6 +76,7 @@ $scope.update=function(goal_id)
     $scope.get();
   })
 }
+$scope.hidepage=true;
   $scope.get=function(){
     // console.log(localStorage.getItem('id'))
     $http(
@@ -92,6 +94,7 @@ $scope.update=function(goal_id)
         $scope.$broadcast('scroll.refreshComplete');
       }
        console.log($scope.goals)
+       $scope.hidepage=false;
 
     }
   )

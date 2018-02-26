@@ -7,6 +7,7 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
   $scope.logout=function(){
    $ionicHistory.clearHistory()
     $window.localStorage.clear();
+    $ionicHistory.clearCache();
     $state.go("login")
   }
 
@@ -58,74 +59,19 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
    
   })
   }
-  //function for profile display
-  $scope.profile=function(){
-    if(localStorage.getItem('type') == "mentor") {
-      console.log("Mentor Profile......")
-    }
-    if(localStorage.getItem('type') == "mentee") {
-      console.log("Mentee Profile......")
-    }
-    console.log(localStorage.getItem('phoneno'))
-    $http(
-      {
-          url:localStorage.getItem('url')+"/myproject/myprofile.php",
-          method:"GET",
-          params:{phone_no:localStorage.getItem('phoneno')}
-      })
-    .then(function(response){
-      $scope.details=response.data;
-      console.log($scope.details)
-  })
-  }
-
-$scope.editable=true;
-$scope.edit_profile=function(){
-  $scope.editable=false;
-  console.log(".........edit.......profile", $scope.editable)
-  var password = $window.document.getElementById('password');
-  var hobbies = $window.document.getElementById('hobbies');
-  var likes = $window.document.getElementById('likes');
-  var dislikes = $window.document.getElementById('dislikes');
-  var aboutme = $window.document.getElementById('aboutme');
-  var intrests = $window.document.getElementById('interests');
-
-  password.focus();
-  hobbies.focus();
-  likes.focus();
-  dislikes.focus();
-  aboutme.focus();
-  intrests.focus();
-}
-
-$scope.update_profile=function(password,hobbies,likes,dislikes,intrests,aboutme){ 
-  console.log(password,hobbies,likes,dislikes,intrests,aboutme);
-  console.log(localStorage.getItem('phoneno'))
-  $http(
-    {
-        url:localStorage.getItem('url')+"/myproject/edit_profile.php",
-        method:"GET",
-        params:{ phone_no:localStorage.getItem('phoneno') ,
-          type:localStorage.getItem('type'), interests : intrests , likes : likes , hobbies : hobbies,
-          dislikes:dislikes,password:password,about_me:aboutme}
-    })
-  .then(function(response){
-    console.log(response.data)
-})
-$scope.editable=true;
-}
+  
 
   $scope.mymentor=function(){
     if(localStorage.getItem('type')=="mentee"){
       $http(
         {
-            url:localStorage.getItem('url')+"/myproject/login_read.php",
+            url:localStorage.getItem('url')+"/myproject/my_mentor.php",
             method:"GET",
-            params:{id:localStorage.getItem('id')}
+            params:{phone_no:localStorage.getItem('phoneno')}
         })
       .then(function(response){
-        $scope.files=response.data;
-        console.log($scope.files)
+       console.log(response.data)
+       $scope.mentor=response.data;
     })
     }
   }
@@ -172,13 +118,17 @@ $scope.editable=true;
       if($state.current.name == "app.home" || $state.current.name == "app.goals" || $state.current.name == "app.mentorforum" )
       {
         
-        
-        $scope.hideTab=false
+        $rootScope.hideTab=false
       }
       else
       {
-        $scope.hideTab=true
+        $rootScope.hideTab=true
       }
+     
+    }
+    if($state.current.name=="app.profile")
+    {
+     // $scope.profile();
     }
   })
   

@@ -1,9 +1,41 @@
-<ion-view title="My Mentor" >
+<ion-view title="My Mentor" class="shz-bg-shade" >
     <ion-content ng-init="mymentor()">
-        <ion-list  ng-repeat="file in files">
-            <ion-item>
-               {{file}}
-            </ion-item>
-        </ion-list>
+
+            <div class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);">
+                    <div class="item-text-wrap screen-center">
+                        <div class="shz-profilePic">
+                            <img src="img/logo.png" class="profile" width="85px" height="85px" style="border: 6px solid white;border-radius: 50%;"/><br>
+                             <!--<img class="profile" width="100px" height="100px" style="border: 8px solid white;border-radius: 50%;" ng-click="editUser()" src="images/logo.png" ng-show="!userinfojson.image || userinfojson.image=='' || userinfojson.image==null"> -->
+                        </div>
+                    </div> 
+                    <div class="shz-screen-center ">
+                        
+                       <center>
+                             
+                                <h3 class="shz-text-capitalize">
+                                        {{mentor.name}}
+                                </h3>
+                                <h5>
+                               Contact: {{mentor.phone_no}}  
+                                </h5>
+                                <h5>
+                                   Degree: {{mentor.degree}}
+                                </h5>
+                                 
+                        
+                        </center>
+                    </div>
+                    
+                </div>
+
+
+
+
+
+
+
+
+
+       
     </ion-content>
 </ion-view>
