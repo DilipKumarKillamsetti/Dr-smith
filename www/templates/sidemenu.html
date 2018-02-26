@@ -10,8 +10,8 @@
           </button>
         </ion-nav-buttons>
       </ion-nav-bar>
-      {{hideTab}}
-      <ion-tabs class="tabs-icon-top tabs-positive" ng-class="{'tabs-item-hide': hideTab}">
+     
+      <ion-tabs class="tabs-icon-top tabs-positive" ng-class="{'tabs-item-hide':$root.hideTab}">
   
         <ion-tab title="Mentee List" icon-off="shz-tab-list" icon-on="shz-tab-list" href="#/app/home">
           <ion-nav-view name="tab-home"></ion-nav-view>
@@ -49,13 +49,13 @@
             <div class="row">
               <div class="col col-center" style="margin-top: 40px;">
                
-                <ion-item  menu-close ui-sref="app.home" ng-show="type == 'mentor'">
+                <ion-item  menu-close ui-sref="app.home" ng-show="$root.type == 'mentor'">
                  
                      <img src="img/sidebar-home.png" width="25px" style="float: left; margin-right: 15px;"> <h2 class="menu-text">Home</h2>  
                     
                 </ion-item>
   
-                <ion-item  menu-close ui-sref="app.mentee_home" ng-show="type=='mentee'">
+                <ion-item  menu-close ui-sref="app.mentee_home" ng-show="$root.type=='mentee'">
                   <img src="img/sidebar-home.png" width="25px" style="float: left; margin-right: 15px;"><h2 class="menu-text">Home</h2>
                 </ion-item>
                                    

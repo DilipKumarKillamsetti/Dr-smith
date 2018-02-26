@@ -6,7 +6,9 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
   console.log(localStorage.getItem('hideTab'))
   $scope.logout=function(){
    $ionicHistory.clearHistory()
+   $ionicHistory.clearCache();
     $window.localStorage.clear();
+
     $state.go("login")
   }
 
@@ -173,11 +175,11 @@ $scope.editable=true;
       {
         
         
-        $scope.hideTab=false
+        $rootScope.hideTab=false
       }
       else
       {
-        $scope.hideTab=true
+        $rootScope.hideTab=true
       }
     }
   })
