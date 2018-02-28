@@ -6,8 +6,9 @@
 angular.module('drsmith', [
   'ionic',
   'drsmith.controllers',
-  'angularMoment'
-])
+  'angularMoment',
+  'ui.calendar'
+])  
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -161,7 +162,7 @@ angular.module('drsmith', [
       }
     } 
   })
-
+  
   
   .state('app.mentor_forum_comments',{
     url:"/mentorforum_comments/:id",
@@ -181,6 +182,16 @@ angular.module('drsmith', [
       'tab-home': {
         templateUrl:"templates/openforum.html",
         controller:'forumTabctrl'
+      }
+    } 
+  })
+  .state('app.calender',{
+    url:"/calender",
+    cache:false,
+    views: {
+      'tab-home': {
+        templateUrl:"templates/calender.html",
+        controller:'calenderEveCtrl'
       }
     } 
   })
