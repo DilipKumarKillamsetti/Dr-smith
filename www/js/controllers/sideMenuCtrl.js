@@ -8,6 +8,8 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
    $ionicHistory.clearHistory()
     $window.localStorage.clear();
     $ionicHistory.clearCache();
+    console.clear()
+    alert("Logged out Sucessfully")
     $state.go("login")
   }
 
@@ -109,7 +111,6 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
       console.log(response.data)
   }) 
   }
-  $scope.type=localStorage.getItem('type')
   $scope.$on("$ionicView.beforeLeave", function()
   {
     if(localStorage.getItem('type')=="mentor")
@@ -126,10 +127,10 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
       }
      
     }
-    if($state.current.name=="app.profile")
-    {
-     // $scope.profile();
+    else{
+      console.log("I am in mentee login")
     }
+    
   })
   
   })

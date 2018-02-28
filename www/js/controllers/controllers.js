@@ -9,7 +9,8 @@ angular.module('drsmith.controllers',[
     'drsmith.controllers.mentee_homectrl',
     'drsmith.controllers.forumTabctrl',
     'drsmith.controllers.messageCtrl',
-    'drsmith.controllers.profileCtrl'
+    'drsmith.controllers.profileCtrl',
+    'drsmith.controllers.calenderEveCtrl'
 
 ])
 

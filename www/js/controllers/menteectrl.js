@@ -136,13 +136,13 @@ angular.module('drsmith.controllers.menteectrl', [])
           $scope.date1 = moment($scope.scheduleObj.date1).format('YYYY-MM-DD');
           $scope.stime1=moment($scope.scheduleObj.stime).format('HH:mm');
           $scope.ftime1=moment($scope.scheduleObj.ftime).format('HH:mm');
-          console.log( $scope.date1)
-          console.log( $scope.stime1)
-          console.log( $scope.ftime1)
+          console.log($scope.scheduleObj.date1,"<->" , $scope.date1)
+          console.log($scope.scheduleObj.stime,"<->" , $scope.stime1)
+          console.log( $scope.scheduleObj.ftime ,"<->" ,$scope.ftime1)
           console.log( $scope.scheduleObj.description)
           console.log( $scope.scheduleObj.type)
-          if($scope.date1=="Invalid date" || $scope.stime1=="Invalid date" ||
-          $scope.ftime1=="Invalid date" || $scope.scheduleObj.description == "" || $scope.scheduleObj.type == "")
+          if($scope.scheduleObj.date1=="" || $scope.scheduleObj.stime=="" || $scope.scheduleObj.ftime=="" ||
+           $scope.scheduleObj.description == "" || $scope.scheduleObj.type == "")
           {
             alert("select valid values")
            }

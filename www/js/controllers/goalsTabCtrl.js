@@ -113,14 +113,16 @@ $scope.add = function()
   console.log($scope.goalsObj.new_goal, $scope.goalsObj.goal_date);
   $scope.goalsObj.selected_img = document.getElementById("inputFile").files;
 
-  if($scope.goalsObj.goal_date =="" || $scope.goalsObj.new_goal=="")
+  if($scope.goalsObj.goal_date == undefined || $scope.goalsObj.new_goal=="")
   {
     alert("selelct value");
   }
   else 
   {
     if($scope.goalsObj.selected_img.length > 0){
+     
     $scope.goalsObj.selectedImgName = $scope.goalsObj.selected_img[0].name;
+    alert( $scope.goalsObj.selectedImgName)
     var filetoload = $scope.goalsObj.selected_img[0];
     var fileReader= new FileReader();
     fileReader.readAsDataURL(filetoload);
@@ -192,15 +194,19 @@ $scope.fun=function(){
   $scope.edit=function(goal_id){
     console.log($scope.edit_goalObj.new_goal)
     console.log($scope.edit_goalObj.goal_date);
+   console.log( $scope.edit_goalObj.goal_date.length <=0 )
   $scope.edit_goalObj.selected_img = document.getElementById("inputFile").files;
-
-  if($scope.edit_goalObj.selected_img.length < 1 && $scope.edit_goalObj.new_goal=="")
+  console.log( $scope.edit_goalObj.selected_img )
+  if(  $scope.edit_goalObj.new_goal.length<=0 || $scope.edit_goalObj.goal_date.length <=0 )
   {
     alert("selelct value");
   }
-  else if($scope.edit_goalObj.selected_img.length > 0)
+  else 
   {
-    $scope.edit_goalObj.selectedImgName = $scope.edit_goalObj.selected_img[0].name;
+    if($scope.edit_goalObj.selected_img.length > 0)
+    {
+      $scope.edit_goalObj.selectedImgName = $scope.edit_goalObj.selected_img[0].name;
+    alert($scope.edit_goalObj.selectedImgName)
     console.log($scope.edit_goalObj.selectedImgName)
     var filetoload = $scope.edit_goalObj.selected_img[0];
     var fileReader= new FileReader();
@@ -213,50 +219,57 @@ $scope.fun=function(){
   }
   else
   {
+    alert("Hiii Escaping")
     $scope.fun1(goal_id);
   }
+}
+  
   }
 $scope.fun1=function(goal_id){
   console.log($scope.edit_goalObj.new_goal, $scope.edit_goalObj.goal_date);
-  if($scope.edit_goalObj.goal_date!=""){
+  if($scope.edit_goalObj.goal_date !=undefined){
   $scope.formattedDate1 = moment($scope.edit_goalObj.goal_date).format('YYYY-MM-DD');
   console.log($scope.formattedDate1)
-  }
   var edited_date = new Date();
-   edited_date = moment(edited_date).format('YYYY-MM-DD')
-  $http(
-    {
-      url:localStorage.getItem('url')+"/myproject/edit_mentor_goal.php",
-       method:"POST",
-       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      data:{
-        mentor_id:localStorage.getItem('id'),
-        name:$scope.edit_goalObj.selectedImgName,
-        goal:$scope.edit_goalObj.new_goal,
-        shab:$scope.edit_goalObj.selected_img_base64,
-        goal_id:goal_id , 
-        due_date : $scope.formattedDate1 ,
-        edited_date : edited_date}
+  edited_date = moment(edited_date).format('YYYY-MM-DD')
+ $http(
+   {
+     url:localStorage.getItem('url')+"/myproject/edit_mentor_goal.php",
+      method:"POST",
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+     data:{
+       mentor_id:localStorage.getItem('id'),
+       name:$scope.edit_goalObj.selectedImgName,
+       goal:$scope.edit_goalObj.new_goal,
+       shab:$scope.edit_goalObj.selected_img_base64,
+       goal_id:goal_id , 
+       due_date : $scope.formattedDate1 ,
+       edited_date : edited_date}
+})
+ .then(function(response){
+  $scope.goals=response.data;
+ console.log($scope.goals)
+     $scope.get();
+     $scope.edit_goalObj = {};
+     $scope.edit_goalObj = {
+       new_goal:'',
+       goal_date:'',
+       selected_img:'',
+       selectedImgName:'',
+       selected_img_base64:''
+     };
+     document.getElementById("inputFile").value = null;
+     $scope.formattedDate1 = '';
+   }
+ )
+ .catch(function(e){
+   alert(e)
  })
-  .then(function(response){
-   $scope.goals=response.data;
-  console.log($scope.goals)
-      $scope.get();
-      $scope.edit_goalObj = {};
-      $scope.edit_goalObj = {
-        new_goal:'',
-        goal_date:'',
-        selected_img:'',
-        selectedImgName:'',
-        selected_img_base64:''
-      };
-      document.getElementById("inputFile").value = null;
-      $scope.formattedDate1 = '';
-    }
-  )
-  .catch(function(e){
-    alert(e)
-  })
+  }
+  else{
+    alert("tu tak tu tak tutia")
+  }
+ 
 }
 // $scope.edit=function(goal_id){
 //   console.log(goal_id,$scope.edit_goalObj.new_goal)
