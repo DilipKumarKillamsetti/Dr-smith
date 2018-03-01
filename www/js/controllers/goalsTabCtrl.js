@@ -1,5 +1,5 @@
-angular.module('drsmith.controllers.goalsTabCtrl', [])
-.controller('goalsctrl',function($scope,$rootScope,$http,$window ,$timeout, $ionicModal)
+angular.module('drsmith.controllers.goalsTabCtrl', ['ionic'])
+.controller('goalsctrl',function($scope,$rootScope,$http,$window, $ionicPopup ,$timeout, $ionicModal)
 {
   console.clear()
   $scope.date = new Date();
@@ -7,7 +7,38 @@ angular.module('drsmith.controllers.goalsTabCtrl', [])
     console.log('Begin async operation......');
     $timeout($scope.get(),1500)
   }
+  //function for display alert
+  $scope.showAlert = function() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Don\'t eat that!',
+      template: 'It might taste good'
+    });
+ 
+    alertPopup.then(function(res) {
+      console.log('Thank you for not eating my delicious ice cream cone');
+      console.log(res)
+    });
+  };
 
+
+
+  $scope.showConfirm = function() {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Consume Ice Cream',
+      template: 'Are you sure you want to eat this ice cream?'
+    });
+ 
+    confirmPopup.then(function(res) {
+      if(res) {
+        console.log('You are sure');
+      } else {
+        console.log('You are not sure');
+      }
+    });
+  };
+
+
+  
   //modal for adding goals of mentor
   $ionicModal.fromTemplateUrl('templates/add_goal_mentor.html',{
     scope: $scope,

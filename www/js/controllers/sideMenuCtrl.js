@@ -14,6 +14,30 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
   }
 
 
+
+  $scope.$on("$ionicView.beforeLeave", function()
+  {
+    if(localStorage.getItem('type')=="mentor")
+    {
+      console.log($state.current.name)
+      if($state.current.name == "app.home" || $state.current.name == "app.goals" || $state.current.name == "app.mentorforum" )
+      {
+        
+        $rootScope.hideTab=false
+      }
+      else
+      {
+        $rootScope.hideTab=true
+      }
+     
+    }
+    else{
+      console.log("I am in mentee login")
+    }
+    
+  })
+
+
     $scope.reportObj={
       text:'',
     }
@@ -111,26 +135,6 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
       console.log(response.data)
   }) 
   }
-  $scope.$on("$ionicView.beforeLeave", function()
-  {
-    if(localStorage.getItem('type')=="mentor")
-    {
-      console.log($state.current.name)
-      if($state.current.name == "app.home" || $state.current.name == "app.goals" || $state.current.name == "app.mentorforum" )
-      {
-        
-        $rootScope.hideTab=false
-      }
-      else
-      {
-        $rootScope.hideTab=true
-      }
-     
-    }
-    else{
-      console.log("I am in mentee login")
-    }
-    
-  })
+ 
   
   })

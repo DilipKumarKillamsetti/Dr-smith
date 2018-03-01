@@ -1,7 +1,8 @@
 
-angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar', 'ui.bootstrap'])
-.controller("calenderEveCtrl",function($scope,$http,$compile,uiCalendarConfig,$rootScope,$timeout){
+angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic', 'ui.bootstrap'])
+.controller("calenderEveCtrl",function($scope,$http,$compile,uiCalendarConfig,$ionicPopup,$rootScope,$timeout){
     console.clear()
+    $scope.count =0;
     $scope.hidepage = true;
     $scope.doRefresh=function(){
         console.log('Begin async operation......');
@@ -18,20 +19,58 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar', 'ui.bootst
                 ];
         $timeout($scope.get(),2000)
       }
+      $scope.alertOnEventClick = function( date, jsEvent, view){
+        $scope.alertMessage = (date.title + ' was clicked ');
+    };
+    $scope.showConfirm = function(title,start,end) {
+        start=moment(start).format('LT');
+        end=moment(end).format('LT')
+        var confirmPopup = $ionicPopup.confirm({
+          title: title,
+         
+          template:start +"to"+ end,
+        });
+     
+        confirmPopup.then(function(res) {
+          if(res) {
+            console.log('You are sure');
+          } else {
+            console.log('You are not sure');
+          }
+        });
+      };
+      $scope.showAlert = function(title,start,end) {
+        start=moment(start).format('LT');
+        end=moment(end).format('LT');
+        var alertPopup = $ionicPopup.alert({
+          title: title,
+          template: start +"to"+ end,
+        });
+        alertPopup.then(function(res) {
+          console.log('Thank you for not eating my delicious ice cream cone');
+          console.log(res)
+        });
+      };
     $scope.uiConfig = {
         calendar:{
           height: 'auto',
           editable: false,
           header:{
-            left: 'month basicWeek basicDay agendaWeek agendaDay',
+              left:"",
             center: 'title',
             right: 'today prev,next'
           },
-          eventClick: $scope.alertOnEventClick,
+          eventClick:  function( date, jsEvent, view){
+            console.log (date.title);
+            console.log(date.start._i);
+            console.log(date.end._i)
+           // $scope.showAlert(date.title ,date.start. _i,date.end._i)
+        },
           eventDrop: $scope.alertOnDrop,
           eventResize: $scope.alertOnResize
         }
       };
+    
       var date = new Date();
       var d = date.getDate();
       var m = date.getMonth();
@@ -61,6 +100,7 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar', 'ui.bootst
                     $scope.tasks_exists=true;
                     $scope.tasks = $scope.events.mentee_tasks;
                         $scope.fun();
+                        console.log('End async operation......');
                     })
                 }
                 else
@@ -78,6 +118,7 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar', 'ui.bootst
                         $scope.tasks_exists=false;
                         console.log( $scope.events)
                         $scope.fun();
+                        console.log('End async operation......');
                     })
                 }
             }
@@ -89,6 +130,7 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar', 'ui.bootst
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
+            $scope.count=$scope.count+1;
            $scope.addEvent("Goal Due Date",y,m,d)
         }
         for (var i=0;i<$scope.meetings.length;i++)
@@ -107,6 +149,7 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar', 'ui.bootst
             var eth = parseInt(arr[0]) ;
             var etm = parseInt(arr[1]) ;
             var ets = parseInt(arr[2]) + " seconds";
+            $scope.count=$scope.count+1;
             $scope.addEvent1("meeting",y,m,d,sth,stm,eth,etm)
         }
         if($scope.tasks_exists){
@@ -116,11 +159,24 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar', 'ui.bootst
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
+            $scope.count=$scope.count+1
             $scope.addEvent("Task Due Date",y,m,d)
-        }}
+        }
+    }
         console.log($scope.eventSources)
-        $scope.hidepage = false;
          $scope.$broadcast('scroll.refreshComplete');
+         if($scope.count==$scope.tasks.length+$scope.goals.length+$scope.meetings.length)
+         {
+            alert("pupoi")
+            console.log("count",$scope.count)
+            console.log($scope.tasks.length+$scope.goals.length+$scope.meetings.length)
+            $scope.hidepage=false;
+         }
+         else{
+             alert("pupu")
+             console.log("count",$scope.count)
+             console.log($scope.tasks.length+$scope.goals.length+$scope.meetings.length)
+         }
     }
    
       $scope.addEvent1 = function(title,y,m,d,sth,stm,fth,ftm) {
@@ -145,6 +201,7 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar', 'ui.bootst
       var arr =[temp];
      $scope.eventSources.push(arr)
     };
+   
      
       
 })
