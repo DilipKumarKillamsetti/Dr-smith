@@ -15,12 +15,12 @@
                     <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);padding:15px; margin-bottom: 0px !important;" ng-repeat="discussion in discussions track by $index">
                                     <div class="shz-half-description shz-clear-link"style="padding-left:0px;" >
                                         <h3 style="white-space: initial;"><a class="shz-clear-link shz-gray-color" >
-                                                <a class="shz-clear-link shz-list-title" ui-sref="app.mentor_forum_comments({id:discussion.id})"> {{discussion.discussion_text}} </a> <br/><br/>
+                                                <a class="shz-clear-link shz-list-title" style="color:gray;" ui-sref="app.mentor_forum_comments({id:discussion.id})"> {{discussion.discussion_text}} </a> <br/><br/>
                                            </h3>
                                     </div>
                       
-                           <h3 class="shz-text-capitalize">Started By:  {{discussion.started_by}}</h3>
-                           <h3 class="shz-text-capitalize">Posted Date: {{discussion.date}}</h3>
+                           <h3 class="shz-text-capitalize" style="color:#0066cb;">Started By:  {{discussion.started_by}}</h3>
+                           <h3 class="shz-text-capitalize" style="color:green">Posted Date: {{discussion.date}}</h3>
                              
                            </ion-item>
             </ion-list>

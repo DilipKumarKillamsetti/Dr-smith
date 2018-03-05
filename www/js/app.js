@@ -151,7 +151,37 @@ angular.module('drsmith', [
       }
     }
   })
+  .state('app.calender',{
+    url:"/calender",
+    cache:false,
+    views: {
+      'tab-home': {
+        templateUrl:"templates/calender.html",
+        controller:'calenderEveCtrl'
+      }
+    } 
+  })
+  .state('app.webinar',{
+    url:"/webinar",
+    cache:false,
+    views: {
+      'tab-home': {
+        templateUrl:"templates/webinar.html",
+        controller:'calenderEveCtrl'
+      }
+    } 
+  })
 
+  .state('app.iframe',{
+    url:"/iframe/:url",
+    cache:false,
+    views: {
+      'tab-home': {
+        templateUrl:"templates/iframe.html",
+        controller:'calenderEveCtrl'
+      }
+    } 
+  })
   .state('app.mentorforum',{
     url:"/mentorforum",
     cache:false,
@@ -185,16 +215,7 @@ angular.module('drsmith', [
       }
     } 
   })
-  .state('app.calender',{
-    url:"/calender",
-    cache:false,
-    views: {
-      'tab-home': {
-        templateUrl:"templates/calender.html",
-        controller:'calenderEveCtrl'
-      }
-    } 
-  })
+
 
   .state('app.open_forum_comments',{
     url:"/openforum_comments/:id",

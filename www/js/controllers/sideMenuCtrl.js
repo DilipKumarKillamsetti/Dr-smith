@@ -1,5 +1,5 @@
 angular.module('drsmith.controllers.sideMenuCtrl', [])
-.controller('sideMenuCtrl', function($scope,$rootScope,$state,$timeout,
+.controller('sideMenuCtrl', function($scope,$rootScope,$state,$timeout,$ionicPopup,
   $ionicHistory,$http,$window,$ionicModal) {
   //console.clear()
   console.log("calling...");
@@ -9,8 +9,18 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
    $ionicHistory.clearCache();
     $window.localStorage.clear();
     console.clear()
-    alert("Logged out Sucessfully")
+    $scope.logout_sucess();
     $state.go("login")
+    
+  }
+  $scope.logout_sucess=function(){
+    var confirmPopup = $ionicPopup.alert({        
+      title: "Logout Sucessfully",
+      template: ""
+    });
+    confirmPopup.then(function(res) { 
+        console.log("logout Sucessfully")
+    })
   }
 
 

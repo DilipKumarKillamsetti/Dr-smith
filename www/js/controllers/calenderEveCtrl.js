@@ -1,12 +1,24 @@
-
-angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic', 'ui.bootstrap'])
-.controller("calenderEveCtrl",function($scope,$http,$compile,uiCalendarConfig,$ionicPopup,$rootScope,$timeout){
+angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic'])
+.controller("calenderEveCtrl",function($scope,$state,$stateParams,$http,$compile,
+    uiCalendarConfig,$rootScope,$sce, $ionicPopup, $timeout){
     console.clear()
-    $scope.count =0;
-    $scope.hidepage = true;
+    $scope.showConfirm = function(date) {
+        var confirmPopup = $ionicPopup.confirm({
+          title: date.title,
+          template: date.start._i
+        });
+     
+        confirmPopup.then(function(res) {
+          if(res) {
+            console.log('You are sure');
+          } else {
+            console.log('You are not sure');
+          }
+        });
+      }
     $scope.doRefresh=function(){
         console.log('Begin async operation......');
-        var date = new Date();
+        var date = new Date();      
         var d = date.getDate();
         var m = date.getMonth();
         var y = date.getFullYear();
@@ -19,68 +31,35 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic', 'u
                 ];
         $timeout($scope.get(),2000)
       }
-      $scope.alertOnEventClick = function( date, jsEvent, view){
-        $scope.alertMessage = (date.title + ' was clicked ');
-    };
-    $scope.showConfirm = function(title,start,end) {
-        start=moment(start).format('LT');
-        end=moment(end).format('LT')
-        var confirmPopup = $ionicPopup.confirm({
-          title: title,
-         
-          template:start +"to"+ end,
-        });
-     
-        confirmPopup.then(function(res) {
-          if(res) {
-            console.log('You are sure');
-          } else {
-            console.log('You are not sure');
-          }
-        });
-      };
-      $scope.showAlert = function(title,start,end) {
-        start=moment(start).format('LT');
-        end=moment(end).format('LT');
-        var alertPopup = $ionicPopup.alert({
-          title: title,
-          template: start +"to"+ end,
-        });
-        alertPopup.then(function(res) {
-          console.log('Thank you for not eating my delicious ice cream cone');
-          console.log(res)
-        });
-      };
     $scope.uiConfig = {
         calendar:{
           height: 'auto',
           editable: false,
           header:{
-              left:"",
+            left: "",
             center: 'title',
             right: 'today prev,next'
           },
-          eventClick:  function( date, jsEvent, view){
-            console.log (date.title);
-            console.log(date.start._i);
-            console.log(date.end._i)
-           // $scope.showAlert(date.title ,date.start. _i,date.end._i)
+          eventClick:function( date, jsEvent, view){
+            console.log(date.title)
+            console.log(date.start)
+            console.log(date._start)
+            $scope.showConfirm(date)
         },
           eventDrop: $scope.alertOnDrop,
           eventResize: $scope.alertOnResize
         }
       };
-    
       var date = new Date();
       var d = date.getDate();
       var m = date.getMonth();
       var y = date.getFullYear();
           $scope.eventSources = [
               [{ 
-                      title:"Long Event",
+                  title:"Long Event",
                   start: new Date(y, m, d,19,00),
                   end: new Date(y, m, d,19,30)
-                      }]
+               }]
               ];
              console.log($scope.eventSources)
              console.log(localStorage.getItem('phoneno'))
@@ -93,32 +72,34 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic', 'u
                     params:{phone_no: localStorage.getItem('phoneno')}
                     })
                     .then(function(response){
+                    console.log(response.data)
                     $scope.events=response.data;    
                     $scope.goals =  $scope.events.mentee_goals;
                     console.log( $scope.goals)
                     $scope.meetings = $scope.events.meeting_schedule;
                     $scope.tasks_exists=true;
                     $scope.tasks = $scope.events.mentee_tasks;
-                        $scope.fun();
-                        console.log('End async operation......');
+                    $scope.webinars=$scope.events.webinars;
+                    console.log($scope.webinars)
+                    $scope.fun();
                     })
                 }
                 else
                 { 
-                    $http(
-                    {
+                    $http( {
                     url: localStorage.getItem('url')+"/myproject/mentor_calendar_event.php",
                     method:"GET",
                     params:{phone_no: localStorage.getItem('phoneno')}
                     })
                     .then(function(response){
+                        console.log(response.data)
                         $scope.events=response.data;    
                         $scope.goals =  $scope.events.mentor_goals;
                         $scope.meetings = $scope.events.meeting_schedule;
                         $scope.tasks_exists=false;
-                        console.log( $scope.events)
+                        $scope.webinars=$scope.events.webinar;
+                        console.log( $scope.webinars)
                         $scope.fun();
-                        console.log('End async operation......');
                     })
                 }
             }
@@ -130,7 +111,6 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic', 'u
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
-            $scope.count=$scope.count+1;
            $scope.addEvent("Goal Due Date",y,m,d)
         }
         for (var i=0;i<$scope.meetings.length;i++)
@@ -149,7 +129,6 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic', 'u
             var eth = parseInt(arr[0]) ;
             var etm = parseInt(arr[1]) ;
             var ets = parseInt(arr[2]) + " seconds";
-            $scope.count=$scope.count+1;
             $scope.addEvent1("meeting",y,m,d,sth,stm,eth,etm)
         }
         if($scope.tasks_exists){
@@ -159,24 +138,34 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic', 'u
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
-            $scope.count=$scope.count+1
             $scope.addEvent("Task Due Date",y,m,d)
         }
-    }
+        for(var i=0;i<$scope.webinars.length;i++){
+                
+            var date = new Date($scope.webinars[i].datetime);
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+            var hr=date.getHours();
+            var min=date.getMinutes();
+            $scope.addWebinar("webinar",y,m,d,hr,min)
+            }
+     }
+     else{
+        for(var i=0;i<$scope.webinars.length;i++){
+                
+            var date = new Date($scope.webinars[i].datetime);
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+            var hr=date.getHours();
+            var min=date.getMinutes();
+            $scope.addWebinar("webinar",y,m,d,hr,min)
+            }
+     }
         console.log($scope.eventSources)
+        $scope.hidepage = false;
          $scope.$broadcast('scroll.refreshComplete');
-         if($scope.count==$scope.tasks.length+$scope.goals.length+$scope.meetings.length)
-         {
-            alert("pupoi")
-            console.log("count",$scope.count)
-            console.log($scope.tasks.length+$scope.goals.length+$scope.meetings.length)
-            $scope.hidepage=false;
-         }
-         else{
-             alert("pupu")
-             console.log("count",$scope.count)
-             console.log($scope.tasks.length+$scope.goals.length+$scope.meetings.length)
-         }
     }
    
       $scope.addEvent1 = function(title,y,m,d,sth,stm,fth,ftm) {
@@ -201,7 +190,86 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic', 'u
       var arr =[temp];
      $scope.eventSources.push(arr)
     };
-   
-     
-      
+    $scope.addWebinar=function(title,y,m,d,hr,min){
+        var temp={
+            title:title,
+            start : new Date(y,m,d,hr,min),
+            allDay : false
+        }
+        var arr=[temp];
+        $scope.eventSources.push(arr)
+    }
+    $scope.joinWebinar=function(id,password){
+        $http( {
+            url: localStorage.getItem('url')+"/myproject/menteejoin.php",
+            method:"GET",
+            params:{meetingId:id,attendeePw:password,username:$rootScope.name}
+            })
+            .then(function(response){
+               // alert(response.data.status)
+                if(response.data.status=="true"){
+                    $scope.join_link=response.data.link;
+                    $scope.iframe_url=$sce.trustAsResourceUrl($scope.join_link);
+                var confirmPopup = $ionicPopup.confirm({
+                    title: "Join Webinar",
+                    template: "Press ok to join Webinar"
+                  });
+               
+                  confirmPopup.then(function(res) {
+                    if(res) {
+                       // $state.go('app.iframe', {url : $scope.join_link})
+                        window.open ($scope.join_link , '_blank');
+                      console.log('You are sure');
+                    } else {
+                      console.log('You are not sure');
+                    }
+                  })
+                }
+                else{
+                    var errorPopup = $ionicPopup.confirm({        
+                        title: "Error",
+                        template: "Webinar Could not started"
+                      });
+                }
+            })
+
+    }
+    $scope.loadWebinar=function(){
+        $scope.url=$stateParams.url;
+        $scope.iframe_url=$sce.trustAsResourceUrl($scope.url)
+    }
+    $scope.startWebinar=function(id,meetingName,attendeePassword,Moderatorpwd){
+        
+        $http( {
+            url: localStorage.getItem('url')+"/myproject/moderatorjoin.php",
+            method:"GET",
+            params:{meetingId:id,meetingName:meetingName,attendeePw:attendeePassword,
+                moderatorPw:Moderatorpwd,username:$rootScope.name},
+            })
+            .then(function(response){
+                console.log(response.data)
+                if(response.data.status=="true"){
+                    $scope.link=response.data.link;
+                var confirmPopup = $ionicPopup.confirm({        
+                    title: "Start Webinar",
+                    template: "Press ok to Start Webinar",
+                  });
+                  confirmPopup.then(function(res) {
+                    if(res) {
+                       // $state.go('app.iframe', {url : $scope.link})
+                        window.open ($scope.link , '_blank');
+                      console.log("opened Sucessfully")
+                    } else {
+                      console.log('You are not sure');
+                    }
+                  })
+                }
+                else{
+                    var errorPopup = $ionicPopup.confirm({        
+                        title: "Error",
+                        template: "Webinar Could not started"
+                      });
+                }
+            })
+          }
 })

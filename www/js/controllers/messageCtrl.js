@@ -22,18 +22,22 @@ angular.module('drsmith.controllers.messageCtrl', [])
                 console.log(response.data)
             })
     }
-    $scope.text="";
+    $scope.msgObj={
+        text:""
+    };
     $scope.mentor_message=function(mentee_id){
         $http(
             {
                 url:$rootScope.url+"/myproject",
                 method:"GET",
                 params:{sender_id:$rootScope.id,sender_type:$rootScope.type,
-                    reciever_id:mentee_id,message:$scope.text}
+                    reciever_id:mentee_id,message:$scope.msgObj.text}
             })
             .then(function(response){
                 console.log(response.data)
-                $scope.text="";
+                $scope.msgObj={
+                    text:""
+                };
             })
     }
     $scope.mentee_message=function(){
@@ -41,10 +45,14 @@ angular.module('drsmith.controllers.messageCtrl', [])
             {
                 url:$rootScope.url+"/myproject",
                 method:"GET",
-                params:{sender_id:$rootScope.id,sender_type:$rootScope.type,reciever_id:$rootScope.mentor_id}
+                params:{sender_id:$rootScope.id,sender_type:$rootScope.type,
+                    reciever_id:$rootScope.mentor_id,message:$scope.msgObj.text}
             })
             .then(function(response){
                 console.log(response.data)
+                $scope.msgObj={
+                    text:""
+                };
             })
     }
     

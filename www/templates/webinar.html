@@ -1,0 +1,59 @@
+<ion-view title="List of Webinars" >
+    <ion-content ng-init="get()" class="shz-bg-shade">
+            <ion-refresher on-refresh="doRefresh()">
+                    <ion-refresher-content>
+                    </ion-refresher-content>
+                  </ion-refresher>
+        
+        <ion-list  ng-repeat="webinar in webinars">
+            <ion-item ng-hide="$root.name==webinar.WebinarTakenBy"
+              class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3); padding:15px;margin-bottom: 0px !important;">
+             <div class="row" style="margin:5px;">
+              <h2 class="shz-text-capitalize">
+                    Webinar Id: {{webinar.meetingId}}</h2>
+                    </div>
+                    <div class="row" style="margin:5px;">
+                    <h2 class="shz-text-capitalize" style="color:#0066cb">Taken By: {{webinar.WebinarTakenBy}}</h2>
+                </div>
+                <div class="row" style="margin:5px;">
+                    <h2 class=" shz-text-capitalize" style="color:green;">Date: {{webinar.datetime}}</h2>
+                </div>
+                  
+                
+                <!-- attendeePw :{{webinar.attendeePw}}<br>-->
+                 
+                 <div class="row " style="margin:5px;">
+                   <button class="button button-positive shz-text-capitalize"  ng-click="joinWebinar(webinar.meetingId,webinar.attendeePw)">join</button>
+                </div>
+                </div>
+                
+             
+            </ion-item>
+        </ion-list>
+        <ion-list  ng-repeat="webinar in webinars">
+            <ion-item ng-show="$root.name==webinar.WebinarTakenBy"
+              class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3); padding:15px;margin-bottom: 0px !important;">
+                
+              <div class="row" style="margin:5px;">
+                    <h2 class="shz-text-capitalize">
+                            Webinar Id: {{webinar.meetingId}}</h2>
+                          </div>
+
+                
+
+                <div class="row" style="margin:5px;">
+                        <h2 class="shz-text-capitalize" style="color:green"> Date: {{webinar.datetime}}</h2>
+                    </div>
+               
+                
+                 <div class="row" style="margin:5px;">
+                     <button class="button button-assertive shz-text-capitalize" ng-click="startWebinar(webinar.meetingId,webinar.meetingName,webinar.attendeePw,
+                    webinar.moderatorPw)">start</button>
+                </div>
+                
+                
+            
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

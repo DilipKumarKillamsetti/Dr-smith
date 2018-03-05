@@ -74,22 +74,23 @@
                   
                 <ion-item menu-close ui-sref="app.mymentor"  ng-show="$root.type=='mentee'">
                    <img src="img/sidebar-mymentor.png" width="25px" style="float: left; margin-right: 15px;"><h2 class="menu-text">My Mentor</h2>
-                </ion-item>
-                                    <div class="shz-separator" ng-hide="$root.type=='mentor'"></div>
-  
+                  
+                  </ion-item>
+                                    
+                  <div class="shz-separator" ng-hide="$root.type=='mentor'"></div>
                   
   
                  
                 <ion-item class="item-icon-left item-icon-right" menu-close ui-sref="app.mentorslist" ng-show="$root.type=='mentor'">
                    <img src="img/sidebar-mymentor.png" width="25px" style="float: left; margin-right: 15px;"><h2 class="menu-text">Mentors List</h2>
                 </ion-item>
-                                    <div class="shz-separator"></div>
+                                    <div class="shz-separator" ng-show="$root.type=='mentor'"></div>
   
                   
                   
   
                   
-                <ion-item   menu-close >
+                <ion-item   menu-close ui-sref="app.webinar" >
                    <img src="img/sidebar-webinar.png" width="25px" style="float: left; margin-right: 15px;"><h2 class="menu-text">Webinar</h2>
                 </ion-item>
                                     <div class="shz-separator"></div>
@@ -109,7 +110,7 @@
                 <ion-item class="item-icon-left item-icon-right" menu-close ui-sref="app.mentorforum" ng-show="$root.type == 'mentor'">
                      <img src="img/sidebar-mentor-forum.png" width="25px" style="float: left; margin-right: 15px;"><h2 class="menu-text">Mentor Forum</h2>
                   </ion-item>
-                                    <div class="shz-separator"></div>
+                                    <div class="shz-separator" ng-show="$root.type == 'mentor'"></div>
   
                   
                   
