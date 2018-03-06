@@ -209,7 +209,6 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic'])
                // alert(response.data.status)
                 if(response.data.status=="true"){
                     $scope.join_link=response.data.link;
-                    $scope.iframe_url=$sce.trustAsResourceUrl($scope.join_link);
                 var confirmPopup = $ionicPopup.confirm({
                     title: "Join Webinar",
                     template: "Press ok to join Webinar"
@@ -217,8 +216,9 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic'])
                
                   confirmPopup.then(function(res) {
                     if(res) {
-                       // $state.go('app.iframe', {url : $scope.join_link})
-                        window.open ($scope.join_link , '_blank');
+                      // $state.go('app.iframe', {url : $scope.join_link})
+                      //  window.open ($scope.join_link , '_blank');
+                         window.open($scope.join_link, '_system', 'location=no,clearsessioncache=no,clearcache=no','_blank');
                       console.log('You are sure');
                     } else {
                       console.log('You are not sure');
@@ -228,7 +228,7 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic'])
                 else{
                     var errorPopup = $ionicPopup.confirm({        
                         title: "Error",
-                        template: "Webinar Could not started"
+                        template: "Webinar not yet started"
                       });
                 }
             })
@@ -237,6 +237,8 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic'])
     $scope.loadWebinar=function(){
         $scope.url=$stateParams.url;
         $scope.iframe_url=$sce.trustAsResourceUrl($scope.url)
+        console.log( $sce.valueOf($scope.iframe_url) );
+        console.log($scope.iframe_url)
     }
     $scope.startWebinar=function(id,meetingName,attendeePassword,Moderatorpwd){
         
@@ -256,8 +258,9 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic'])
                   });
                   confirmPopup.then(function(res) {
                     if(res) {
-                       // $state.go('app.iframe', {url : $scope.link})
-                        window.open ($scope.link , '_blank');
+                      //  $state.go('app.iframe', {url : $scope.link})
+                      // window.open ($scope.link , '_blank');
+                      window.open($scope.link, '_system', 'location=no,clearsessioncache=no,clearcache=no','_blank');
                       console.log("opened Sucessfully")
                     } else {
                       console.log('You are not sure');
@@ -267,7 +270,7 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic'])
                 else{
                     var errorPopup = $ionicPopup.confirm({        
                         title: "Error",
-                        template: "Webinar Could not started"
+                        template: "Webinar not yet started"
                       });
                 }
             })
