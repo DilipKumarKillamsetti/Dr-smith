@@ -1,9 +1,27 @@
 angular.module('drsmith.controllers.sideMenuCtrl', [])
 .controller('sideMenuCtrl', function($scope,$rootScope,$state,$timeout,$ionicPopup,
   $ionicHistory,$http,$window,$ionicModal) {
-  //console.clear()
+  
   console.log("calling...");
   console.log(localStorage.getItem('hideTab'))
+
+  $scope.type = localStorage.getItem('type');
+console.log("type :"+$scope.type)
+  $scope.refresh_resources=function(){
+    console.log('Refreshing Resources......Begin async operation......');
+    $timeout($scope.load_resources(),1500)
+  }
+
+
+
+  $scope.refresh_mymentor=function(){
+    console.log('Refreshing My mentor......Begin async operation......');
+    $timeout($scope.mymentor(),1500)
+  }
+
+
+
+
   $scope.logout=function(){
    $ionicHistory.clearHistory()
    $ionicHistory.clearCache();
@@ -23,21 +41,48 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
     })
   }
 
-
-
-  $scope.$on("$ionicView.beforeLeave", function()
-  {
+  $scope.$on("$ionicView.enter",function(){
+    $scope.type = localStorage.getItem('type');
+    console.log("I am entred into sidemenuCtrl")
     if(localStorage.getItem('type')=="mentor")
     {
       console.log($state.current.name)
       if($state.current.name == "app.home" || $state.current.name == "app.goals" || $state.current.name == "app.mentorforum" )
       {
-        
-        $rootScope.hideTab=false
+        $scope.hideTab=false
+        //$rootScope.hideTab=false
       }
       else
       {
-        $rootScope.hideTab=true
+        $scope.hideTab=true
+        //$rootScope.hideTab=true
+      }
+     
+    }
+    else{
+      $scope.hideTab=true
+      console.log("I am in mentee login")
+    }
+  })
+
+
+  $scope.$on("$ionicView.beforeLeave", function()
+  {
+    $scope.type = localStorage.getItem('type');
+    if(localStorage.getItem('type')=="mentor")
+    {
+      console.log($state.current.name)
+      if($state.current.name == "app.home" || $state.current.name == "app.goals" || $state.current.name == "app.mentorforum" )
+      {
+       $scope.hideTab = localStorage.getItem('hideTab')
+        $scope.hideTab=false
+        //$rootScope.hideTab=false
+      }
+      else
+      {
+        $scope.hideTab = localStorage.getItem('hideTab')
+        $scope.hideTab=true
+        //$rootScope.hideTab=true
       }
      
     }
@@ -80,6 +125,7 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
     }
     }
 
+
   //function for loading resources
   $scope.load_resources=function(){
     console.log("Resources ......")
@@ -92,7 +138,7 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
     .then(function(response){
       $scope.files=response.data
       console.log(response.data)
-   
+      $scope.$broadcast('scroll.refreshComplete');
   })
   }
   
@@ -108,9 +154,13 @@ angular.module('drsmith.controllers.sideMenuCtrl', [])
       .then(function(response){
        console.log(response.data)
        $scope.mentor=response.data;
+       $scope.$broadcast('scroll.refreshComplete');
     })
     }
   }
+
+
+
   //functon for mentor to list all the other mentors
   $scope.doRefresh=function() {
     console.log('Begin async operation......');

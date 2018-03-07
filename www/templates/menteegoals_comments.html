@@ -1,7 +1,10 @@
 <ion-view title="Goal Comments">
 
     <ion-content class="shz-bg-shade"ng-init="getcomments()">
-        
+        <ion-refresher on-refresh="Goal_Comments_Refresh()">
+            <ion-refresher-content>
+            </ion-refresher-content>
+          </ion-refresher>
         
         <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="goal in goal">
              

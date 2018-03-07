@@ -356,6 +356,29 @@ angular.module('drsmith', [
       }
     }
   })
+  .state('app.mentor_messages',{
+    url:'/messages/:reciever_id/:reciever_name',
+    cache:false,
+    views: {
+      'tab-home': {
+        templateUrl:'templates/messages.html',
+        controller:'messageCtrl'
+      }
+    }
+  })
+
+
+  .state('app.mentee_messages',{
+    url:'/messages',
+    cache:false,
+    views: {
+      'tab-home': {
+        templateUrl:'templates/messages.html',
+        controller:'messageCtrl'
+      }
+    }
+  })
+
   .state('app.interaction_comments',{
     url:'/interaction_comments/:interaction_id',
     cache:false,

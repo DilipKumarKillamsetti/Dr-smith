@@ -1,6 +1,26 @@
 angular.module('drsmith.controllers.commentsctrl', [])
-.controller("commentsctrl",function($scope,$http,$rootScope,$stateParams){
+.controller("commentsctrl",function($scope,$http,$timeout,$rootScope,$stateParams){
   console.clear()
+
+  $scope.Goal_Comments_Refresh=function(){
+    console.log('Goal_Comments_Refresh......Begin async operation......');
+    $timeout($scope.getcomments(),1500)
+  }
+
+
+  
+  $scope.Task_Comments_Refresh=function(){
+    console.log('Task_Comments_Refresh........Begin async operation......');
+    $timeout($scope.getcomments_on_task(),1500)
+  }
+
+
+  $scope.Interaction_Comments_Refresh=function(){
+    console.log('Interaction_Comments_Refresh....Begin async operation......');
+    $timeout($scope.getintercomments(),1500)
+  }
+
+
     $scope.getintercomments=function(){
       $http(
         {
@@ -15,6 +35,7 @@ angular.module('drsmith.controllers.commentsctrl', [])
         console.log($scope.intercomments) ;
         console.log($scope.interaction);
         $scope.comment="";
+        $scope.$broadcast('scroll.refreshComplete');
       })
     }
     $scope.inter_commentObj={};
@@ -65,6 +86,7 @@ angular.module('drsmith.controllers.commentsctrl', [])
       $scope.mentee_id=$scope.goal[0].mentee_id;
       console.log($scope.comments)
       console.log($scope.goal) 
+      $scope.$broadcast('scroll.refreshComplete');
     })
    }
     //function for mentor will add the comments on goals of mentee
@@ -113,6 +135,7 @@ angular.module('drsmith.controllers.commentsctrl', [])
       $scope.mentee_id=$scope.task[0].mentee_id;
       console.log($scope.task_comments)
       console.log($scope.task)
+      $scope.$broadcast('scroll.refreshComplete');
     })
   }
   //function for mentor and mentee will add the comments on tasks

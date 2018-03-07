@@ -1,29 +1,39 @@
 <ion-view title="Mentee Details">
     <ion-content class="shz-bg-shade">
-        <div class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-init="details();getschedules(mentee_id)">
+
+
+            <ion-refresher on-refresh="doRefresh()">
+                    <ion-refresher-content>
+                    </ion-refresher-content>
+                  </ion-refresher>
+
+
+
+        <div class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-init="details()">
             <div class="item-text-wrap screen-center" >
                 <div class="shz-profilePic">
                     <img src="img/logo.png" class="profile" width="85px" height="85px" style="border: 6px solid white;border-radius: 50%;"/><br>
                      <!--<img class="profile" width="100px" height="100px" style="border: 8px solid white;border-radius: 50%;" ng-click="editUser()" src="images/logo.png" ng-show="!userinfojson.image || userinfojson.image=='' || userinfojson.image==null"> -->
                 </div>
             </div> 
-            <div class="shz-screen-center" ng-init="details()">
+            <div class="shz-screen-center" >
                  <div style="height: 5px; position: absolute; top: -100px; left: 0; bottom: 0; right: 20px; text-align:right; margin: 0; ">
                           <h5 class="shz-gray-color" >Mumbai</h5>
                     </div>
                <center>
-                     
-                        <h3 class="shz-text-capitalize">
-                       {{mentee.name}}
+
+                    <h3 class="shz-text-capitalize">
+                       {{mentee.row.name}}
                         </h3>
                         <h5>
-                       Contact: {{mentee.phone_no}}
+                       Contact: {{mentee.row.phone_no}}
                         </h5>
                         <h5>
-                           Mentor: {{mentor_name}}
+                           Mentor: {{mentee.mentor}}
+                           <!-- {{mentor_name}} -->
                         </h5>
                           <h5>
-                           Total Interactions: {{schedules.length}}
+                           Total Interactions: {{meetings.length}}
                         </h5>
                 
                 </center>
@@ -35,7 +45,7 @@
          <div class="row">
                 <div class="col">
               <center>
-                  <a href="#/app/menteegoals/{{mentee.id}}/{{mentee.name}}/{{mentee.address}}">
+                  <a href="#/app/menteegoals/{{mentee.row.id}}/{{mentee.row.name}}/{{mentee.row.address}}">
                     <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive"  >
                         Learning Goals
                     </button>
@@ -44,7 +54,7 @@
                 </div>
                 <div class="col">
               <center>
-                  <a href="#/app/menteetasks/{{mentee.id}}/{{mentee.name}}/{{mentee.address}}">
+                  <a href="#/app/menteetasks/{{mentee.row.id}}/{{mentee.row.name}}/{{mentee.row.address}}">
                     <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive"  >
                         Tasks
                     </button>
@@ -57,7 +67,7 @@
         <div class="row">
                 <div class="col">
               <center>
-                  <a>
+                  <a ui-sref="app.mentor_messages({ reciever_id: mentee.row.phone_no , reciever_name : mentee.row.name })" >
                     <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive" >
                         Message
                     </button>
@@ -66,7 +76,7 @@
                 </div>
                 <div class="col">
               <center>
-                  <a    href="#/app/interactions/{{mentee.id}}">
+                  <a    href="#/app/interactions/{{mentee.row.id}}">
                     <button style ="width: 100%;box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" class=" button button-positive"  >
                         Interactions
                     </button>
@@ -109,13 +119,6 @@
 
  </ion-content>
 </ion-view>
-
-
-
-
-
-
-
 
 
 <!-- 

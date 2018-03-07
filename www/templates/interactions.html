@@ -1,10 +1,17 @@
 <ion-view title="Mentee_Interactions" >
-    <ion-content class="shz-bg-shade" ng-init="inischedule();getschedules(mentee_id)">
+    <ion-content class="shz-bg-shade" ng-init="getschedules()">
+
+
+
+            <ion-refresher on-refresh="Interaction_Refresh()">
+                    <ion-refresher-content>
+                    </ion-refresher-content>
+                  </ion-refresher>
+
+
             <ion-list >
                <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="schedule in schedules track by $index">
-                
-                   
-                   
+                 
                    <div class=row>
                             
                             <p class="col" style="color: #0066cb"><i>By: {{schedule.added_by}}</i></p>

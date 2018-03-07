@@ -1,6 +1,9 @@
 <ion-view title="Tasks">
         <ion-content class="shz-bg-shade">
-            
+                <ion-refresher on-refresh="Tasks_Refresh()">
+                        <ion-refresher-content>
+                        </ion-refresher-content>
+                      </ion-refresher>
              <ion-item  class=" card item item-remove-animate  item-icon-right" type="item-text-wrap"  style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);">
                 <div class=row>
                         <div class="">

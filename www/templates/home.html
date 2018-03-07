@@ -3,7 +3,13 @@
             <img src="img/logo-header.png" alt="" height="25px" style="margin-top:12px;"/>
         </ion-nav-title>
 <ion-content class="shz-bg-shade">
-    <ion-list>
+
+        <ion-refresher on-refresh="Refresh()">
+                <ion-refresher-content>
+                </ion-refresher-content>
+              </ion-refresher>
+
+    <ion-list  ng-init="Mentee_List()">
         <ion-item  class=" card item item-remove-animate  item-icon-right" type="item-text-wrap" ng-repeat="mentee in mentees" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);">
         <!-- <a>  <img src="{{url}}/myproject/download.php?nama={{mentee.file_url}}"
              width="40" height="40" alt="error" /></a> -->

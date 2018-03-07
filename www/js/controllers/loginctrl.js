@@ -1,8 +1,29 @@
 angular.module('drsmith.controllers.loginctrl', [])
-.controller('loginctrl', function($scope, $http, $state,$rootScope) {
+.controller('loginctrl', function($scope, $http, $state,$rootScope, $ionicLoading) {
+  $ionicLoading.show({
+    template: 'Loading...'
+  }).then(function(){
+     console.log("The loading indicator is now displayed");
+  });
+  if(localStorage.getItem('login'))
+  {
+    if($rootScope.type=="mentor")
+    {
+      $ionicLoading.hide();
+      $state.go("app.home");
+    }
+    else
+    {
+      $ionicLoading.hide();
+      $state.go("app.mentee_home");
+    }
+    
+  }
+  else
+  {
+    $ionicLoading.hide();
+  }
 
-
-  //$rootScope.url="http://192.168.1.158"
   $rootScope.url="https://anhance.org";
    localStorage.setItem('url',$rootScope.url);
     $scope.redirect=function(Email,Password,isValid){

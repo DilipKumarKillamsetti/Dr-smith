@@ -216,9 +216,9 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic'])
                
                   confirmPopup.then(function(res) {
                     if(res) {
-                      // $state.go('app.iframe', {url : $scope.join_link})
+                     // $state.go('app.iframe', {url : $scope.join_link})
                       //  window.open ($scope.join_link , '_blank');
-                         window.open($scope.join_link, '_system', 'location=no,clearsessioncache=no,clearcache=no','_blank');
+                    window.open($scope.join_link, '_system', 'location=no,clearsessioncache=no,clearcache=no','_blank');
                       console.log('You are sure');
                     } else {
                       console.log('You are not sure');
@@ -258,7 +258,7 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic'])
                   });
                   confirmPopup.then(function(res) {
                     if(res) {
-                      //  $state.go('app.iframe', {url : $scope.link})
+                       // $state.go('app.iframe', {url : $scope.link})
                       // window.open ($scope.link , '_blank');
                       window.open($scope.link, '_system', 'location=no,clearsessioncache=no,clearcache=no','_blank');
                       console.log("opened Sucessfully")

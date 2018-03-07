@@ -1,10 +1,16 @@
 angular.module('drsmith.controllers.profileCtrl', [])
-.controller('profileCtrl',function($scope,$http,$rootScope,$stateParams,$state,$ionicModal){
+.controller('profileCtrl',function($scope,$http,$rootScope,$timeout,$stateParams,$state,$ionicModal){
+
+
+  $scope.refresh_profile=function(){
+    console.log('Refreshing Profile......Begin async operation......');
+    $timeout($scope.profile(),1500)
+  }
+
+
 
 //function for profile display
 $scope.profile=function(){
-   
-    console.log("Hiiiii.........")
     
     $http(
       {
@@ -15,6 +21,7 @@ $scope.profile=function(){
     .then(function(response){
         $scope.details=response.data;
       console.log($scope.details)
+      $scope.$broadcast('scroll.refreshComplete');
   })
   }
 

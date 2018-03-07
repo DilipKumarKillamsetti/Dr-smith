@@ -1,0 +1,13 @@
+<ion-view title="Messages" >
+        <ion-content class="shz-bg-shade"  ng-init="initial()" >
+          
+            <ion-list  >
+                    <ion-item  ng-repeat="message in messages">
+                            {{message}}
+                    </ion-item>
+            </ion-list>
+
+            <input type="text" ng-model="msgObj.text">
+            <button ng-click="send_message(reciever_id,reciever_name)">Send</button>
+    </ion-content>
+    </ion-view>

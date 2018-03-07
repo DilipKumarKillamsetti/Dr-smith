@@ -1,13 +1,70 @@
 angular.module('drsmith.controllers.menteectrl', [])
-.controller('menteectrl',function($scope,$http,$rootScope,$stateParams,$state,$ionicModal){
+.controller('menteectrl',function($scope,$http,$timeout,$rootScope,$stateParams,$state,$ionicModal){
     //function for getting mentee details in the mentee details page
     console.clear()
     $scope.date = new Date();
 
-        $scope.details=function(){
+
+    $scope.doRefresh=function(){
+      console.log('Mentee Details refresh Begin async operation......');
+      $timeout($scope.details(),1500)
+    }
+  
+  
+
+
+    $scope.Goals_Refresh=function(){
+      console.log('Getting Mentee Goals.....Begin async operation......');
+      $timeout($scope.getmenteegoals(),1500)
+    }
+
+
+    $scope.Interaction_Refresh=function(){
+
+      console.log('Getting Mentee Interactions.....Begin async operation......');
+      $timeout($scope.getschedules(),1500)
+    }
+
+
+    $scope.Tasks_Refresh=function(){
+      console.log('Getting Mentee Tasks.....Begin async operation......');
+
+      $timeout($scope.gettasks(),1500)
+    }
+
+
+
+    $scope.details=function(){
+      $scope.mentee_id=$stateParams.id;
+      $scope.mentor_name=localStorage.getItem('name');
+      console.log($scope.mentee_id,$scope.mentor_name);
+      $http({
+        url:localStorage.getItem('url')+"/myproject/mentee_details.php",
+        method:"GET",
+        params:{id:$scope.mentee_id}
+    })
+    .then(function(response){
+        $scope.mentee=response.data;
+        console.log($scope.mentee)
+        $http(
+          {
+            url:localStorage.getItem('url')+"/myproject/view_meeting_schedule.php",
+            method:"GET",
+            params:{mentor_id:localStorage.getItem('id'),mentee_id:$scope.mentee.row.id}
+          })
+          .then(function(response1){
+            $scope.meetings=response1.data;
+            console.log("no of meetings :"+$scope.meetings.length)
+          })
+          $scope.$broadcast('scroll.refreshComplete');
+    })
+    }
+
+
+    /*    $scope.details=function(){
           $scope.mentee_id=$stateParams.id;
-          console.log($scope.mentee_id,$scope.mentor_name);
           $scope.mentor_name=localStorage.getItem('name');
+          console.log($scope.mentee_id,$scope.mentor_name);
           $http(
             {
                 url:localStorage.getItem('url')+"/myproject/login_read.php",
@@ -24,8 +81,9 @@ angular.module('drsmith.controllers.menteectrl', [])
                 }
           }
           console.log($scope.mentee)
+          $scope.$broadcast('scroll.refreshComplete');
         })
-      }
+        }*/
       //modal for the adding meeting on the mentee details page
       $ionicModal.fromTemplateUrl('templates/add_meetings.html',{
         scope: $scope,
@@ -132,7 +190,8 @@ angular.module('drsmith.controllers.menteectrl', [])
         type:'',
         description:''
       }
-        $scope.addschedules=function(mentee_id){
+        $scope.addschedules=function(){
+          var mentee_id = $stateParams.mentee_id
           $scope.date1 = moment($scope.scheduleObj.date1).format('YYYY-MM-DD');
           $scope.stime1=moment($scope.scheduleObj.stime).format('HH:mm');
           $scope.ftime1=moment($scope.scheduleObj.ftime).format('HH:mm');
@@ -141,6 +200,7 @@ angular.module('drsmith.controllers.menteectrl', [])
           console.log( $scope.scheduleObj.ftime ,"<->" ,$scope.ftime1)
           console.log( $scope.scheduleObj.description)
           console.log( $scope.scheduleObj.type)
+          console.log("menteee Id :"+mentee_id)
           if($scope.scheduleObj.date1=="" || $scope.scheduleObj.stime=="" || $scope.scheduleObj.ftime=="" ||
            $scope.scheduleObj.description == "" || $scope.scheduleObj.type == "")
           {
@@ -177,38 +237,29 @@ angular.module('drsmith.controllers.menteectrl', [])
           return (minutes);
         }
     //function for getting schedules which are added by the mentee and mentor both 
-    $scope.inischedule=function()
-    {
-      $scope.mentee_id =$stateParams.mentee_id;
-    }
-    $scope.completeImg = "img/completion-icon.png";
-    // $scope.changeCompleteImg = function(taskId)
+    // $scope.inischedule=function()
     // {
-    //   console.log( $scope.menteetasks);
-    //   if($scope.completeImg == "img/completion-icon.png")
-    //   {
-    //     $scope.completeImg = "img/incomplete-icon.png";
-    //   }
-    //   else
-    //   {
-    //     $scope.completeImg = "img/completion-icon.png";
-    //   }
+    //   $scope.mentee_id =$stateParams.mentee_id;
     // }
-    
-   $scope.getschedules=function(mentee_id){
-         
+    $scope.completeImg = "img/completion-icon.png";
+ 
+   $scope.getschedules=function(){
+    var mentee_id =$stateParams.mentee_id;
+         console.log(  mentee_id )
           $http(
             {
               url:localStorage.getItem('url')+"/myproject/view_meeting_schedule.php",
               method:"GET",
-              params:{mentor_id:localStorage.getItem('id'),mentee_id:$scope.mentee_id}
+              params:{mentor_id:localStorage.getItem('id'),mentee_id:mentee_id}
             })
             .then(function(response){
-              $scope.schedules=response.data;console.log($scope.schedules)
+              $scope.schedules=response.data;
+              console.log($scope.schedules)
               for(var i=0;i<$scope.schedules.length;i++)
               {
                 $scope.schedules[i].date=moment($scope.schedules[i].date).format('YYYY-MM-DD')
               }
+              $scope.$broadcast('scroll.refreshComplete');
             })
         }
     //function for the mentor to get the goals of mentee
@@ -231,6 +282,7 @@ angular.module('drsmith.controllers.menteectrl', [])
                 $scope.menteegoals[i].edited_date=moment($scope.menteegoals[i].edited_date).format('DD-MM-YYYY')
               }
             console.log($scope.menteegoals)
+            $scope.$broadcast('scroll.refreshComplete');
           })
         };
         //function for editing mentee goals (In mentor login)
@@ -337,6 +389,7 @@ angular.module('drsmith.controllers.menteectrl', [])
             $scope.menteetasks[i].completed_date=moment($scope.menteetasks[i].completed_date).format('DD-MM-YYYY')
           }
           console.log($scope.menteetasks)
+          $scope.$broadcast('scroll.refreshComplete');
 
         }
       )
@@ -371,6 +424,7 @@ angular.module('drsmith.controllers.menteectrl', [])
               }
             }
               else { 
+                alert("Hey Escaping....")
                  $scope.fun();
                 }
            }
@@ -407,9 +461,8 @@ angular.module('drsmith.controllers.menteectrl', [])
           .catch(function(e){
             alert(e)
           })
-          document.getElementById("task").value="";
               }
-              $scope.confirm=function(menteegoal_id){
+            /*  $scope.confirm=function(menteegoal_id){
                 var a = confirm("Are you sure?")
                 if(a)
                 {
@@ -420,7 +473,7 @@ angular.module('drsmith.controllers.menteectrl', [])
                   console.log("hii.......")
                   $scope.completed=false;
                 }
-              }
+              }*/
           $scope.mentee_goal_update=function(goal_id){
            
             var currentDate  = new Date();
@@ -453,7 +506,7 @@ angular.module('drsmith.controllers.menteectrl', [])
 
           }
           $scope.interaction_update=function(interaction_id){
-            console.log($scope.mentee_id)
+            console.log($stateParams.mentee_id)
             var currentDate  = new Date();
             currentDate=moment(currentDate).format('YYYY-MM-DD')
             console.log(interaction_id,currentDate)
@@ -464,7 +517,7 @@ angular.module('drsmith.controllers.menteectrl', [])
             })
             .then(function(response){
               console.log(response.data)
-              $scope.getschedules($scope.mentee_id)
+              $scope.getschedules()
             })
 
           }

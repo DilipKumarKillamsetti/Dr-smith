@@ -1,8 +1,15 @@
 <ion-view title="Interactions Comments">
                 <ion-content class="shz-bg-shade" ng-init="getintercomments()">
+
+                        <ion-refresher on-refresh="Interaction_Comments_Refresh()">
+                                <ion-refresher-content>
+                                </ion-refresher-content>
+                              </ion-refresher>
+
+
+
                         <ion-item  class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="interaction in interaction">
-                               
-                            
+                             
                              <div class=row>
                             <p class="col" style="color: #0066cb"><i>By:{{goal.due_date}}</i></p>
                             <div style="text-align: right">

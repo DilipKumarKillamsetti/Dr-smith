@@ -1,5 +1,13 @@
 <ion-view title="Profile" >
     <ion-content  class="shz-bg-shade" >
+
+            <ion-refresher on-refresh="refresh_profile()">
+                    <ion-refresher-content>
+                    </ion-refresher-content>
+                  </ion-refresher>
+
+
+
         <ion-list ng-init="profile()">
             <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" >
                 

@@ -1,6 +1,10 @@
 <ion-view title="MenteeTaskComments">
     <ion-content class="shz-bg-shade"ng-init="getcomments_on_task()">
-        
+
+        <ion-refresher on-refresh="Task_Comments_Refresh()">
+            <ion-refresher-content>
+            </ion-refresher-content>
+          </ion-refresher>
         
         
         <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="task in task">

@@ -3,9 +3,26 @@ angular.module('drsmith.controllers.forumTabctrl', [])
 
 
     $scope.doRefresh_mentorForum=function(){
-        console.log('Begin async operation......');
+        console.log('Getting Mentor forum disscussions.....Begin async operation......');
         $timeout($scope.get_discussions_mentorforum(),1500)
       }
+
+      $scope.doRefresh_openForum=function(){
+        console.log('Getting Open forum disscussions Begin async operation......');
+        $timeout($scope.get_discussions_openforum(),1500)
+      }
+
+      $scope.doRefresh_MentorForum_comments=function(){
+        console.log('Getting Open Mentor disscussion Comments Begin async operation......');
+        $timeout($scope.get_comment_mentor_forum(),1500)
+      }
+
+      $scope.doRefresh_OpenForum_comments=function(){
+        console.log('Getting Open forum disscussion comments Begin async operation......');
+        $timeout($scope.get_comment_open_forum(),1500)
+      }
+
+
     $scope.discussionObj={
         text:""
     };
@@ -60,6 +77,7 @@ angular.module('drsmith.controllers.forumTabctrl', [])
              console.log(response.data)
              $scope.comments=response.data;
              $scope.hidepage=false;
+             $scope.$broadcast('scroll.refreshComplete');
          })
      }
      $scope.commentObj={
@@ -127,6 +145,7 @@ angular.module('drsmith.controllers.forumTabctrl', [])
                 console.log(response.data)
                 $scope.discussions=response.data;
                 $scope.hidepage=false;
+                $scope.$broadcast('scroll.refreshComplete');
             })
 
     }
@@ -142,6 +161,7 @@ angular.module('drsmith.controllers.forumTabctrl', [])
             console.log(response.data)
             $scope.comments=response.data;
             $scope.hidepage=false;
+            $scope.$broadcast('scroll.refreshComplete');
         })
     }
     $scope.commentObj={

@@ -3,10 +3,16 @@ angular.module('drsmith.controllers.goalsTabCtrl', ['ionic'])
 {
   console.clear()
   $scope.date = new Date();
+
+
+
   $scope.doRefresh=function(){
     console.log('Begin async operation......');
     $timeout($scope.get(),1500)
   }
+
+
+  
   //function for display alert
   $scope.showAlert = function() {
     var alertPopup = $ionicPopup.alert({
@@ -79,7 +85,7 @@ $scope.close_edit_modal=function()
 }
 //function for completed date submission for mentor_goals
 
-$scope.confirm_=function(goal_id)
+/*$scope.confirm_=function(goal_id)
 {
  var a= confirm("Are you sure to complete goal ?")
   console.log(a, "...confirmm....")
@@ -91,7 +97,7 @@ $scope.confirm_=function(goal_id)
   else{
     $scope.completed=false;
   }
-}
+}*/
 $scope.update=function(goal_id)
 {
   var currentDate  = new Date();
