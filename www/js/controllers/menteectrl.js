@@ -11,8 +11,6 @@ angular.module('drsmith.controllers.menteectrl', [])
     }
   
   
-
-
     $scope.Goals_Refresh=function(){
       console.log('Getting Mentee Goals.....Begin async operation......');
       $timeout($scope.getmenteegoals(),1500)
@@ -234,6 +232,9 @@ angular.module('drsmith.controllers.menteectrl', [])
           var duration = moment.duration(endTime.diff(startTime));
           var hours = parseInt(duration.asHours());
           var minutes = parseInt(duration.asMinutes());
+          if(minutes<0){
+            minutes = -minutes
+          }
           return (minutes);
         }
     //function for getting schedules which are added by the mentee and mentor both 
@@ -265,6 +266,7 @@ angular.module('drsmith.controllers.menteectrl', [])
     //function for the mentor to get the goals of mentee
       $scope.getmenteegoals=function(){
         console.log($stateParams.mentee_id)
+        $scope.mentee_id=$stateParams.mentee_id
         $scope.mentee_name=$stateParams.mentee_name;
         $scope.mentee_address=$stateParams.mentee_address;
         $http(
@@ -278,8 +280,8 @@ angular.module('drsmith.controllers.menteectrl', [])
             for(var i=0;i<$scope.menteegoals.length;i++)
               {
                 $scope.menteegoals[i].due_date=moment($scope.menteegoals[i].due_date).format('MMM-DD-YYYY')
-                $scope.menteegoals[i].completed_date=moment($scope.menteegoals[i].completed_date).format('DD-MM-YYYY')
-                $scope.menteegoals[i].edited_date=moment($scope.menteegoals[i].edited_date).format('DD-MM-YYYY')
+                $scope.menteegoals[i].completed_date=moment($scope.menteegoals[i].completed_date).format('MMM-DD-YYYY')
+                $scope.menteegoals[i].edited_date=moment($scope.menteegoals[i].edited_date).format('MMM-DD-YYYY')
               }
             console.log($scope.menteegoals)
             $scope.$broadcast('scroll.refreshComplete');
@@ -295,11 +297,18 @@ angular.module('drsmith.controllers.menteectrl', [])
         }
         $scope.edit_mentee_goal=function(menteegoal_id){
           console.log($scope.edit_mentee_goalObj.new_goal)
-          console.log(!$scope.edit_mentee_goalObj.goal_date);
+          
+          console.log($scope.edit_mentee_goalObj.goal_date)
+          if( $scope.edit_mentee_goalObj.goal_date != null)
+        {
+          $scope.edit_mentee_goalObj.goal_date = new Date($scope.edit_mentee_goalObj.goal_date)
+
+          console.log($scope.edit_mentee_goalObj.goal_date)
+
         $scope.edit_mentee_goalObj.selected_img = document.getElementById("inputFile").files;
       
         
-        if(!$scope.edit_mentee_goalObj.goal_date || $scope.edit_mentee_goalObj.new_goal=="")
+        if( isNaN($scope.edit_mentee_goalObj.goal_date) ||  $scope.edit_mentee_goalObj.new_goal=="")
         {
           alert("selelct value");
         }
@@ -322,7 +331,10 @@ angular.module('drsmith.controllers.menteectrl', [])
           $scope.fun1(menteegoal_id);
         }
         }
-        
+      }
+      else{
+        alert("select values")
+      }
         }
         $scope.fun1=function(menteegoal_id){
           console.log($scope.edit_mentee_goalObj.new_goal)
@@ -382,11 +394,12 @@ angular.module('drsmith.controllers.menteectrl', [])
         })
         .then(function(response){
           $scope.menteetasks=response.data;
+          console.log($scope.menteetasks)
           for(var i=0;i<$scope.menteetasks.length;i++)
           {
             $scope.menteetasks[i].due_date=moment($scope.menteetasks[i].due_date).format('MMM-DD-YYYY')
-            $scope.menteetasks[i].edited_date=moment($scope.menteetasks[i].edited_date).format('DD-MM-YYYY')
-            $scope.menteetasks[i].completed_date=moment($scope.menteetasks[i].completed_date).format('DD-MM-YYYY')
+            $scope.menteetasks[i].edited_date=moment($scope.menteetasks[i].edited_date).format('MMM-DD-YYYY')
+            $scope.menteetasks[i].completed_date=moment($scope.menteetasks[i].completed_date).format('MMM-DD-YYYY')
           }
           console.log($scope.menteetasks)
           $scope.$broadcast('scroll.refreshComplete');
@@ -407,10 +420,11 @@ angular.module('drsmith.controllers.menteectrl', [])
             console.log($stateParams.mentee_id,localStorage.getItem('id'))
             $scope.taskObj.selected_img=document.getElementById("inputFile").files;
             // var selectedfile = document.getElementById("inputFile").files;
+            $scope.taskObj.task_date == new Date($scope.taskObj.task_date)
             console.log($scope.taskObj.selected_img[0])
-            if($scope.taskObj.new_task =="" &&  $scope.taskObj.task_date==undefined)
+            if(  isNaN($scope.taskObj.task_date) || $scope.taskObj.new_task =="" )
             {
-            alert("selelct value");
+            alert("select value");
             }
             else {
               if( $scope.taskObj.selected_img.length>0 ){
@@ -475,7 +489,6 @@ angular.module('drsmith.controllers.menteectrl', [])
                 }
               }*/
           $scope.mentee_goal_update=function(goal_id){
-           
             var currentDate  = new Date();
             currentDate=moment(currentDate).format('YYYY-MM-DD')
             console.log(goal_id,currentDate)
@@ -533,12 +546,13 @@ angular.module('drsmith.controllers.menteectrl', [])
               $scope.edit_mentee_task=function(menteetask_id){
                 console.log($scope.edit_mentee_taskObj.new_task)
                 console.log($scope.edit_mentee_taskObj.task_date);
+                if($scope.edit_mentee_taskObj.task_date != null){
+                $scope.edit_mentee_taskObj.task_date = new Date($scope.edit_mentee_taskObj.task_date)
               $scope.edit_mentee_taskObj.selected_img = document.getElementById("inputFile").files;
             
-              if($scope.edit_mentee_taskObj.selected_img.length < 1 &&
-                 $scope.edit_mentee_taskObj.new_task=="" &&$scope.edit_mentee_taskObj.task_date=="" )
+              if( isNaN($scope.edit_mentee_taskObj.task_date) || $scope.edit_mentee_taskObj.new_task==""  )
               {
-                alert("selelct value");
+                alert("select value");
               }
               else 
               {
@@ -558,7 +572,10 @@ angular.module('drsmith.controllers.menteectrl', [])
                 {$scope.fun2(menteetask_id);}
 
               }
-             
+            }
+            else{
+              alert("select values")
+            }
               }
               $scope.fun2=function(menteetask_id){
                 console.log($scope.edit_mentee_taskObj.new_task, $scope.edit_mentee_taskObj.task_date);

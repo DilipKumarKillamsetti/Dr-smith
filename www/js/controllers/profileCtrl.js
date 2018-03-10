@@ -1,27 +1,33 @@
 angular.module('drsmith.controllers.profileCtrl', [])
-.controller('profileCtrl',function($scope,$http,$rootScope,$timeout,$stateParams,$state,$ionicModal){
+.controller('profileCtrl',function($scope,$http,$rootScope, $window,$ionicPopup,
+  $timeout,$stateParams,$state,$ionicModal){
 
 
   $scope.refresh_profile=function(){
     console.log('Refreshing Profile......Begin async operation......');
-    $timeout($scope.profile(),1500)
+    $timeout($scope.profile(),10000)
   }
 
 
 
 //function for profile display
 $scope.profile=function(){
-    
+   
     $http(
       {
           url:localStorage.getItem('url')+"/myproject/myprofile.php",
           method:"GET",
-          params:{phone_no:$rootScope.phoneno}
+          params:{phone_no:localStorage.getItem('phoneno')}
       })
     .then(function(response){
         $scope.details=response.data;
       console.log($scope.details)
+      if(localStorage.getItem('type')=="mentee")
+      {
+        $scope.details.location=$scope.details.address;
+      }
       $scope.$broadcast('scroll.refreshComplete');
+      
   })
   }
 
@@ -57,6 +63,10 @@ $scope.update_profile=function(password,hobbies,likes,dislikes,intrests,aboutme)
     })
   .then(function(response){
     console.log(response.data)
+    var alertPopup = $ionicPopup.alert({
+      title: '',
+      template: 'Profile Updated Sucessfully'
+    }) 
 })
 $scope.editable=true;
 }

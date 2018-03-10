@@ -1,5 +1,5 @@
 angular.module('drsmith.controllers.forumTabctrl', [])
-.controller('forumTabctrl',function($scope,$rootScope,$http,$stateParams,$timeout){
+.controller('forumTabctrl',function($scope,$rootScope,$http,$stateParams,$state,$interval,$timeout){
 
 
     $scope.doRefresh_mentorForum=function(){
@@ -21,7 +21,22 @@ angular.module('drsmith.controllers.forumTabctrl', [])
         console.log('Getting Open forum disscussion comments Begin async operation......');
         $timeout($scope.get_comment_open_forum(),1500)
       }
+/*
+if($state.current.name == "app.mentorforum")
+{
+    $scope.promise= $interval(function(){
+        $scope.get_discussions_mentorforum();
+      }, 5000)
+      
+      
+      $scope.$on("$ionicView.leave", function(){
+        $interval.cancel( $scope.promise);
+      })
 
+}*/
+
+
+   
 
     $scope.discussionObj={
         text:""

@@ -1,5 +1,5 @@
 angular.module('drsmith.controllers.goalsTabCtrl', ['ionic'])
-.controller('goalsctrl',function($scope,$rootScope,$http,$window, $ionicPopup ,$timeout, $ionicModal)
+.controller('goalsctrl',function($scope,$rootScope,$http,$window,$interval, $ionicPopup ,$timeout, $ionicModal)
 {
   console.clear()
   $scope.date = new Date();
@@ -113,6 +113,19 @@ $scope.update=function(goal_id)
     $scope.get();
   })
 }
+
+$scope.$on("$ionicView.leave",function()
+{
+$scope.promise= $interval(function(){
+  $scope.get();
+}, 10000)
+})
+
+$scope.$on("$ionicView.leave", function(){
+  $interval.cancel( $scope.promise);
+})
+
+
 $scope.hidepage=true;
   $scope.get=function(){
     // console.log(localStorage.getItem('id'))
@@ -152,7 +165,7 @@ $scope.add = function()
 
   if($scope.goalsObj.goal_date == undefined || $scope.goalsObj.new_goal=="")
   {
-    alert("selelct value");
+    alert("select value");
   }
   else 
   {
@@ -236,7 +249,7 @@ $scope.fun=function(){
   console.log( $scope.edit_goalObj.selected_img )
   if(  $scope.edit_goalObj.new_goal.length<=0 || $scope.edit_goalObj.goal_date.length <=0 )
   {
-    alert("selelct value");
+    alert("select value");
   }
   else 
   {

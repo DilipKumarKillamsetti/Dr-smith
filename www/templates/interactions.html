@@ -1,4 +1,4 @@
-<ion-view title="Mentee_Interactions" >
+<ion-view title="Interactions" >
     <ion-content class="shz-bg-shade" ng-init="getschedules()">
 
 
@@ -14,7 +14,7 @@
                  
                    <div class=row>
                             
-                            <p class="col" style="color: #0066cb"><i>By: {{schedule.added_by}}</i></p>
+                            <p class="col shz-text-italic shz-text-capitalize" style="color: #0066cb"><i>By: {{schedule.added_by}}</i></p>
                             <div style="text-align: left" ng-show="schedule.meeting_type == 'audio'">
                                     <a   class="col shz-clear-link" style="color: #0066cb"><img src="img/audio-icon.png" width="18" height="20" alt="error" > Audio </a>
                                  </div>
@@ -35,15 +35,13 @@
                    
                    <div class="shz-separator"></div>
                <div class=row>
-                            <div class="col" style="text-align: left;" ng-show="schedule.complete=='1' || completed ">
-                             <p style="color: #1fb12a; float: left; " >{{schedule.completed_date}}</p>
+                            <div class="col shz-text-italic" style="text-align: left;" ng-show="schedule.complete=='1' ">
+                             <p style="color: #1fb12a; float: left; " >Completed On: {{schedule.completed_date}} <br/><span style="color: #999;" >Scheduled On: {{schedule.date}}</span></p>
                                   </div>
-                            <div class="col" style="text-align: left;" ng-hide="schedule.complete=='1' || completed ">
-                                <p style="color: #999; float: left; " >{{schedule.completed_date}}</p>
+                            <div class="col shz-text-italic" style="text-align: left;" ng-hide="schedule.complete=='1' ">
+                                <p style="color: #999; float: left; " >Completed On: {{schedule.completed_date}} <br/><span style="color: #999;" >Scheduled On: {{schedule.date}}</span></p>
                                         </div>
-                            <div class="col" style="text-align: left;" >
-                                    <p style="color: #999; float: left; " >{{schedule.date}}</p>
-                                            </div>
+                            
 
                         <div class="col shz-right-margin" style="text-align: right;">
                                 <img class="shz-right-margin"  width="20px"> 

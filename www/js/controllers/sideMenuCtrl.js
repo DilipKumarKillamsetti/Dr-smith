@@ -42,6 +42,7 @@ console.log("type :"+$scope.type)
   }
 
   $scope.$on("$ionicView.enter",function(){
+    $scope.name= localStorage.getItem('name');
     $scope.type = localStorage.getItem('type');
     console.log("I am entred into sidemenuCtrl")
     if(localStorage.getItem('type')=="mentor")
@@ -68,6 +69,7 @@ console.log("type :"+$scope.type)
 
   $scope.$on("$ionicView.beforeLeave", function()
   {
+    
     $scope.type = localStorage.getItem('type');
     if(localStorage.getItem('type')=="mentor")
     {

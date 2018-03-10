@@ -20,11 +20,11 @@
                     <div class="shz-separator"></div>
                     <div class=row>
                                 <div class="col" style="text-align: left;">
-                                 <p style="color: #1fb12a; float: left; " >{{task.completed_date}}</p>
+                                 <p style="color: #1fb12a; float: left; " >Completed On :  {{task.completed_date}} <br/><span style="color: #999;" >Last Edited: {{task.edited_date}}</span></p>
                                       </div>
-                                <div class="col" style="text-align: left;">
+                                <!--div class="col" style="text-align: left;">
                                  <p  style="color: #999;" >  {{task.edited_date}} </p>
-                              </div>
+                              </div-->
                               
                                <div class="col" style="text-align: right;">
                                    <a><img src="img/edit_icon.png" width="20" height="20" alt="error"></a>    
@@ -57,7 +57,9 @@
                 </ion-item>
             </ion-list>
             <div class="card " style="margin: 0 auto; width: 96%;min-height: 80px;padding: 5px; box-shadow:inset 1px 2px 15px #9e9e9e;">
-                    <input style="width: 100%; background-color: transparent;min-height: 80px;"type="text" id="commentbox" placeholder="Add Comment Here" ng-model="commentObj.comment">
+                  <!--  <input style="width: 100%; background-color: transparent;min-height: 80px;"type="text" id="commentbox" placeholder="Add Comment Here" ng-model="commentObj.comment">-->
+
+                    <textarea style=" height: 120px; width: 94%;resize: none; margin-top: 5px;margin-left: 1px;"type="text" id="commentbox" placeholder="Add Comment Here" ng-model="commentObj.comment"></textarea>
             </div>
             <center>
                 <button class="button  button-positive" ng-click="addcomment_on_task()">Comment</button>

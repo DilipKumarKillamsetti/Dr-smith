@@ -1,10 +1,14 @@
 <ion-view title="Interactions">
         <ion-content class="shz-bg-shade"ng-init="getschedules()">
+                <ion-refresher on-refresh="Refresh_interactions()">
+                        <ion-refresher-content>
+                        </ion-refresher-content>
+                      </ion-refresher>
                 <ion-list>
                    <ion-item class="card" style="box-shadow: 3px 2px 8px 1px rgba(0,0,0,0.3);" ng-repeat="schedule in schedules track by $index">
                        
                        <div class="row"> 
-                                    <p class="col" style="color: #0066cb"><i>By: {{schedule.added_by}}</i></p>
+                                    <p class="col shz-text-italic shz-text-capitalize" style="color: #0066cb"><i>By: {{schedule.added_by}}</i></p>
                                     <div style="text-align: left" ng-show="schedule.meeting_type == 'audio'">
                                         <a   class="col shz-clear-link" style="color: #0066cb"><img src="img/audio-icon.png" width="18" height="20" alt="error" > Audio </a>
                                      </div>
@@ -26,12 +30,12 @@
                          <div class="shz-separator"></div>
                        <div class=row>
                             <div class="col" style="text-align: left;">
-                                    <p style="color: #1fb12a; float: left; " ng-show="schedule.complete=='1' || completed " >{{schedule.completed_date}}</p>
+                                    <p style="color: #1fb12a; float: left; " ng-show="schedule.complete=='1' || completed " > Completed On :  {{schedule.completed_date}}</p>
                                     <p style="color:gray; float: left; " ng-hide="schedule.complete=='1' || completed " >{{schedule.completed_date}}</p>
                             </div>
-                                    <div class="col" style="text-align: left;">
+                                    <!--div class="col" style="text-align: left;">
                                      <p style="color:gray;  float: left; " >{{schedule.date}}</p>
-                                    </div>
+                                    </div-->
 
 
                                           <div class="col shz-right-margin" style="text-align: right;">

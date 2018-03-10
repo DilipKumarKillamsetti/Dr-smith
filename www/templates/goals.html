@@ -13,7 +13,7 @@
                 
                  <div class=row>
                           
-                          <p class="col" style="color: #0066cb"><i>Due Date : {{goal.due_date}}</i></p>
+                          <p class="col shz-text-italic" style="color: #0066cb"><i>Due Date: {{goal.due_date}}</i></p>
                          <div style="text-align: right">
                              <a  href="{{url}}/myproject/download.php?nama={{goal.file_url}}" class="col shz-clear-link" style="color: #0066cb; overflow:hidden; max-width:10ch;"><img src="img/file-pdf-icon.png" width="18" height="20" alt="error" > {{goal.file_name}} </a>
                             
@@ -29,19 +29,21 @@
                   </div>
                  <div class="shz-separator"></div>
                 <div class=row>
-                          <div class="col" style="text-align: left;" ng-show="completed || goal.complete=='1'">
-                           <p style="color: #1fb12a; float: left; " >Completed Date : {{goal.completed_date}}</p>
+                          <div class="col shz-text-italic" style="text-align: left;" ng-show="completed || goal.complete=='1'">
+                           <p style="color: #1fb12a; float: left; " >Completed On: {{goal.completed_date}} <br/><span style="color: #999;" >Last Edited: {{goal.edited_date}}</span></p><br/>
+                          
                                 </div>
-                                <div class="col" style="text-align: left;" ng-hide="completed || goal.complete=='1'">
-                                  <p style="color: #999;; float: left; " >Completed Date : {{goal.completed_date}}</p>
+                                <div class="col shz-text-italic" style="text-align: left;" ng-hide="completed || goal.complete=='1'">
+                                  <p style="color: #999;; float: left; " >Completed Date: {{goal.completed_date}} <br/><span style="color: #999;" >Last Edited: {{goal.edited_date}}</span></p>
+                                
                                        </div>      
-                          <!--div class="col" style="text-align: left;">
-                           <p  style="color: #999;" > {{goal.edited_date}}</p>
-                        </div-->
+                          <div class="col shz-text-italic" style="text-align: left;">
+                          
+                          </div>
                         <div class="col shz-right-margin" style="text-align: right;">
                             <img class="shz-right-margin" ng-click="open_edit_modal(goal.id,goal.due_date,goal.goals)" src="img/edit_icon.png"/ width="20px">  
                              <label class="shz-container">
-                                 <input  type="checkbox" name="CompletedDate"  ng-model="completed" ng-click="update(goal.id)" ng-disabled="goal.complete=='1'" />
+                                 <input  type="checkbox" name="CompletedDate"  ng-model="completed" ng-click="update(goal.id)" ng-disabled="goal.complete=='1' || completed " />
                                                             
                                 <span class="shz-checkmark"></span>
                              </label>

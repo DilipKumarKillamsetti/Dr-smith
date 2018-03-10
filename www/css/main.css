@@ -9589,7 +9589,8 @@ ion-spinner.spinner-on-load {
         color: #FFFFFF; 
 }
 .menu-outer ion-item .item-content.activated .menu-text {
-          color: rgba(255, 255, 255, 0.3); 
+          /*color: rgba(255, 255, 255, 0.3);*/ 
+          color:#222;
 }
 .menu-outer ion-item.active {
       border-color: transparent;
@@ -9604,7 +9605,7 @@ ion-spinner.spinner-on-load {
         color: #0066cb; 
 }
 .menu-outer ion-item.active .menu-text {
-        color: #0066cb; 
+        color: #222; 
 }
 
 .profile-view {
@@ -11065,7 +11066,7 @@ input[type="file"] {
 input[type="time"]{
      margin-top: -10px;
     padding-left: 15px!important;
-    font-size: 18px;
+    font-size: 13px;
     color: #0066cb;
   
     
@@ -11092,4 +11093,15 @@ select {
    border: none;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+
+.shz-text-italic{
+  font-style:italic;
+}
+
+.shz-sent-msg{
+
+  background-color: white !important;
+  padding:15px;
 }

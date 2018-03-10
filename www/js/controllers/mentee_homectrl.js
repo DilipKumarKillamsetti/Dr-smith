@@ -1,12 +1,27 @@
 angular.module('drsmith.controllers.mentee_homectrl', [])
-.controller('mentee_homectrl',function($scope,$rootScope,$http,$stateParams,$ionicModal){
+.controller('mentee_homectrl',function($scope,$rootScope,$timeout,$http,$stateParams,$ionicModal){
   //modal for add mentee goals 
   //console.clear()
  
   $scope.date = new Date();
 
- 
+     $scope.Refresh_homepage=function(){
+      console.log('Refreshing mentee Home page........');
+         $timeout($scope.get(),1500)
+           }
+    $scope.Refresh_goals=function(){
+    console.log('Refreshing mentee Goals page........');
+        $timeout($scope.getgoals(),1500)
+          }
+    $scope.Refresh_tasks=function(){
+      console.log('Refreshing mentee Tasks page........');
+          $timeout($scope.gettasks(),1500)
+            }
            
+            $scope.Refresh_interactions=function(){
+              console.log('Refreshing mentee Schedules page........');
+                  $timeout($scope.getschedules(),1500)
+                    }                   
             
       //funuction for getting mentee details in the mentee_home page
       $scope.get=function(){
@@ -17,7 +32,9 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
           })
           .then(function(response){
               $scope.mentee=response.data;
-              console.log($scope.mentee)
+              console.log($scope.mentee);
+              $scope.getschedules()
+              $scope.$broadcast('scroll.refreshComplete');
           })
       }
 
@@ -74,11 +91,12 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
             $scope.goals=response.data;
             for(var i=0;i<$scope.goals.length;i++)
             {
-              $scope.goals[i].completed_date=moment($scope.goals[i].completed_date).format('DD-MM-YYYY')
+              $scope.goals[i].completed_date=moment($scope.goals[i].completed_date).format('MMM-DD-YYYY')
               $scope.goals[i].due_date=moment($scope.goals[i].due_date).format('MMM-DD-YYYY')
-              $scope.goals[i].edited_date=moment($scope.goals[i].edited_date).format('DD-MM-YYYY')
+              $scope.goals[i].edited_date=moment($scope.goals[i].edited_date).format('MMM-DD-YYYY')
             }
             console.log($scope.goals)
+            $scope.$broadcast('scroll.refreshComplete');
       
           }
         )
@@ -95,12 +113,13 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
   $scope.addgoal = function()
       {
         console.log($scope.goalsObj.new_goal);
-        console.log( $scope.goalsObj.goal_date);
+        $scope.goalsObj.goal_date = new Date($scope.goalsObj.goal_date)
+        console.log($scope.goalsObj.goal_date)
         $scope.goalsObj.selected_img = document.getElementById("inputFile").files;
 
-        if($scope.goalsObj.goal_date =="" || $scope.goalsObj.new_goal=="")
+        if(isNaN($scope.goalsObj.goal_date) || $scope.goalsObj.new_goal=="")
         {
-          alert("selelct value");
+          alert("select value");
         }
         else 
         {
@@ -172,11 +191,14 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
       $scope.edit_mentee_goal=function(menteegoal_id){
         console.log($scope.edit_mentee_goalObj.new_goal)
         console.log($scope.edit_mentee_goalObj.goal_date);
+        if($scope.edit_mentee_goalObj.goal_date != null)
+      {   
+       $scope.edit_mentee_goalObj.goal_date = new Date($scope.edit_mentee_goalObj.goal_date)
       $scope.edit_mentee_goalObj.selected_img = document.getElementById("inputFile").files;
     
-      if( $scope.edit_mentee_goalObj.goal_date =="" || $scope.edit_mentee_goalObj.new_goal=="")
+      if( isNaN($scope.edit_mentee_goalObj.goal_date) || $scope.edit_mentee_goalObj.new_goal=="")
       {
-        alert("selelct value");
+        alert("select value");
       }
       else
       {
@@ -198,7 +220,10 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
           $scope.fun2(menteegoal_id);
         }
       }
-     
+     }
+     else{
+       alert("select values")
+     }
       }
       $scope.fun2=function(menteegoal_id){
         console.log($scope.edit_mentee_goalObj.new_goal, $scope.edit_mentee_goalObj.goal_date);
@@ -268,6 +293,7 @@ angular.module('drsmith.controllers.mentee_homectrl', [])
             $scope.goal=response.data.goal;
             console.log( $scope.goal_comments)
             console.log($scope.goal)
+            $scope.$broadcast('scroll.refreshComplete');
         })
       }
 //function for adding comments for the mentee goals
@@ -363,6 +389,7 @@ $scope.openModal_task = function()
               $scope.menteetasks[i].edited_date=moment($scope.menteetasks[i].edited_date).format('DD-MM-YYYY')
             }
           console.log($scope.menteetasks)
+          $scope.$broadcast('scroll.refreshComplete');
 
         })
       }
@@ -376,11 +403,14 @@ $scope.openModal_task = function()
         selected_img_base64:''
       };
       $scope.addtask=function(){
+
         $scope.taskObj.selected_img=document.getElementById("inputFile").files;
+
         console.log($scope.taskObj.selected_img[0],$scope.taskObj.new_task,$scope.taskObj.task_date)
-        if(!$scope.taskObj.task_date || $scope.taskObj.new_task=="" )
+        $scope.taskObj.task_date = new Date($scope.taskObj.task_date)
+        if(isNaN($scope.taskObj.task_date) || $scope.taskObj.new_task=="" )
         {
-        alert("selelct value");
+        alert("select value");
         }
         else {
           if( $scope.taskObj.selected_img.length > 0 ){
@@ -439,11 +469,16 @@ $scope.openModal_task = function()
       $scope.edit_mentee_task=function(menteetask_id){
         console.log($scope.edit_mentee_taskObj.new_task)
         console.log($scope.edit_mentee_taskObj.task_date);
+        console.log($scope.edit_mentee_taskObj.task_date != null)
+        if($scope.edit_mentee_taskObj.task_date != null)
+       {
+          $scope.edit_mentee_taskObj.task_date = new Date($scope.edit_mentee_taskObj.task_date)
+        
       $scope.edit_mentee_taskObj.selected_img = document.getElementById("inputFile").files;
     console.log($scope.edit_mentee_taskObj.selected_img)
-      if( $scope.edit_mentee_taskObj.task_date =="" || $scope.edit_mentee_taskObj.new_task=="")
+      if( isNaN($scope.edit_mentee_taskObj.task_date)|| $scope.edit_mentee_taskObj.new_task=="")
       {
-        alert("selelct value");
+        alert("select value");
       }
       else 
       {
@@ -463,6 +498,9 @@ $scope.openModal_task = function()
         console.log("hii escaping..............")
         $scope.fun3(menteetask_id);
       }
+      }}
+      else{
+        alert("select values")
       }
       }
       $scope.fun3=function(menteetask_id){
@@ -594,6 +632,7 @@ $scope.openModal_task = function()
         .then(function(response){
           $scope.schedules=response.data;
           console.log($scope.schedules)
+          $scope.$broadcast('scroll.refreshComplete');
         })
       }
       $scope.duration=function(now,then){
@@ -602,6 +641,9 @@ $scope.openModal_task = function()
         var duration = moment.duration(endTime.diff(startTime));
         var hours = parseInt(duration.asHours());
         var minutes = parseInt(duration.asMinutes());
+        if(minutes<0){
+          minutes = -minutes
+        }
         return (minutes);
       }
      
