@@ -1,5 +1,6 @@
 angular.module('drsmith.controllers.goalsTabCtrl', ['ionic'])
-.controller('goalsctrl',function($scope,$rootScope,$http,$window,$interval, $ionicPopup ,$timeout, $ionicModal)
+.controller('goalsctrl',function($scope,$rootScope,$http,$window,$interval,
+   $ionicPopup ,$timeout, $ionicModal,$ionicLoading)
 {
   console.clear()
   $scope.date = new Date();
@@ -55,7 +56,11 @@ angular.module('drsmith.controllers.goalsTabCtrl', ['ionic'])
         });
   $scope.openModal = function()
    { 
-     $scope.modal.show(); 
+     $scope.modal.show();
+   
+     document.getElementById('inputFile').onchange = function () {
+     document.getElementById('myDiv').innerHTML=this.value.slice(12)
+  }
   };
    $scope.closeModal = function()
     {
@@ -76,7 +81,9 @@ $scope.open_edit_modal=function(goal_id,due_date,goal_desc)
   $scope.edit_goalObj.new_goal = goal_desc;
   $scope.edit_goalObj.goal_date = due_date;
   $scope.goal_id=goal_id;
+  
   $scope.edit_modal.show();
+  
 }
 $scope.close_edit_modal=function()
 {
@@ -98,6 +105,12 @@ $scope.close_edit_modal=function()
     $scope.completed=false;
   }
 }*/
+
+
+
+
+
+
 $scope.update=function(goal_id)
 {
   var currentDate  = new Date();
@@ -129,6 +142,12 @@ $scope.$on("$ionicView.leave", function(){
 $scope.hidepage=true;
   $scope.get=function(){
     // console.log(localStorage.getItem('id'))
+    $ionicLoading.show({
+      template: 'Loading...'
+    })
+    .then(function(){
+       console.log("The loading indicator is now displayed");
+    });
     $http(
     {
       url:localStorage.getItem('url')+"/myproject/mentor-goal1.php",
@@ -142,9 +161,10 @@ $scope.hidepage=true;
         $scope.goals[i].edited_date=moment($scope.goals[i].edited_date).format('DD-MM-YYYY ')
         $scope.goals[i].completed_date=moment($scope.goals[i].completed_date).format('DD-MM-YYYY')
         $scope.$broadcast('scroll.refreshComplete');
+        $ionicLoading.hide();
       }
        console.log($scope.goals)
-       $scope.hidepage=false;
+      // $scope.hidepage=false;
 
     }
   )
@@ -344,5 +364,8 @@ $scope.fun1=function(goal_id){
 //     };
 //  })
 // }
+
+
+
 
 })

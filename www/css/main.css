@@ -3502,7 +3502,7 @@ ion-infinite-scroll {
   top: 88px; }
 
 .has-tabs-top {
-  top: 99px; }
+  top: 119px; }
 
 .has-header.has-subheader.has-tabs-top {
   top: 137px; }
@@ -11044,6 +11044,14 @@ input[type="date"]{
     font-size: 18px;
 }
 
+input[type="datetime-local"]{
+
+  color:#0066cb;
+    margin-top: -10px;
+    padding-left: 15px !important;
+    font-size: 18px;
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
     color: #0066cb;
     
@@ -11104,4 +11112,48 @@ select {
 
   background-color: white !important;
   padding:15px;
+}
+
+
+.shz-filetype-label{
+  /*position: relative;
+  top:8px;
+  left: 15px;*/
+  padding-left: 10px;
+  font-size:18px;
+}
+
+
+div.upload {
+ /* background: url('img/file-pdf-icon.png')no-repeat;*/
+
+
+   font-size: 18px;
+    text-align: left;
+    display: block;
+    color: #0066cb;
+    margin-bottom: 5px;
+margin-top: 10px;
+   
+}
+
+div.upload input {
+  
+  
+  width: 100% !important;
+  opacity: 0 !important;
+  color: #F37A10;
+  overflow: hidden !important;
+
+  font-size: 28px;
+  text-align: left;
+  color: #0066cb;
+}
+
+input[type="datetime-local"]{
+
+  color:#0066cb;
+    margin-top: -10px;
+    padding-left: 15px !important;
+    font-size: 18px;
 }

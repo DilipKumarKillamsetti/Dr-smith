@@ -218,7 +218,7 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic'])
                     if(res) {
                     //  $state.go('app.iframe', {url : "http://anhance.org/demo/demoHTML5.jsp"})
                     //  window.open ($scope.join_link , '_blank');
-                    window.open("http://anhance.org/demo/demoHTML5.jsp", '_system', 'location=no,clearsessioncache=no,clearcache=no','_blank');
+                    window.open( $scope.join_link, '_system', 'location=no,clearsessioncache=no,clearcache=no','_blank');
                       console.log('You are sure');
                     } else {
                       console.log('You are not sure');
@@ -260,7 +260,7 @@ angular.module('drsmith.controllers.calenderEveCtrl', ['ui.calendar','ionic'])
                     if(res) {
                        // $state.go('app.iframe', {url : "http://anhance.org/demo/demoHTML5.jsp"})
                       // window.open ($scope.link , '_blank');
-                      window.open("http://anhance.org/demo/demoHTML5.jsp", '_system', 'location=no,clearsessioncache=no,clearcache=no','_blank');
+                      window.open( $scope.link, '_system', 'location=no,clearsessioncache=no,clearcache=no','_blank');
                       console.log("opened Sucessfully")
                     } else {
                       console.log('You are not sure');

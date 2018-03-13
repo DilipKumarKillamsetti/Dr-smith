@@ -1,4 +1,5 @@
 <ion-modal-view >
+       
         <ion-content>
             
     <!-- =========================================HEAD SECTION START========================================================== -->        
@@ -18,41 +19,20 @@
             
             <label class="item item-input item-floating-label">
                 <textarea style=" height: 50px; width: 94%;resize: none; margin-top: 15px;margin-bottom: 15px;"type="text" id="goal" placeholder="Add Goals Here" ng-model="goalsObj.new_goal"></textarea>
-                
+
                 <div class="shz-separator" ></div>
-                
-                 <div class=row style="padding-top:5px; padding-bottom: 5px;">
-                     <img src="img/file-pdf-icon.png" width="20" height="20" alt="error" >
-
-
-                     <label class="shz-file">Select a file
-
-
-
-
-
-                        <input size="150" type="file" id="inputFile"   >
-                    </label> 
-                     <!--label  id="myDiv">No file choosen. 
-                        <input  type="file" id="inputFile"  />
-                     </label--> 
-                        
-                       
-                </div>
+                <div class="upload"  >       
+                        <img src="img/file-pdf-icon.png" width="20" height="20" alt="error" >
+                        <label class="shz-filetype-label" id="myDiv" >No file choosen. <input type="file" name="myfile" id="inputFile"></label>
+                 </div>
             </label>
-            <!--script>
-            document.getElementById('inputFile').onchange = function () {
-                console.log("onchange event....")
-                document.getElementById('myDiv').innerHTML=this.value;
-                };
-            </script-->
             <div class="shz-separator" ></div>
                     
              
             <div class="item item-input item-floating-label">
                 <div class=row style="padding-top:5px; padding-bottom: 5px;">
                     <img src="img/sidebar-calendar.png" width="20" height="20" alt="error" >
-                    <label for="date">Due Date
+                    <label for="date">
                         <input id="date" type="date"  ng-model="goalsObj.goal_date"/>
                     </label>
                 </div>
@@ -67,5 +47,14 @@
             <button class="button  button-positive" ng-click="add();closeModal()">Add</button>
            
     <!-- =========================================BUTTON SECTION END ========================================================== -->          
+       
+
+
+
+            
+
         </ion-content>
+
+
+       
     </ion-modal-view>
