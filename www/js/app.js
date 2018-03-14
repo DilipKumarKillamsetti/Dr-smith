@@ -54,6 +54,7 @@ angular.module('drsmith', [
         templateUrl: 'templates/home.html',
         controller: 'HomeTabCtrl'
       }
+
     }   
   })
 

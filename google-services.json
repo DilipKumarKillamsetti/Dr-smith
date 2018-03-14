@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "257757349880",
+    "firebase_url": "https://anhance-53e68.firebaseio.com",
+    "project_id": "anhance-53e68",
+    "storage_bucket": "anhance-53e68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257757349880:android:7e59cd49000b8270",
+        "android_client_info": {
+          "package_name": "com.shezartech.anhance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257757349880-qo7vbb6fo5b0co9c58rh9jodg2eptln9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdwAUqjXvgVktksZd-xmT3yW9IktIYVkY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

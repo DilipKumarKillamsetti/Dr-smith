@@ -109,6 +109,11 @@ angular.module('drsmith.controllers.menteectrl', [])
         $scope.openModal_interactions = function()
          { 
            $scope.modal.show(); 
+           document.getElementById('sdate').onchange=function(){
+             console.log($scope.scheduleObj.stime)
+             $scope.mintime = new Date($scope.scheduleObj.stime)
+             console.log($scope.mintime)
+           }
         };
          $scope.closeModal_interactions = function()
           {

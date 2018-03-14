@@ -1,8 +1,10 @@
 angular.module('drsmith.controllers.loginctrl', [])
 .controller('loginctrl', function($scope, $http, $state,$rootScope, $ionicLoading) {
+
   $ionicLoading.show({
     template: 'Loading...'
-  }).then(function(){
+  })
+  .then(function(){
      console.log("The loading indicator is now displayed");
   });
   if(localStorage.getItem('login'))
