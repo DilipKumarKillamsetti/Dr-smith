@@ -14874,19 +14874,50 @@ select {
     padding: 15px;
 }
 
-.shz-sender-msg {
+.shz-reciever-msg {
+    font-weight: 300 !important;
+    line-height: 1.7em !important;
+    padding: 15px;
     color: #0066cb !important;
     background-color: #fff !important;
-    width: 90%;
-    margin-right: 10%;
+    width: 70%;
+    margin-left: 0% !important;
+    margin-right: 30% !important;
     text-align: left;
+    text-decoration: none !important;
+    
 }
 
 
-.shz-reciever-msg{
-     color: white !important;
+
+.shz-sender-msg{
+    
+    font-weight: 300 !important;
+    line-height: 1.7em !important;
+    padding: 15px;
     background-color: #0066cb !important;
-    width: 90%;
-    margin-left: 10%;
-    text-align: right;
+    width: 70%;
+    margin-right: 0% !important;
+    margin-left: 30% !important;
+    text-align: right !important;
+    text-decoration: none !important;
+    color: white !important;
+}
+.shz-send-button{
+
+    
+    border: none !important;
+    z-index: 5;
+ 
+    position: relative;
+   
+   margin-left:auto; right:0;
+   
+    width: 50px;
+    height: 50px;
+    background: url(../img/send-msg-icon.png)  ;
+    background-repeat: no-repeat;
+   
+    background-position: center center; 
+    background-size: 30px 30px;
 }

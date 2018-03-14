@@ -20,8 +20,20 @@ $scope.Refresh_Messages=function(){
       $scope.$on("$ionicView.leave", function(){
         $interval.cancel( $scope.promise);
       })
+    
+    $scope.fun=function(sender_id){
+            console.clear();
+            console.log(localStorage.getItem('phoneno'))
+        
+        if (sender_id == localStorage.getItem('phoneno')) {
+                
+                           $('#this').addClass('shz-reciever-msg');
+        }
+      
+    };
 
     $scope.initial=function(){
+       $scope.phone_no =  localStorage.getItem('phoneno')
         if(localStorage.getItem('type')=='mentor'){
             $scope.reciever_name=$stateParams.reciever_name;
             $scope.reciever_id = $stateParams.reciever_id;
